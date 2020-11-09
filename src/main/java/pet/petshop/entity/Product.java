@@ -1,5 +1,6 @@
 package pet.petshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
@@ -13,12 +14,18 @@ public class Product {
     private Boolean status;
     private Integer price;
     private Integer discount;
+    @JsonIgnore
     private Collection<Billinfo> billinfosById;
+
     private Productcategories productcategoriesByCate;
+    @JsonIgnore
     private Productdetail productdetailById;
+
+
 
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -125,12 +132,25 @@ public class Product {
         this.productcategoriesByCate = productcategoriesByCate;
     }
 
-    @OneToOne(mappedBy = "productByIdproduct")
+    @OneToOne(mappedBy = "productByIdproduct", fetch = FetchType.EAGER)
     public Productdetail getProductdetailById() {
         return productdetailById;
     }
 
     public void setProductdetailById(Productdetail productdetailById) {
         this.productdetailById = productdetailById;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", brand='" + brand + '\'' +
+            ", images='" + images + '\'' +
+            ", status=" + status +
+            ", price=" + price +
+            ", discount=" + discount +
+            '}';
     }
 }

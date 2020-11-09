@@ -3,8 +3,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import pet.petshop.entity.Services;
+import pet.petshop.repository.ServiceRespository;
 @Service
-public class ServiceDAO {
+public class ServiceServices {
 	@Autowired
 	private ServiceRespository sepo;
 	

@@ -1,5 +1,6 @@
 package pet.petshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
@@ -8,10 +9,19 @@ import java.util.Objects;
 public class Productcategories {
     private Integer id;
     private String name;
+    @JsonIgnore
     private Collection<Product> productsById;
+
+    public Productcategories() {
+    }
+
+    public Productcategories(Integer id) {
+        this.id = id;
+    }
 
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -45,7 +55,7 @@ public class Productcategories {
         return Objects.hash(id, name);
     }
 
-    @OneToMany(mappedBy = "productcategoriesByCate")
+    @OneToMany(mappedBy = "productcategoriesByCate", fetch = FetchType.LAZY)
     public Collection<Product> getProductsById() {
         return productsById;
     }

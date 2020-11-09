@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<table class="table">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>NAME</th>
+    <th colspan="2">OPTIONS</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="category : ${listCategories}">
+    <td th:text="${category.id}"></td>
+    <td th:text="${category.name}"></td>
+    <td>
+      <a class="btn btn-success" id="editBtn" onclick="fetchProduct()"
+         th:onclick="|fetchProduct('${category.id}')|">
+        EDIT
+      </a>
+      <a class="btn btn-danger" th:href="@{'delete?id=' + ${category.id}}">
+        DELETE
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+  INSERT NEW CATEGORY
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
+     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{'add'}" th:object="${category}"
+              id="myForm" method="post">
+          <input type="hidden" name="id" id="id">
+          <div class="form-group">
+            <label for="name">Category name</label>
+            <input
+                type="text"
+                class="form-control"
+                name="name"
+                th:value="${category.name}"
+                id="name" placeholder="">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" form="myForm"
+                th:text="'INSERT NEW'"></button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script>
+  const fetchProduct = async (id) => {
+    $.get(`findById?id=${id}`, (response, satus) => {
+      $('#myForm #id').val(response.id);
+      $('#myForm #name').val(response.name);
+      $('#myForm').attr('action', 'update')
+    });
+    $('#staticBackdrop').modal();
+  }
+
+  $('#staticBackdrop').on('hide.bs.modal', function (e) {
+    $('#myForm #id').val('');
+    $('#myForm #name').val('');
+    $('#myForm').attr('action', 'add')
+  })
+
+</script>
+</html>

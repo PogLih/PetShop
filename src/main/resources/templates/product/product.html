@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+      INSERT NEW PRODUCT
+    </button>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>CATEGORY</th>
+        <th>NAME</th>
+        <th>BRAND</th>
+        <th>IMAGE</th>
+        <th>STATUS</th>
+        <th>PRICE</th>
+        <th>DISCOUNT</th>
+        <th colspan="2">
+          OPTIONS
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="product : ${listProduct}">
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.productcategoriesByCate.name}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.brand}"></td>
+        <td th:text="${product.images}"></td>
+        <td th:text="${product.status}"></td>
+        <td th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td>
+        <td th:text="${product.discount} + '%'"></td>
+        <td>
+          <button class="btn btn-info" th:onclick="|fetchProductDetail('${product.id}')|">
+            DETAIL
+          </button>
+        </td>
+        <td>
+          <a class="btn btn-danger" th:href="@{'delete?id=' + ${product.id}}">
+            DELETE
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
+       tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Product Form</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="myForm" method="post" th:action="@{add}" th:object="${productDto}">
+            <input type="hidden" name="id" id="id">
+            <div class="product">
+              <div class="row w-100 mx-auto my-2">
+                <div class="col">
+                  <label for="product_cate">Product category name</label>
+                  <select class="form-control" id="product_cate" name="category">
+                    <option
+                        th:each="cate : ${listCategories}"
+                        th:text="${cate.name}"
+                        th:value="${cate.id}"
+                    >
+                    </option>
+                  </select>
+                </div>
+                <div class="col">
+                  <label for="brand">BRANCH NAME</label>
+                  <input type="text" class="form-control" name="brand" id="brand">
+                </div>
+              </div>
+
+              <div class="row w-100 mx-auto my-2">
+                <div class="col">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" name="name" id="name">
+                </div>
+              </div>
+
+              <div class="row w-100 mx-auto my-2">
+                <div class="col">
+                  <label for="images">Image</label>
+                  <input type="text" class="form-control" name="images" id="images">
+                </div>
+                <div class="col">
+                  <label for="status">Status</label>
+                  <select class="form-control" id="status" name="status">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row w-100 mx-auto my-2">
+                <div class="col">
+                  <label for="price">Price</label>
+                  <input type="number" class="form-control" name="price" id="price">
+                </div>
+                <div class="col">
+                  <label for="discount">Discount</label>
+                  <input type="number" class="form-control" name="discount" id="discount">
+                </div>
+              </div>
+
+              <div class="row w-100 mx-auto my-2">
+                <div class="col">
+                  <label for="height">Height</label>
+                  <input type="number" class="form-control" name="height" id="height">
+                </div>
+                <div class="col">
+                  <label for="width">Width</label>
+                  <input type="number" class="form-control" name="width" id="width">
+                </div>
+                <div class="col">
+                  <label for="length">Length</label>
+                  <input type="number" class="form-control" name="length" id="length">
+                </div>
+              </div>
+
+              <div class="row w-100 mx-auto my-2">
+                <div class="col">
+                  <label for="typeOfPet">Type Of Pet</label>
+                  <input type="text" class="form-control" name="typeOfPet" id="typeOfPet">
+                </div>
+                <div class="col">
+                  <label for="stage">Stage</label>
+                  <input type="number" class="form-control" name="stage" id="stage">
+                </div>
+              </div>
+
+              <div class="row w-100 mx-auto my-2">
+                <div class="col">
+                  <label for="description">Description</label>
+                  <textarea class="form-control" id="description" name="description"></textarea>
+                </div>
+              </div>
+
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" id="edit" onclick="showButtonUpdate()">
+            Edit
+          </button>
+          <button type="submit" class="btn btn-primary" id="submit" form="myForm">
+            INSERT PRODUCT
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</body>
+<script>
+
+  const fetchProductDetail = async (id) => {
+
+    $.get(`findDetailById?id=${id}`, (response, satus) => {
+      console.log(response)
+      $('#myForm #id').val(response.productByIdproduct.id);
+      $('#myForm #product_cate').val(response.productByIdproduct.productcategoriesByCate.id);
+      $('#myForm #brand').val(response.productByIdproduct.brand);
+      $('#myForm #name').val(response.productByIdproduct.name);
+      $('#myForm #images').val(response.productByIdproduct.images);
+      $('#myForm #status').val(response.productByIdproduct.status ? "true" : "false");
+      $('#myForm #price').val(response.productByIdproduct.price);
+      $('#myForm #discount').val(response.productByIdproduct.discount);
+      $('#myForm #height').val(response.height);
+      $('#myForm #width').val(response.width);
+      $('#myForm #length').val(response.length);
+      $('#myForm #typeOfPet').val(response.typeofpet);
+      $('#myForm #stage').val(response.stage);
+      $('#myForm #description').val(response.description);
+      $('#myForm').attr("action", "update");
+
+      $('#edit').show();
+      $('#submit').hide();
+      $('#submit').html('UPDATE PRODUCT');
+      setReadonlyForm();
+    });
+    $('#staticBackdrop').modal();
+  }
+
+  const showButtonUpdate = () => {
+    $('#edit').hide();
+    $('#submit').show();
+    setReadonlyForm(false)
+  }
+
+  const setReadonlyForm = (status = true) => {
+    $('#myForm #id').prop(status);
+    $('#myForm #product_cate').prop('disabled', status);
+    $('#myForm #brand').prop('readonly', status);
+    $('#myForm #name').prop('readonly', status);
+    $('#myForm #images').prop('readonly', status);
+    $('#myForm #status').prop('disabled', status);
+    $('#myForm #price').prop('readonly', status);
+    $('#myForm #discount').prop('readonly', status);
+    $('#myForm #height').prop('readonly', status);
+    $('#myForm #width').prop('readonly', status);
+    $('#myForm #length').prop('readonly', status);
+    $('#myForm #typeOfPet').prop('readonly', status);
+    $('#myForm #stage').prop('readonly', status);
+    $('#myForm #description').prop('readonly', status);
+  }
+
+  $('#staticBackdrop').on('hide.bs.modal', function (e) {
+    $('#myForm #id').val('');
+    $('#myForm #product_cate').val('');
+    $('#myForm #brand').val('');
+    $('#myForm #name').val('');
+    $('#myForm #images').val('');
+    $('#myForm #status').val('true');
+    $('#myForm #price').val('');
+    $('#myForm #discount').val('');
+    $('#myForm #height').val('');
+    $('#myForm #width').val('');
+    $('#myForm #length').val('');
+    $('#myForm #typeOfPet').val('');
+    $('#myForm #stage').val('');
+    $('#myForm #description').val('');
+
+    $('#submit').html('INSERT PRODUCT');
+    $('#submit').show();
+    $('#edit').hide();
+
+    setReadonlyForm(false);
+  })
+
+  $('#edit').hide();
+
+</script>
+</html>

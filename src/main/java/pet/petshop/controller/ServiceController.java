@@ -1,4 +1,4 @@
-package pet.petshop.service;
+package pet.petshop.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,33 +10,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import pet.petshop.entity.Services;
+import pet.petshop.service.ServiceServices;
+
 @Controller
 public class ServiceController {
 	@Autowired
-	private ServiceDAO abc;
-	@RequestMapping("/Services")
+	private ServiceServices abc;
+	@RequestMapping("/services")
 	public String viewHomePage(Model model) {
 		List<Services> listServices = abc.listALl();
 		model.addAttribute("listServices",listServices);
-		return "index2";
+		return "service/index";
 	}
 	
-	@RequestMapping("/new")
+	@RequestMapping("/newservices")
 	public String showNewServiceForm(Model model) {
 		Services services = new Services();
 		model.addAttribute("services",services);
-		return "new_service";
+		return "service/new_service";
 	}
 	
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 		public String saveService(@ModelAttribute("services") Services services)
 		{
 		abc.save(services);
-		return "redirect:/";
+		return "redirect:/services";
 }
 	@RequestMapping("/edit/{id}")
 	public ModelAndView showEditServiceForm(@PathVariable(name = "id") int id) {
-		ModelAndView mav = new ModelAndView("edit_services");
+		ModelAndView mav = new ModelAndView("service/edit_services");
 		Services services= abc.get(id);
 		mav.addObject("services",services);
 		

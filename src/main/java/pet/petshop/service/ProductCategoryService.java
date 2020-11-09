@@ -14,6 +14,8 @@ public interface ProductCategoryService {
 
     Productcategories update(Productcategories pc);
 
+    Productcategories findById(Integer id);
+
     void delete(Integer id);
 
 }

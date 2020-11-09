@@ -10,26 +10,47 @@ import pet.petshop.service.ProductCategoryService;
 @RequestMapping(value = "/productcategory")
 public class ProductCategoryController {
 
-    private ProductCategoryService productCategoryService;
+  private ProductCategoryService productCategoryService;
 
-    public ProductCategoryController(ProductCategoryService productCategoryService) {
-        this.productCategoryService = productCategoryService;
-    }
+  public ProductCategoryController(ProductCategoryService productCategoryService) {
+    this.productCategoryService = productCategoryService;
+  }
 
-    @GetMapping(value = "/")
-    public ModelAndView getAll(){
-        return
-                new ModelAndView("product_category")
-                        .addObject("listCategories", productCategoryService.getAll());
-    }
+  @GetMapping(value = "/view")
+  public ModelAndView getAll() {
+    return
+        new ModelAndView("product/product_category")
+            .addObject("listCategories", productCategoryService.getAll());
+  }
 
-    @PostMapping(value = "/")
-    public String insert(@ModelAttribute(value = "productcategory") Productcategories productcategories){
-        Productcategories save = productCategoryService.save(productcategories);
-        System.out.println(save.toString());
-        return "redirect:/productcategory/";
-    }
+  @PostMapping(value = "/add")
+  public String insert(@ModelAttribute(value = "category") Productcategories cate) {
+    cate.setId(null);
+    productCategoryService.save(cate);
+    return "redirect:/productcategory/view";
+  }
 
+  @PostMapping(value = "/update")
+  public String update(@ModelAttribute(value = "category") Productcategories cate) {
+    productCategoryService.save(cate);
+    return "redirect:/productcategory/view";
+  }
 
+  @GetMapping(value = "/findById")
+  @ResponseBody
+  public Productcategories findOne(@RequestParam(value = "id") Integer id) {
+    return productCategoryService.findById(id);
+  }
+
+  @GetMapping(value = "/delete")
+  public String delete(@RequestParam(value = "id") Integer id) {
+    productCategoryService.delete(id);
+    return "redirect:/productcategory/view";
+  }
+
+  @ModelAttribute(value = "category")
+  public Productcategories model() {
+    return new Productcategories();
+  }
 
 }
