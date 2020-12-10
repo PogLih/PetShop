@@ -69,40 +69,50 @@
 					</div>
 					<div class="col-md-5 ml-auto">
 						<div class="card card-contact">
-							<form  class="form-horizontal" action="#" th:action="@{/order}" th:object="${schedule}" method="post">
-                                        <div class="form-group">
-                                            <label for="input-placeholder" class="col-sm-2 control-label">khách hàng</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" th:field="*{iduser}" th:value="${session.user.id}" >
-                                            </div>
-                                        </div> 
-                                        <div class="form-group">
-                                            <label for="input-placeholder" class="col-sm-2 control-label"></label>
-                                            <div class="col-sm-10">
-                                                <input type="text" th:field="*{idservice}" class="form-control" th:value="${service.id}" >
-                                            </div>
-                                        </div> 
-                                        
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Date</label>
-                                            <div class="col-sm-10">
-                                                <input type="date" th:field="*{datacheckin}" class="form-control date-picker">
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Nội dung</label>
-                                            <div class="col-sm-10">
-                                                
-                                                <textarea class="input-large form-control" id="message" rows="5" th:field="*{note}" placeholder="Nhập nội dung..."></textarea>
-                                            </div>
-                                        </div> 
-                                        <div class="form-group">
-                                            <div class="col-sm-offset-2 col-sm-10">
-                                                <button type="submit" class="btn btn-success">Thêm Blog</button>
-                                            </div>
-                                        </div>
-                                    </form>
+							<form class="form-horizontal" action="#" th:action="@{/order}"
+								th:object="${schedule}" method="post">
+								
+								<div class="form-group">
+									<label for="name" class="bmd-label-floating">ID Khách hàng</label> <input
+										type="text" class="form-control"  th:field="${schedule.iduser}">
+								</div>
+								<div class="form-group">
+									<label for="name" class="bmd-label-floating">ID Dịch vụ</label> <input
+										type="text" class="form-control" th:field="${schedule.idservice}">
+								</div>
+								
+
+								<!-- <div class="form-group">
+									<label class="col-sm-2 control-label">Date</label>
+									<div class="col-sm-10">
+										<input type="date" th:field="*{datacheckin}"
+											class="form-control date-picker">
+									</div>
+								</div> -->
+								<div class="form-group">
+									<label class="label-control">Date Picker</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control datepicker"
+											th:field="*{datacheckin}">
+									</div>
+								</div>
+
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Nội dung</label>
+									<div class="col-sm-10">
+
+										<textarea class="input-large form-control" id="message"
+											rows="5" th:field="*{note}" placeholder="Nhập nội dung..."></textarea>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+										<button type="submit" class="btn btn-success">Thêm
+											Blog</button>
+									</div>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
