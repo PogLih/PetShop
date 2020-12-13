@@ -48,42 +48,75 @@
 								style="width: 100%; cellspacing: 0;">
 								<thead>
 									<tr>
-										<th>Service id</th>
-										<th>Category id</th>
-										<th>Date</th>
-										<th>User ID</th>
-										<th>Images</th>
-										<th>Content</th>
-										<th>Action</th>
+										<th class="text-center"><a th:href="@{'/blog-page/' + ${currentpage} + '?sortField=id&sortDir=' + ${reverseSortDir}}">Service id</a></th>
+										<th class="text-center"><a th:href="@{'/blog-page/' + ${currentpage} + '?sortField=cate&sortDir=' + ${reverseSortDir}}">Category id</a></th>
+										<th class="text-center"><a th:href="@{'/blog-page/' + ${currentpage} + '?sortField=title&sortDir=' + ${reverseSortDir}}">title</a></th>
+										<th class="text-center"><a th:href="@{'/blog-page/' + ${currentpage} + '?sortField=datepost&sortDir=' + ${reverseSortDir}}">Date</a></th>
+										<th class="text-center"><a th:href="@{'/blog-page/' + ${currentpage} + '?sortField=userid&sortDir=' + ${reverseSortDir}}">User ID</a></th>
+										<th class="text-center"><a th:href="@{'/blog-page/' + ${currentpage} + '?sortField=images&sortDir=' + ${reverseSortDir}}">Images</a></th>
+										<th class="text-center"><a th:href="@{'/blog-page/' + ${currentpage} + '?sortField=id&sortDir=' + ${reverseSortDir}}">Content</a></th>
+										<th class="text-center" colspan="2">Action</th>
 										<th></th>
 									</tr>
 								</thead>
 								<tfoot>
 									<tr>
-										<th>Service id</th>
-										<th>Category id</th>
-										<th>Date</th>
-										<th>User ID</th>
-										<th>Images</th>
-										<th>Content</th>
+										<th class="text-center">Service id</th>
+										<th class="text-center">Category id</th>
+										<th class="text-center">Title</th>
+										<th class="text-center">Date</th>
+										<th class="text-center">User ID</th>
+										<th class="text-center">Images</th>
+										<th class="text-center">Content</th>
 										<th>Action</th>
 										<th></th>
 									</tr>
 								</tfoot>
 								<tbody>
 									<tr th:each="blog : ${listblog}">
-										<td th:text="${blog.id}">Blog id</td>
-										<td th:text="${blog.cate}">Category id</td>
-										<td th:text="${blog.datepost}">Date</td>
-										<td th:text="${blog.userid}">Người đăng</td>
-										<td th:text="${blog.images}">Images</td>
-										<td th:text="${blog.content}">Content</td>
+										<td class="text-center" th:text="${blog.id}">Blog id</td>
+										<td class="text-center" th:text="${blog.cate}">Category id</td>
+										<td class="text-center" th:text="${blog.title}">Title</td>
+										<td  class="text-center" th:text="${blog.datepost}">Date</td>
+										<td class="text-center" th:text="${blog.userid}">Người đăng</td>
+										<td class="text-center" th:text="${blog.images}">Images</td>
+										<td class="text-center" style="max-width: 300px" th:text="${#strings.abbreviate(blog.content,120)}">Content</td>
 										<td><a th:href="@{'/editblog/' + ${blog.id}}">edit</a></td>
 										<td><a th:href="@{'/deleteblog/' + ${blog.id}}">delte</a>
 										</td>
 									</tr>
 								</tbody>
 							</table>
+							<div style="margin-left: 500px">
+								Tổng [[${totalItemsInpage}]] trên [[${totalItems}]] sản phẩm -
+								Trang [[${currentpage}]] / [[${totalPages}]] :
+								&nbsp;
+								<a th:if="${currentpage > 1}" th:href="@{'/blog-page/1' + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Đầu trang</a>
+								<span th:unless="${currentpage > 1}">Đầu trang</span>
+								&nbsp;
+								<a th:if="${currentpage > 1}" th:href="@{'/blog-page/' + ${currentpage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trang trước</a>
+								<span th:unless="${currentpage > 1}">Trang trước</span>
+								&nbsp;
+								<span
+									th:each="i: ${#numbers.sequence(1, totalPages)}">
+									<span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<a 
+										th:if="${i != currentpage}"
+										th:href="@{'/blog-page/' + ${i}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} ">[[${i}]]
+									</a>
+										<span th:unless="${i != currentpage}">[[${i}]]</span>
+								</span>
+								
+								</span>
+								&nbsp;
+								
+								&nbsp;
+								<a th:if="${currentpage < totalPages}" th:href="@{'/blog-page/' + ${currentpage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trang sau</a>
+								<span th:unless="${currentpage < totalPages}">Trang sau</span>
+								&nbsp;
+								<a th:if="${currentpage < totalPages}" th:href="@{'/blog-page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trang cuối</a>
+								<span th:unless="${currentpage < totalPages}">Trang cuối</span>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -79,16 +79,26 @@
                                style="width: 100%; cellspacing: 0;">
                             <thead>
                             <tr>
-                                <th>Product id</th>
-                                <th>Categories id</th>
-                                <th>Name</th>
-                                <th>Brand</th>
-                                <th>Images</th>
-                                <th>status</th>
-                                <th>discount</th>
-                                <th>Action</th>
-                                <th></th>
-                            </tr>
+										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=id&sortDir=' + ${reverseSortDir}}">
+										Product id</a></th>
+										<th>Categories id</th>
+										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=name&sortDir=' + ${reverseSortDir}}">
+										Name</a></th>
+										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=brand&sortDir=' + ${reverseSortDir}}">
+										Brand</a></th>
+										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=images&sortDir=' + ${reverseSortDir}}">
+										Images</a></th>
+										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=status&sortDir=' + ${reverseSortDir}}">
+										status</a></th>
+										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=price&sortDir=' + ${reverseSortDir}}">
+										
+										price</a></th>
+										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=discount&sortDir=' + ${reverseSortDir}}">
+										
+										discount</a></th>
+										<th rowspan="2">Action</th>
+										<th></th>
+									</tr>
                             </thead>
                             <tfoot>
                             <tr>
@@ -125,6 +135,36 @@
                             </tr>
                             </tbody>
                         </table>
+                        <div style="margin-left: 500px">
+								Tổng [[${totalItemsInpage}]] trên [[${totalItems}]] sản phẩm -
+								Trang [[${currentpage}]] / [[${totalPages}]] :
+								&nbsp;
+								<a th:if="${currentpage > 1}" th:href="@{'/product-page/1' + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Đầu trang</a>
+								<span th:unless="${currentpage > 1}">Đầu trang</span>
+								&nbsp;
+								<a th:if="${currentpage > 1}" th:href="@{'/product-page/' + ${currentpage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trang trước</a>
+								<span th:unless="${currentpage > 1}">Trang trước</span>
+								&nbsp;
+								<span
+									th:each="i: ${#numbers.sequence(1, totalPages)}">
+									<span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<a 
+										th:if="${i != currentpage}"
+										th:href="@{'/product-page/' + ${i}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} ">[[${i}]]
+									</a>
+										<span th:unless="${i != currentpage}">[[${i}]]</span>
+								</span>
+								
+								</span>
+								&nbsp;
+								
+								&nbsp;
+								<a th:if="${currentpage < totalPages}" th:href="@{'/product-page/' + ${currentpage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trang sau</a>
+								<span th:unless="${currentpage < totalPages}">Trang sau</span>
+								&nbsp;
+								<a th:if="${currentpage < totalPages}" th:href="@{'/product-page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trang cuối</a>
+								<span th:unless="${currentpage < totalPages}">Trang cuối</span>
+							</div>
                     </div>
                 </div>
             </div>

@@ -45,6 +45,6 @@ public class ScheduleController {
 		String datecheckin = format.format(sch.getDatacheckin());
 		Schedule schedule = new Schedule(sch.getIdservice(), sch.getIduser(), format.parse(now), format.parse(datecheckin), sch.getNote());
 		scs.save(schedule);
-		return "/";
+		return "/services";
 	}
 }

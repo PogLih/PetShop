@@ -18,7 +18,7 @@
 						
 						<div class="card card-product card-plain">
 							<div class="card-header card-header-image">
-								<a href="#pablo"> <img th:src="@{'../assets/img/' + ${pr.images}}" style="max-height: 330px"/> 
+								<a href="#pablo"> <img th:src="@{'../assets/img/' + ${pr.images}}" style="min-height: 320px;max-height: 320px"/> 
 								</a>
 							</div>
 							<div class="card-body text-center">
@@ -353,12 +353,39 @@
 								
 								<!-- end card -->
 							</div>
-							<div class="col-md-3 ml-auto mr-auto">
-								<button rel="tooltip" class="btn btn-rose btn-round"
-									data-original-title="" title="" >Load more...</button>
-							</div>
+							
 						</div>
 					</div>
+					<div style="margin-left: 200px">
+								Tổng [[${totalItemsInpage}]] trên [[${totalItems}]] sản phẩm -
+								Trang [[${currentpage}]] / [[${totalPages}]] :
+								&nbsp;
+								<a th:if="${currentpage > 1}" th:href="@{/shop-page/1}">Đầu trang</a>
+								<span th:unless="${currentpage > 1}">Đầu trang</span>
+								&nbsp;
+								<a th:if="${currentpage > 1}" th:href="@{'/shop-page/' + ${currentpage - 1}}">Trang trước</a>
+								<span th:unless="${currentpage > 1}">Trang trước</span>
+								&nbsp;
+								<span
+									th:each="i: ${#numbers.sequence(1, totalPages)}">
+									<span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<a 
+										th:if="${i != currentpage}"
+										th:href="@{'/shop-page/' + ${i}}">[[${i}]]
+									</a>
+										<span th:unless="${i != currentpage}">[[${i}]]</span>
+								</span>
+								
+								</span>
+								&nbsp;
+								
+								&nbsp;
+								<a th:if="${currentpage < totalPages}" th:href="@{'/shop-page/' + ${currentpage + 1}}">Trang sau</a>
+								<span th:unless="${currentpage < totalPages}">Trang sau</span>
+								&nbsp;
+								<a th:if="${currentpage < totalPages}" th:href="@{'/shop-page/' + ${totalPages}}">Trang cuối</a>
+								<span th:unless="${currentpage < totalPages}">Trang cuối</span>
+							</div>
 				</div>
 				<br>
 				
