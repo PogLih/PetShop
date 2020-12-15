@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import pet.petshop.entity.Blogcategories;
 import pet.petshop.entity.Product;
 import pet.petshop.entity.Productcategories;
 import pet.petshop.service.ProductCategoryService;
@@ -41,7 +42,8 @@ public class ProductController {
 
     @RequestMapping("/product")
     public String viewHomePage(Model model, @RequestParam(value = "search", defaultValue = "", required = false) String search) {
-        Iterable<Product> product = null;
+        
+    	Iterable<Product> product = null;
         if (search.isEmpty()) {
             return listByPageAdminProduct(model, 1, "name", "asc");
         } else {
@@ -80,9 +82,9 @@ public class ProductController {
     @RequestMapping("/newproduct")
     public String showNewProductForm(Model model) {
         Product product = new Product();
-        Productcategories procate = new Productcategories();
+        List<Productcategories> cate = pcs.listALL();
         model.addAttribute("product", product);
-        model.addAttribute("procate", procate);
+        model.addAttribute("cate", cate);
         return "admin/product/product_add";
     }
 
@@ -108,8 +110,10 @@ public class ProductController {
     @RequestMapping("/editproduct/{id}")
     public ModelAndView showEditProduct(@PathVariable(name = "id") Integer id) {
         ModelAndView mav = new ModelAndView("admin/product/product_edit");
+        List<Productcategories> cate = pcs.listALL();
         Product product = ps.get(id);
         mav.addObject("product", product);
+        mav.addObject("cate", cate);
 
         return mav;
     }

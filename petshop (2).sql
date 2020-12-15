@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2020 at 10:53 AM
+-- Generation Time: Dec 15, 2020 at 06:25 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -211,6 +211,31 @@ INSERT INTO `productcategories` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `schedule`
+--
+
+CREATE TABLE `schedule` (
+  `idschedule` int(11) NOT NULL,
+  `idservice` int(11) DEFAULT NULL,
+  `iduser` int(11) DEFAULT NULL,
+  `dateorder` datetime DEFAULT current_timestamp(),
+  `datacheckin` datetime DEFAULT current_timestamp(),
+  `note` varchar(200) CHARACTER SET utf8 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `schedule`
+--
+
+INSERT INTO `schedule` (`idschedule`, `idservice`, `iduser`, `dateorder`, `datacheckin`, `note`) VALUES
+(2, 1, 1, '2020-12-10 00:00:00', '2020-12-30 00:00:00', 'dqwd'),
+(4, 2, 2, '2020-12-10 00:00:00', '2021-01-21 00:00:00', 'tesd 1'),
+(5, 3, 2, '2020-12-10 00:00:00', '2020-12-30 00:00:00', 'alo'),
+(7, 3, 4, '2020-12-11 00:00:00', '2020-12-29 00:00:00', 'ddwqdqdqdqd');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `servicecategories`
 --
 
@@ -345,6 +370,14 @@ ALTER TABLE `productcategories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `schedule`
+--
+ALTER TABLE `schedule`
+  ADD PRIMARY KEY (`idschedule`),
+  ADD KEY `FK_serviceSchudle` (`idservice`),
+  ADD KEY `FK_userSchudle` (`iduser`);
+
+--
 -- Indexes for table `servicecategories`
 --
 ALTER TABLE `servicecategories`
@@ -405,6 +438,12 @@ ALTER TABLE `productcategories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `schedule`
+--
+ALTER TABLE `schedule`
+  MODIFY `idschedule` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `servicecategories`
 --
 ALTER TABLE `servicecategories`
@@ -451,6 +490,13 @@ ALTER TABLE `blog`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `p_fk` FOREIGN KEY (`cate`) REFERENCES `productcategories` (`id`);
+
+--
+-- Constraints for table `schedule`
+--
+ALTER TABLE `schedule`
+  ADD CONSTRAINT `FK_serviceSchudle` FOREIGN KEY (`idservice`) REFERENCES `services` (`id`),
+  ADD CONSTRAINT `FK_userSchudle` FOREIGN KEY (`iduser`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `services`

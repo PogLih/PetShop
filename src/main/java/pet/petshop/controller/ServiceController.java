@@ -21,8 +21,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import pet.petshop.entity.Blogcategories;
 import pet.petshop.entity.Product;
+import pet.petshop.entity.Servicecategories;
 import pet.petshop.entity.Services;
+import pet.petshop.service.ServiceCategoriesService;
 import pet.petshop.service.ServiceServices;
 import pet.petshop.utils.FileUploadUtil;
 
@@ -30,6 +33,9 @@ import pet.petshop.utils.FileUploadUtil;
 public class ServiceController {
 	@Autowired
 	private ServiceServices abc;
+	
+	@Autowired
+	private ServiceCategoriesService svc;
 
 	@RequestMapping("/services")
 	public String viewHomePage(Model model) {
@@ -78,6 +84,8 @@ public class ServiceController {
 	@RequestMapping("/newservices")
 	public String showNewServiceForm(Model model) {
 		Services services = new Services();
+		List<Servicecategories> cate = svc.listAll();
+		model.addAttribute("cate", cate);
 		model.addAttribute("services", services);
 		return "admin/service/new_service1";
 	}
@@ -103,8 +111,10 @@ public class ServiceController {
 	@RequestMapping("/editservice/{id}")
 	public ModelAndView showEditServiceForm(@PathVariable(name = "id") int id) {
 		ModelAndView mav = new ModelAndView("admin/service/edit_services1");
+		List<Servicecategories> cate = svc.listAll();
 		Services services = abc.get(id);
 		mav.addObject("services", services);
+		mav.addObject("cate", cate);
 
 		return mav;
 	}

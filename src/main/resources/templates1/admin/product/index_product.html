@@ -96,6 +96,12 @@
 										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=discount&sortDir=' + ${reverseSortDir}}">
 										
 										discount</a></th>
+										<th>Height</th>
+								<th>Width</th>
+								<th>Length</th>
+								<th>Typeofpet</th>
+								<th>Stage</th>
+								<th>Description</th>
 										<th rowspan="2">Action</th>
 										<th></th>
 									</tr>
@@ -109,6 +115,12 @@
                                 <th>Images</th>
                                 <th>status</th>
                                 <th>discount</th>
+                                <th>Height</th>
+								<th>Width</th>
+								<th>Length</th>
+								<th>Typeofpet</th>
+								<th>Stage</th>
+								<th>Description</th>
                                 <th>Action</th>
                                 <th></th>
                             </tr>
@@ -126,12 +138,20 @@
                                 <td th:text="${pr.status}">Images</td>
                                 <td th:text="${pr.price}">Images</td>
                                 <td th:text="${pr.discount}">Content</td>
+                                <td th:text="${pr.length}"></td>
+                                <td th:text="${pr.width}"></td>
+                                <td th:text="${pr.height}"></td>
+                                <td th:text="${pr.typeofpet}"></td>
+                                <td th:text="${pr.stage}"></td>
+                                <td th:text="${#strings.abbreviate(pr.description,100)}"></td>
+                                
                                 <td>
                                     <a th:href="@{'/editproduct/' + ${pr.id}}">edit</a>
                                 </td>
                                 <td>
                                     <a th:href="@{'/deleteproduct/' + ${pr.id}}">delete</a>
                                 </td>
+                               
                             </tr>
                             </tbody>
                         </table>
