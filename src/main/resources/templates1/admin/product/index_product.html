@@ -81,7 +81,8 @@
                             <tr>
 										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=id&sortDir=' + ${reverseSortDir}}">
 										Product id</a></th>
-										<th>Categories id</th>
+										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=cate&sortDir=' + ${reverseSortDir}}">
+										Category</a></th>
 										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=name&sortDir=' + ${reverseSortDir}}">
 										Name</a></th>
 										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=brand&sortDir=' + ${reverseSortDir}}">

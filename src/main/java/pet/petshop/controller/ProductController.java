@@ -45,7 +45,7 @@ public class ProductController {
         
     	Iterable<Product> product = null;
         if (search.isEmpty()) {
-            return listByPageAdminProduct(model, 1, "name", "asc");
+            return listByPageAdminProduct(model, 1, "id", "desc");
         } else {
             product = ps.searchByName(search);
         }
