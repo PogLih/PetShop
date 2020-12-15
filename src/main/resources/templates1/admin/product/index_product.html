@@ -131,7 +131,7 @@
                             </tr>
                             <tr th:each="pr : ${product}" th:if="${product.size() > 0}">
                                 <td th:text="${pr.id}">pr id</td>
-                                <td th:text="${pr.cate}">pr id</td>
+                                <td th:text="${pr.productcategories.name}">pr id</td>
                                 <td th:text="${pr.name}">Category id</td>
                                 <td th:text="${pr.brand}">Date</td>
                                 <td th:text="${pr.images}">Username</td>
