@@ -42,13 +42,18 @@
 								style="width: 100%; cellspacing: 0;">
 								<thead>
 									<tr>
-					<th>Bill id</th>
-					<th>Date</th>
-					<th>Email</th>
+					<th><a th:href="@{'/bill-page/' + ${currentpage} + '?sortField=id&sortDir=' + ${reverseSortDir}}">
+					Bill id</a></th>
+					<th><a th:href="@{'/bill-page/' + ${currentpage} + '?sortField=date&sortDir=' + ${reverseSortDir}}">
+					Date</a></th>
+					<th><a th:href="@{'/bill-page/' + ${currentpage} + '?sortField=userid&sortDir=' + ${reverseSortDir}}">
+					Email</a></th>
 					<th>Phone</th>
-					<th>Status</th>
-					<th>Totalprice</th>
-					
+					<th><a th:href="@{'/bill-page/' + ${currentpage} + '?sortField=status&sortDir=' + ${reverseSortDir}}">
+					Status</a></th>
+					<th><a th:href="@{'/bill-page/' + ${currentpage} + '?sortField=totalprice&sortDir=' + ${reverseSortDir}}">
+					Totalprice</a></th>
+					<th rowspan="2">Action</th>
 				</tr>
 								</thead>
 								
@@ -83,6 +88,36 @@
 									</tr>
 								</tbody>
 							</table>
+							<div style="margin-left: 500px">
+								Tổng [[${totalItemsInpage}]] trên [[${totalItems}]] sản phẩm -
+								Trang [[${currentpage}]] / [[${totalPages}]] :
+								&nbsp;
+								<a th:if="${currentpage > 1}" th:href="@{'/bill-page/1' + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Đầu trang</a>
+								<span th:unless="${currentpage > 1}">Đầu trang</span>
+								&nbsp;
+								<a th:if="${currentpage > 1}" th:href="@{'/bill-page/' + ${currentpage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trang trước</a>
+								<span th:unless="${currentpage > 1}">Trang trước</span>
+								&nbsp;
+								<span
+									th:each="i: ${#numbers.sequence(1, totalPages)}">
+									<span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<a 
+										th:if="${i != currentpage}"
+										th:href="@{'/bill-page/' + ${i}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} ">[[${i}]]
+									</a>
+										<span th:unless="${i != currentpage}">[[${i}]]</span>
+								</span>
+								
+								</span>
+								&nbsp;
+								
+								&nbsp;
+								<a th:if="${currentpage < totalPages}" th:href="@{'/bill-page/' + ${currentpage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trang sau</a>
+								<span th:unless="${currentpage < totalPages}">Trang sau</span>
+								&nbsp;
+								<a th:if="${currentpage < totalPages}" th:href="@{'/bill-page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trang cuối</a>
+								<span th:unless="${currentpage < totalPages}">Trang cuối</span>
+							</div>
 						</div>
 					</div>
 				</div>

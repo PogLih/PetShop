@@ -40,7 +40,7 @@ public class BlogController {
 	private BlogCategoriesService bcs;
 	@RequestMapping("/blogindex")
 	public String viewHomePage(Model model) {
-		return listByPageAdminBlog(model, 1, "id", "asc");
+		return listByPageAdminBlog(model, 1, "id", "desc");
 	}
 	
 	@GetMapping("/blog-page/{pageNumber}")

@@ -40,11 +40,11 @@ public class ServiceController {
 	@RequestMapping("/services")
 	public String viewHomePage(Model model) {
 		
-		return listByPageAdminProduct(model, 1, "name", "asc");
+		return listByPageAdminServices(model, 1, "id", "desc");
 	}
 
 	@GetMapping("/service-page/{pageNumber}")
-	public String listByPageAdminProduct(Model model,
+	public String listByPageAdminServices(Model model,
 			@PathVariable("pageNumber") int currentpage,
 			@Param("sortField") String sortField,
 			@Param("sortDir") String sortDir) {
