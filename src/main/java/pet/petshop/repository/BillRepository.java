@@ -13,4 +13,5 @@ import pet.petshop.entity.User;
 @Repository
 public interface BillRepository extends JpaRepository<Bill, Integer> {
 	List<Bill> findByUser(User user);
+	
 }

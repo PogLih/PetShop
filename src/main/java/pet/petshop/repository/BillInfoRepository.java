@@ -15,4 +15,6 @@ import pet.petshop.entity.BillInfo;
 public interface BillInfoRepository extends JpaRepository<BillInfo, Integer>{
 	
 	List<BillInfo> findByBill(Bill bill);
+	
+	
 }
