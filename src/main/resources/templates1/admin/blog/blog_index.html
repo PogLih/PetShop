@@ -75,10 +75,10 @@
 								<tbody>
 									<tr th:each="blog : ${listblog}">
 										<td class="text-center" th:text="${blog.id}">Blog id</td>
-										<td class="text-center" th:text="${blog.cate}">Category id</td>
+										<td class="text-center" th:text="${blog.blogcategories.name}">Category id</td>
 										<td class="text-center" th:text="${blog.title}">Title</td>
 										<td  class="text-center" th:text="${blog.datepost}">Date</td>
-										<td class="text-center" th:text="${blog.userid}">Người đăng</td>
+										<td class="text-center" th:text="${blog.user.name}">Người đăng</td>
 										<td class="text-center" th:text="${blog.images}">Images</td>
 										<td class="text-center" style="max-width: 300px" th:text="${#strings.abbreviate(blog.content,120)}">Content</td>
 										<td><a th:href="@{'/editblog/' + ${blog.id}}">edit</a></td>
@@ -88,7 +88,7 @@
 								</tbody>
 							</table>
 							<div style="margin-left: 500px">
-								Tổng [[${totalItemsInpage}]] trên [[${totalItems}]] sản phẩm -
+								Hiện [[${totalItemsInpage}]] / [[${totalItems}]] tổng bài viết -
 								Trang [[${currentpage}]] / [[${totalPages}]] :
 								&nbsp;
 								<a th:if="${currentpage > 1}" th:href="@{'/blog-page/1' + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Đầu trang</a>
