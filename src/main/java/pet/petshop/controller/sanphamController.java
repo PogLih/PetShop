@@ -20,8 +20,6 @@ public class sanphamController {
 	
 	
 	
-	
-	
 	 @RequestMapping("/sanpham/{id}")
 	    public ModelAndView xemsanpham(@PathVariable(name = "id") Integer id) {
 	        ModelAndView mav = new ModelAndView("shop/thongtinsanpham");

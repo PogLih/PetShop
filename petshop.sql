@@ -6,7 +6,7 @@
 -- Generation Time: Dec 05, 2020 at 07:28 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
-DROP DATABASE IF EXISTS petshop;
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -21,8 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `petshop`
 --
-CREATE DATABASE petshop;
-use petshop;
+
 -- --------------------------------------------------------
 
 --
