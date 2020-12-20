@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pet.petshop.entity.User;
 import pet.petshop.repository.UserRepository;
 import pet.petshop.repository.UserRepository2;
+import pet.petshop.entity.AuthenticationProvider;
 
 @Service
 @Transactional
@@ -52,5 +53,25 @@ public class UsersService {
     public List<User> findAllByEmailContain(String email) {
         return userRepository.findAllByEmailContaining(email);
     }
+    
+    public void saveOauth2(String email, String role, String name,AuthenticationProvider authentication) {
+		User user = new User();
+		user.setEmail(email);
+		user.setRole(role);
+		user.setName(name);
+		user.setAuthProvider(authentication);
+		userRepository.save(user);
+		
+	}
+    public User findbyemail(String email) {
+        return userRepository.findByEmail(email);
+    }
+	public void updateOauth2(User user, String name, AuthenticationProvider google) {
+		user.setName(name);
+		user.setAuthProvider(google);
+		userRepository.save(user);
+		
+	}
+    
     
 }

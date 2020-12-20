@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import pet.petshop.dto.UserRegistrationDto;
+import pet.petshop.entity.AuthenticationProvider;
 import pet.petshop.entity.User;
 import pet.petshop.repository.UserRepository;
 
@@ -25,6 +26,8 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
+	
+	
 
 	public UserServiceImpl(UserRepository userRepository) {
 		super();
@@ -33,7 +36,7 @@ public class UserServiceImpl implements UserService {
 
 	public User Regis(User registrationDto) {
 		User user = new User(registrationDto.getEmail(), passwordEncoder.encode(registrationDto.getPassword()),
-				"ROLE_USER",registrationDto.getName(),registrationDto.getPhone(),registrationDto.getAddress());
+				"ROLE_USER",registrationDto.getName(),registrationDto.getPhone(),registrationDto.getAddress(),AuthenticationProvider.LOCAL);
 
 		return userRepository.save(user);
 	}

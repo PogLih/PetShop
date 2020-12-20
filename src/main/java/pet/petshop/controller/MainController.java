@@ -96,6 +96,10 @@ public class MainController {
 	public String home2() {
 		return "admin/index3";
 	}
+	@GetMapping("/login1")
+	public String login1() {
+		return "login1";
+	}
 	
 	@RequestMapping(value="/confirm" ,method = RequestMethod.GET)
 	public String confirm(ModelMap model,HttpSession session)

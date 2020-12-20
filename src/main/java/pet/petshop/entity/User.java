@@ -1,23 +1,13 @@
 package pet.petshop.entity;
 
-import java.util.Collection;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
 @Entity
 @Table(name = "user")
 public class User {
@@ -27,15 +17,9 @@ public class User {
 	private int id;
 	
 	@Column(name = "email")
-	@Email(message = "Địa chỉ không hợp lệ")
-	@Pattern(regexp = "^\\s*\\S+\\s*$", message = "Không được để khoảng trắng")
-	@NotBlank(message = "Vui lòng nhập Email")
 	private String email;
 	
 	@Column(name = "password")
-	@NotBlank(message = "Vui lòng nhập password")
-	@Pattern(regexp = "^\\s*\\S+\\s*$", message = "Không được để khoảng trắng")
-	
 	private String password;
 	@Column(name = "role")
 	private String role;
@@ -48,35 +32,26 @@ public class User {
 	private String address;
 	@Column(name = "avatar")
 	private String avatar;
-	
-	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-	private Collection<Blog> blog;
-	
-	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-	private Collection<Schedule> schedule;
-	
-	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-	private Collection<Bill> bill;
-	
+	@Enumerated(EnumType.STRING)
+	@Column(name= "auth_provider")
+	private AuthenticationProvider authProvider;
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
 
 
 
-	public User(
-			@Email(message = "Địa chỉ không hợp lệ") @Pattern(regexp = "^\\s*\\S+\\s*$", message = "Không được để khoảng trắng") @NotBlank(message = "Vui lòng nhập Email") String email,
-			@NotBlank(message = "Vui lòng nhập password") @Pattern(regexp = "^\\s*\\S+\\s*$", message = "Không được để khoảng trắng") String password,
-			String role, String name, String phone, String address) {
-		super();
-		this.email = email;
-		this.password = password;
-		this.role = role;
-		this.name = name;
-		this.phone = phone;
-		this.address = address;
+
+	public AuthenticationProvider getAuthProvider() {
+		return authProvider;
 	}
 
+
+
+
+	public void setAuthProvider(AuthenticationProvider authProvider) {
+		this.authProvider = authProvider;
+	}
 
 
 
@@ -145,15 +120,20 @@ public class User {
 		this.avatar = avatar;
 	}
 
-	public Collection<Bill> getBill() {
-		return bill;
+
+
+
+	public User(String email, String password, String role, String name, String phone, String address,
+			AuthenticationProvider authProvider) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.role = role;
+		this.name = name;
+		this.phone = phone;
+		this.address = address;
+		this.authProvider = authProvider;
 	}
 
-	public void setBill(Collection<Bill> bill) {
-		this.bill = bill;
-	}
-	
-	
-	
 	
 }
