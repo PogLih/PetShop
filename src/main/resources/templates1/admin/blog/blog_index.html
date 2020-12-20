@@ -82,7 +82,8 @@
 										<td class="text-center" th:text="${blog.images}">Images</td>
 										<td class="text-center" style="max-width: 300px" th:text="${#strings.abbreviate(blog.content,120)}">Content</td>
 										<td><a th:href="@{'/editblog/' + ${blog.id}}">edit</a></td>
-										<td><a th:href="@{'/deleteblog/' + ${blog.id}}">delte</a>
+										<td><a th:href="@{'/deleteblog/' + ${blog.id}}" th:data-confirm-delete="|Bạn có muốn xoá sản phẩm ${blog.title}?|"
+  									onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false;else(alert('Đã xoá thành công'))">delete</a>
 										</td>
 									</tr>
 								</tbody>

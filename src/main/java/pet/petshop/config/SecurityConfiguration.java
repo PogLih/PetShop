@@ -1,5 +1,7 @@
 package pet.petshop.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,9 +11,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import pet.petshop.service.UserService;
+import pet.petshop.service.CustomOauth2UserService;
+
 
 
 @Configuration
@@ -20,7 +26,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserService userService;
-	
+	@Autowired
+	private DataSource dataSource;
 	@Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -42,6 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/"
+				,"/oauth2/"
 				,"/shop"
 				,"/shop-page/**"
 				, "/service"
@@ -59,8 +67,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				, "/logout").permitAll();
 		
 		http.authorizeRequests().antMatchers("/admin"
-				, "/user"
-				, "/editUser/**"
 				,"/services"
 				, "/service-page/**"
 				, "/newservices"
@@ -78,7 +84,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				, "/newblog"
 				, "/editblog/**"
 				, "/adminbill"
-				, "/bill-page/**").access("hasRole('ROLE_ADMIN')");
+				, "/bill-page/**").access("hasAnyRole('ROLE_ADMIN','ROLE_STAFF')");
+
+		http.authorizeRequests().antMatchers("/user","/edituser/**").access("hasRole('ROLE_ADMIN')");
 		http.authorizeRequests().antMatchers(
 				 "/registration**",
 				 "/**",
@@ -89,16 +97,33 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()
-		.loginPage("/login")
-		.defaultSuccessUrl("/")
-		.permitAll()
+			.loginPage("/login")
+			.defaultSuccessUrl("/")
+			.permitAll()
 		.and()
+		.oauth2Login()
+        .loginPage("/login")
+        .userInfoEndpoint().userService(oauth2UserService)
+        	.and()
+        	.successHandler(oAuth2LoginSuccessHandler)
+        .and()
 		.logout()
 		.invalidateHttpSession(true)
 		.clearAuthentication(true)
 		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 		.logoutSuccessUrl("/login?logout")
-		.permitAll();
+		.permitAll()
+		.and()
+		.rememberMe().tokenRepository(PersistentTokenRepository());
 	}
-
+	private PersistentTokenRepository PersistentTokenRepository() {
+		JdbcTokenRepositoryImpl tokenRepositoryImpl = new JdbcTokenRepositoryImpl();
+		tokenRepositoryImpl.setDataSource(dataSource);
+		return null;
+	}
+	@Autowired
+	private CustomOauth2UserService oauth2UserService; 
+	
+	@Autowired
+	private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
 }
