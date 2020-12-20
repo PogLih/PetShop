@@ -19,4 +19,8 @@ public interface ProductRespository extends JpaRepository<Product, Integer>, Pro
             @Param("name") String search,
             @Param("category") Integer category,
             @Param("status") Boolean status);
+
+
+    @Query("SELECT DISTINCT p.brand FROM Product p")
+    List<String> getListBranch();
 }

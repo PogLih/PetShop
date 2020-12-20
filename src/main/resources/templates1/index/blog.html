@@ -25,7 +25,7 @@
 						<div class="card card-plain card-blog">
 							<div class="card-header card-header-image">
 								<a href="#pablo"> <img class="img img-raised"
-									th:src="@{'../assets/img/' + ${blog.images}}">
+									th:src="@{'../assets/img/' + ${blog.images}}" style="max-height: 233px;min-height: 233px">
 								</a>
 							</div>
 							<div class="card-body">
@@ -34,14 +34,43 @@
 									<a th:href="@{'/blog/' + ${blog.id}}" th:text="${blog.title}">Autodesk looks to future of 3D printing
 										with Project Escher</a>
 								</h4>
-								<p class="card-description"th:text="${#strings.abbreviate(blog.content,100)}">
+								<p class="card-description" th:text="${#strings.abbreviate(blog.content,100)}">
 								
 								</p>
 							</div>
 						</div>
 					</div>
 					
-					
+					<div style="margin-left: 200px">
+								Hiện [[${totalItemsInpage}]] / [[${totalItems}]] tổng bài viết -
+								Trang [[${currentpage}]] / [[${totalPages}]] :
+								&nbsp;
+								<a th:if="${currentpage > 1}" th:href="@{/baiviet-page/1}">Đầu trang</a>
+								<span th:unless="${currentpage > 1}">Đầu trang</span>
+								&nbsp;
+								<a th:if="${currentpage > 1}" th:href="@{'/baiviet-page/' + ${currentpage - 1}}">Trang trước</a>
+								<span th:unless="${currentpage > 1}">Trang trước</span>
+								&nbsp;
+								<span
+									th:each="i: ${#numbers.sequence(1, totalPages)}">
+									<span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<a 
+										th:if="${i != currentpage}"
+										th:href="@{'/baiviet-page/' + ${i}}">[[${i}]]
+									</a>
+										<span th:unless="${i != currentpage}">[[${i}]]</span>
+								</span>
+								
+								</span>
+								&nbsp;
+								
+								&nbsp;
+								<a th:if="${currentpage < totalPages}" th:href="@{'/baiviet-page/' + ${currentpage + 1}}">Trang sau</a>
+								<span th:unless="${currentpage < totalPages}">Trang sau</span>
+								&nbsp;
+								<a th:if="${currentpage < totalPages}" th:href="@{'/baiviet-page/' + ${totalPages}}">Trang cuối</a>
+								<span th:unless="${currentpage < totalPages}">Trang cuối</span>
+							</div>
 				</div>
 			</div>
 

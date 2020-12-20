@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/user/main_layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body class="pricing sidebar-collapse">
+	<div layout:fragment="content" class="main main-raised">
+		<div class="container">
+			<div class="col-lg-12 col-md-8">
+				<h3>
+					<small>Chi tiết BILL</small>
+				</h3>
+				<ul class="nav nav-pills nav-pills-rose">
+					<li class="nav-item"><a class="nav-link active" href="#pill1"
+						data-toggle="tab">Profile</a></li>
+
+				</ul>
+				<div class="tab-content tab-space">
+					<div class="tab-pane active" id="pill1">
+
+						<div class="col-lg-8 col-md-10 ml-auto mr-auto">
+							<h4>
+								<small>Simple With Actions</small>
+							</h4>
+							<div class="table-responsive">
+								<table class="table">
+									<thead>
+										<tr>
+											<th class="text-center">ID</th>
+											<th>ID Bill</th>
+											
+											<th>Product Name</th>
+											<th >Count Item</th>
+											<th>Price</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="billinfo : ${billinfo}">
+											<td class="text-center" th:text="${billinfo.id}">1</td>
+											<td th:text="${billinfo.Bill.id}"></td>
+											<td th:text="${billinfo.product.name}"></td>
+											<td th:text="${billinfo.countItem}"></td>
+											<td th:text="${billinfo.product.price}"></td>
+											
+										</tr>
+										</tbody>
+								</table>
+							</div>
+
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</body>
+</html>

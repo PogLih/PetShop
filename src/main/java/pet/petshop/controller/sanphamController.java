@@ -17,7 +17,8 @@ import pet.petshop.service.ProductService;
 public class sanphamController {
 	@Autowired
     private ProductService ps;
-
+	
+	
 	
 	
 	
@@ -25,12 +26,7 @@ public class sanphamController {
 	    public ModelAndView xemsanpham(@PathVariable(name = "id") Integer id) {
 	        ModelAndView mav = new ModelAndView("shop/thongtinsanpham");
 	        Product product = ps.get(id);
-
-	        
 	        mav.addObject("product", product);
-	
-	       
-
 	        return mav;
 	    }
 }

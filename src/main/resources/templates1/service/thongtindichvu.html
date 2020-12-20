@@ -15,8 +15,9 @@
 					<div class="col-md-6 col-sm-6">
 						<div class="tab-content">
 							<div id="product-page1" >
-								<img th:src="@{'../assets/img/' + ${service.images}}">
+								<img th:src="@{'../assets/img/' + ${service.images}}" style="max-width: 400px">
 							
+						</div>
 						</div>
 						
 					</div>
@@ -44,9 +45,8 @@
 						</div>
 
 						<div class="row pull-right">
-							<button class="btn btn-danger btn-round"><a th:href="@{'/confirmservice/' + ${service.id}}">
-								Đặt lịch &#xA0;<i class="material-icons">today</i></a>
-							</button>
+							
+							<a class="btn btn-danger btn-round" th:href="@{'/confirmservice/' + ${service.id}}">Đặt lịch &#xA0;<i class="material-icons">today</i></a>
 						</div>
 					</div>
 				</div>
@@ -92,6 +92,6 @@
 		</div>
 
 	</div>
-	</div>
+	
 </body>
 </html>

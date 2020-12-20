@@ -42,14 +42,15 @@
 								style="width: 100%; cellspacing: 0;">
 								<thead>
 									<tr>
-					<th>Service id</th>
-					<th>Name</th>
-					<th>Category</th>
-					<th>Price</th>
-					<th>Images</th>
-					<th>Status</th>
+					<th><a th:href="@{'/service-page/' + ${currentpage} + '?sortField=id&sortDir=' + ${reverseSortDir}}">
+					Service id</a></th>
+					<th><a th:href="@{'/service-page/' + ${currentpage} + '?sortField=name&sortDir=' + ${reverseSortDir}}">Name</a></th>
+					<th><a th:href="@{'/service-page/' + ${currentpage} + '?sortField=cate&sortDir=' + ${reverseSortDir}}">Category</a></th>
+					<th><a th:href="@{'/service-page/' + ${currentpage} + '?sortField=price&sortDir=' + ${reverseSortDir}}">Price</a></th>
+					<th><a th:href="@{'/service-page/' + ${currentpage} + '?sortField=images&sortDir=' + ${reverseSortDir}}">Images</a></th>
+					<th><a th:href="@{'/service-page/' + ${currentpage} + '?sortField=status&sortDir=' + ${reverseSortDir}}">Status</a></th>
 					<th>Description</th>
-					<th>discount</th>
+					<th><a th:href="@{'/service-page/' + ${currentpage} + '?sortField=discount&sortDir=' + ${reverseSortDir}}">discount</a></th>
 					<th>Action</th>
 					<th></th>
 				</tr>
@@ -63,7 +64,7 @@
 										<td th:text="${services.price}">price</td>
 										<td th:text="${services.images}">images</td>
 										<td th:text="${services.status}">Status</td>
-										<td th:text="${services.description}">de</td>
+										<td th:text="${#strings.abbreviate(services.description,100)}">de</td>
 										<td th:text="${services.discount}">di</td>
 										<td><a th:href="@{'/editservice/' + ${services.id}}">edit</a></td>
 										<td><a th:href="@{'/deleteservice/' + ${services.id}}">delte</a>
@@ -71,6 +72,36 @@
 									</tr>
 								</tbody>
 							</table>
+							<div style="margin-left: 500px">
+								Hiện [[${totalItemsInpage}]] / [[${totalItems}]] tổng dịch vụ -
+								Trang [[${currentpage}]] / [[${totalPages}]] :
+								&nbsp;
+								<a th:if="${currentpage > 1}" th:href="@{'/service-page/1' + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Đầu trang</a>
+								<span th:unless="${currentpage > 1}">Đầu trang</span>
+								&nbsp;
+								<a th:if="${currentpage > 1}" th:href="@{'/service-page/' + ${currentpage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trang trước</a>
+								<span th:unless="${currentpage > 1}">Trang trước</span>
+								&nbsp;
+								<span
+									th:each="i: ${#numbers.sequence(1, totalPages)}">
+									<span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<a 
+										th:if="${i != currentpage}"
+										th:href="@{'/service-page/' + ${i}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} ">[[${i}]]
+									</a>
+										<span th:unless="${i != currentpage}">[[${i}]]</span>
+								</span>
+								
+								</span>
+								&nbsp;
+								
+								&nbsp;
+								<a th:if="${currentpage < totalPages}" th:href="@{'/service-page/' + ${currentpage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trang sau</a>
+								<span th:unless="${currentpage < totalPages}">Trang sau</span>
+								&nbsp;
+								<a th:if="${currentpage < totalPages}" th:href="@{'/service-page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trang cuối</a>
+								<span th:unless="${currentpage < totalPages}">Trang cuối</span>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -42,38 +42,23 @@
         <div class="col-md-12">
             <div class="row m-t-md">
                 <div class="row mailbox-header">
-                    <div class="col-md-12">
+                    <div class="col-md-2">
+                        <a href="/newproduct" class="btn btn-success btn-block">Thêm sản phẩm</a>
+                    </div>
+
+                    <div class="col-md-10">
                         <form action="/product" method="GET" id="searchForm">
-                            <div class="form-row">
-                                <div class="col-md-2">
-                                    <a href="/newproduct" class="btn btn-success btn-block">Thêm sản phẩm</a>
-                                </div>
-                                <div class="form-group col-md-9">
-                                    <input type="text"
-                                           name="search"
-                                           class="form-control input-search"
-                                           placeholder="Search..."
-                                           th:value="${search}"
-                                    >
-                                </div>
-                                <div class="col-md-1 mx-0">
-                                    <button class="btn btn-success" type="submit">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <label for="category">Category</label>
-                                    <select name="category" id="category" class="form-control">
-                                        <option value="">All</option>
-                                        <option
-                                                th:each="pdc : ${catelogiesFilter}"
-                                                th:value="${pdc.id}"
-                                                th:text="${pdc.name}"}
-                                        />
-                                    </select>
-                                </div>
+                            <div class="input-group">
+                                <input type="text"
+                                       name="search"
+                                       class="form-control input-search"
+                                       placeholder="Search..."
+                                >
+                                <span class="input-group-btn">
+										<button class="btn btn-success" type="submit">
+											<i class="fa fa-search"></i>
+										</button>
+									</span>
                             </div>
                             <!-- Input Group -->
                         </form>
@@ -94,17 +79,33 @@
                                style="width: 100%; cellspacing: 0;">
                             <thead>
                             <tr>
-                                <th>Product id</th>
-                                <th>Categories id</th>
-                                <th>Name</th>
-                                <th>Brand</th>
-                                <th>Images</th>
-                                <th>Status</th>
-                                <th>Price</th>
-                                <th>Discount</th>
-                                <th>Action</th>
-                                <th></th>
-                            </tr>
+										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=id&sortDir=' + ${reverseSortDir}}">
+										Product id</a></th>
+										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=cate&sortDir=' + ${reverseSortDir}}">
+										Category</a></th>
+										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=name&sortDir=' + ${reverseSortDir}}">
+										Name</a></th>
+										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=brand&sortDir=' + ${reverseSortDir}}">
+										Brand</a></th>
+										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=images&sortDir=' + ${reverseSortDir}}">
+										Images</a></th>
+										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=status&sortDir=' + ${reverseSortDir}}">
+										status</a></th>
+										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=price&sortDir=' + ${reverseSortDir}}">
+										
+										price</a></th>
+										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=discount&sortDir=' + ${reverseSortDir}}">
+										
+										discount</a></th>
+										<th>Height</th>
+								<th>Width</th>
+								<th>Length</th>
+								<th>Typeofpet</th>
+								<th>Stage</th>
+								<th>Description</th>
+										<th rowspan="2">Action</th>
+										<th></th>
+									</tr>
                             </thead>
                             <tfoot>
                             <tr>
@@ -113,10 +114,16 @@
                                 <th>Name</th>
                                 <th>Brand</th>
                                 <th>Images</th>
-                                <th>Status</th>
-                                <th>Price</th>
-                                <th>Discount</th>
+                                <th>status</th>
+                                <th>discount</th>
+                                <th>Height</th>
+								<th>Width</th>
+								<th>Length</th>
+								<th>Typeofpet</th>
+								<th>Stage</th>
+								<th>Description</th>
                                 <th>Action</th>
+                                <th></th>
                             </tr>
                             </tfoot>
                             <tbody>
@@ -130,17 +137,55 @@
                                 <td th:text="${pr.brand}">Date</td>
                                 <td th:text="${pr.images}">Username</td>
                                 <td th:text="${pr.status}">Images</td>
-                                <td class="text-right" th:text="${#numbers.formatCurrency(pr.price)}">Images</td>
+                                <td th:text="${pr.price}">Images</td>
                                 <td th:text="${pr.discount}">Content</td>
+                                <td th:text="${pr.length}"></td>
+                                <td th:text="${pr.width}"></td>
+                                <td th:text="${pr.height}"></td>
+                                <td th:text="${pr.typeofpet}"></td>
+                                <td th:text="${pr.stage}"></td>
+                                <td th:text="${#strings.abbreviate(pr.description,100)}"></td>
+                                
                                 <td>
                                     <a th:href="@{'/editproduct/' + ${pr.id}}">edit</a>
                                 </td>
                                 <td>
                                     <a th:href="@{'/deleteproduct/' + ${pr.id}}">delete</a>
                                 </td>
+                               
                             </tr>
                             </tbody>
                         </table>
+                        <div style="margin-left: 500px">
+								Tổng [[${totalItemsInpage}]] trên [[${totalItems}]] sản phẩm -
+								Trang [[${currentpage}]] / [[${totalPages}]] :
+								&nbsp;
+								<a th:if="${currentpage > 1}" th:href="@{'/product-page/1' + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Đầu trang</a>
+								<span th:unless="${currentpage > 1}">Đầu trang</span>
+								&nbsp;
+								<a th:if="${currentpage > 1}" th:href="@{'/product-page/' + ${currentpage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trang trước</a>
+								<span th:unless="${currentpage > 1}">Trang trước</span>
+								&nbsp;
+								<span
+									th:each="i: ${#numbers.sequence(1, totalPages)}">
+									<span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<a 
+										th:if="${i != currentpage}"
+										th:href="@{'/product-page/' + ${i}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} ">[[${i}]]
+									</a>
+										<span th:unless="${i != currentpage}">[[${i}]]</span>
+								</span>
+								
+								</span>
+								&nbsp;
+								
+								&nbsp;
+								<a th:if="${currentpage < totalPages}" th:href="@{'/product-page/' + ${currentpage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trang sau</a>
+								<span th:unless="${currentpage < totalPages}">Trang sau</span>
+								&nbsp;
+								<a th:if="${currentpage < totalPages}" th:href="@{'/product-page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trang cuối</a>
+								<span th:unless="${currentpage < totalPages}">Trang cuối</span>
+							</div>
                     </div>
                 </div>
             </div>

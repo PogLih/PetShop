@@ -63,6 +63,22 @@ public class Blog {
 	}
 	
 	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Blogcategories getBlogcategories() {
+		return blogcategories;
+	}
+
+	public void setBlogcategories(Blogcategories blogcategories) {
+		this.blogcategories = blogcategories;
+	}
+
 	public String getUserid() {
 		return userid;
 	}

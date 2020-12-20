@@ -1,121 +1,116 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/admin/main_layout}">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/admin/main_layout}">
 <head>
 <meta charset="UTF-8">
 <title>Create new</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/l4e9oi8kyeqxi9n/bootstrap-editable.css">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/fgf0ix46ahe3nko/bootstrap.min.css">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/hbfdbqevm91mrwg/component.css">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/51tm5d7greyxxdn/custom.css">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/m58zcmbxvig3k65/datepicker3.css">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/eq2fzclbrns80ix/font-awesome.css">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/cnz7o7pibaxswaa/jquery.datatables_themeroller.css">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/jmu3ocf4ls51erq/jquery.datatables.min.css">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/qy6kj9aexqqezfe/menu_cornerbox.css">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/a2w42ezlwrcga13/MetroJs.min.css">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/q3mrv0f35a4frwk/modern.css">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/rsd58m1gqoled24/modernizr.js">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/yrhjtkf0yjoonq0/pace-theme-flash.css">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/hqffmhr6ie2evsa/simple-line-icons.css">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/8irna4tvkmca2g0/snap.svg-min.js">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/pqlevnq28usk28s/style.css">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/4ih3zcwwl88v0uw/switchery.min.css">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/kzt5nuscuhicb8b/toastr.min.css">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/srzizo6wg5q3ucr/uniform.default.min.css">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/pl3w58xbev0db0q/waves.min.css">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/krpt8ech137oxw1/weather-icons.min.css">
-<link rel="stylesheet" href="https://dl.dropbox.com/s/raqxlodn4qdhhh9/green.css">
-        
+
 </head>
 <body>
 	<div layout:fragment="content" class="page-inner">
-                <div id="main-wrapper">
-                    <div class="row m-t-md">
-                        <div class="col-md-12">
-                            <div class="row mailbox-header">
-                                <div class="col-md-2">
-                                      <a href="/blogindex" class="btn btn-success btn-block">Back to Blog</a>
-                                </div>
-                                <div class="col-md-6">
-                                    <h2>Compose</h2>
-                                </div>
-                                <div class="col-md-4">
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-18 container">
-                            <div class="panel panel-white">
-                                <div class="panel-heading clearfix">
-                                    <h4 class="panel-title">Thêm blog</h4>
-                                </div>
-                                <div class="panel-body">
-                                     <form  class="form-horizontal" th:action="@{/saveblog}" th:object="${blog}" method="post">
-                                     <div class="form-group">
-                                            <label for="input-placeholder" class="col-sm-2 control-label">Id Blog</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" th:field="*{id}" id="input-placeholder" readonly>
-                                            </div>
-                                        </div> 
-                                        <div class="form-group">
-                                            <label for="input-placeholder" class="col-sm-2 control-label">Id Cate</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" th:field="*{cate}" id="input-placeholder" placeholder="Hãy nhập id blog">
-                                            </div>
-                                        </div> 
-                                        <div class="form-group">
-                                            <label for="input-placeholder" class="col-sm-2 control-label">Tên blog</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" th:field="*{title}" class="form-control" id="input-placeholder" placeholder="Hãy nhập tên blog">
-                                            </div>
-                                        </div> 
-                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Nội dung</label>
-                                            <div class="col-sm-10">
-                                                
-                                                <textarea class="input-large form-control" id="message" rows="5" th:field="*{content}"></textarea>
-                                            </div>
-                                        </div> 
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Date Picker</label>
-                                            <div class="col-sm-10">
-                                                <input type="date" th:field="*{datepost}" class="form-control date-picker">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="input-placeholder" class="col-sm-2 control-label">Ảnh</label>
-                                            <div class="col-sm-10">
-                          							<input type="text" th:field="*{images}" class="form-control input-rounded" id="input-rounded" placeholder="Nhập ảnh">
-                                            </div>
-                                        </div> 
-                                        <div class="form-group">
-                                            <label for="input-placeholder" class="col-sm-2 control-label">Userid</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" th:field="*{userid}" class="form-control" id="input-placeholder" placeholder="Hãy nhập email">
-                                            </div>
-                                        </div> 
-                                        
-                                       
-                                       
-                                        <div class="form-group">
-                                            <div class="col-sm-offset-2 col-sm-10">
-                                                <button type="submit" class="btn btn-success">Update blog</button>
-                                            </div>
-                                        </div>
-                                        
-                                        
-                                        
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- Row -->
-                </div><!-- Main Wrapper -->
-                
-            </div>
+		<div id="main-wrapper">
+			<div class="row m-t-md">
+				<div class="col-md-12">
+					<div class="row mailbox-header">
+						<div class="col-md-2">
+							<a href="/blogindex" class="btn btn-success btn-block">Back
+								to Blog</a>
+						</div>
+						<div class="col-md-6">
+							<h2>Compose</h2>
+						</div>
+						<div class="col-md-4"></div>
+					</div>
+				</div>
+
+				<div class="col-md-18 container">
+					<div class="panel panel-white">
+						<div class="panel-heading clearfix">
+							<h4 class="panel-title">Thêm blog</h4>
+						</div>
+						<div class="panel-body">
+							<form class="form-horizontal" th:action="@{/saveblog}"
+								th:object="${blog}" method="post" enctype="multipart/form-data">
+								<div class="form-group">
+									<label for="input-placeholder" class="col-sm-2 control-label">Id
+										Blog</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" th:field="*{id}"
+											id="input-placeholder" readonly>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="input-placeholder" class="col-sm-2 control-label">Loại
+										blog</label>
+									<div class="col-sm-10">
+
+										<select th:field="*{cate}">
+
+											<option th:each="cate : ${cate}" th:value="${cate.id}"
+												th:text="${cate.name}" />
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="input-placeholder" class="col-sm-2 control-label">Tên
+										blog</label>
+									<div class="col-sm-10">
+										<input type="text" th:field="*{title}" class="form-control"
+											id="input-placeholder" placeholder="Hãy nhập tên blog">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Nội dung</label>
+									<div class="col-sm-10">
+
+										<textarea class="input-large form-control" id="message"
+											rows="5" th:field="*{content}"></textarea>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Date Picker</label>
+									<div class="col-sm-10">
+										<input type="date" th:field="*{datepost}"
+											class="form-control date-picker">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="input-placeholder" class="col-sm-2 control-label">Ảnh</label>
+									<div class="col-sm-10">
+										<input type="file" name="image"
+											accept="image/png,image/jpg, image/jpeg" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="input-placeholder" class="col-sm-2 control-label">Userid</label>
+									<div class="col-sm-10">
+										<input type="text" th:field="*{userid}" class="form-control"
+											id="input-placeholder" placeholder="Hãy nhập email">
+									</div>
+								</div>
+
+
+
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+										<button type="submit" class="btn btn-success">Update
+											blog</button>
+									</div>
+								</div>
+
+
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Row -->
+		</div>
+		<!-- Main Wrapper -->
+
+	</div>
 </body>
 </html>

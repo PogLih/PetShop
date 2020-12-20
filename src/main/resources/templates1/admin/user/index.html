@@ -13,9 +13,9 @@
 			<div class="col-md-12">
 				<div class="row m-t-md">
 					<div class="row mailbox-header">
-						<div class="col-md-2">
+						<!-- <div class="col-md-2">
 							<a href="/new" class="btn btn-success btn-block">Thêm user</a>
-						</div>
+						</div> -->
 
 						<div class="col-md-10">
 							<form action="#" method="GET">
@@ -47,10 +47,13 @@
 								style="width: 100%; cellspacing: 0;">
 								<thead>
 									<tr>
-										<th>Id</th>
-										<th>Email</th>
+										<th><a th:href="@{'/user-page/' + ${currentpage} + '?sortField=id&sortDir=' + ${reverseSortDir}}">
+					User id</a></th>
+										<th><a th:href="@{'/user-page/' + ${currentpage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
+					Email</a></th>
 										<th>Password</th>
-										<th>Role</th>
+										<th><a th:href="@{'/user-page/' + ${currentpage} + '?sortField=role&sortDir=' + ${reverseSortDir}}">
+					Role</a></th>
 										<th>Action</th>
 										<th></th>
 									</tr>
@@ -65,12 +68,42 @@
 										<td th:text="${user.name}">role</td>
 										<td th:text="${user.phone}">role</td>
 										<td th:text="${user.address}">role</td>
-										<td><a th:href="@{'/editUser/' + ${user.id}}">Edit</a>
-										<td>
-										<td><a th:href="@{'/deleteUser/' + ${user.id}}">delete</a></td>
+										<td><a th:href="@{'/editUser/' + ${user.id}}">Edit</a></td>
+										<td><a th:href="@{'/Updatepass/' + ${user.id}}">Reset</a></td>
+										<td><a th:href="@{'/deleteUser1/' + ${user.id}}">delete</a></td>
 									</tr>
 								</tbody>
 							</table>
+							<div style="margin-left: 500px">
+								Hiện [[${totalItemsInpage}]] / [[${totalItems}]] tổng tài khoản -
+								Trang [[${currentpage}]] / [[${totalPages}]] :
+								&nbsp;
+								<a th:if="${currentpage > 1}" th:href="@{'/user-page/1' + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Đầu trang</a>
+								<span th:unless="${currentpage > 1}">Đầu trang</span>
+								&nbsp;
+								<a th:if="${currentpage > 1}" th:href="@{'/user-page/' + ${currentpage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trang trước</a>
+								<span th:unless="${currentpage > 1}">Trang trước</span>
+								&nbsp;
+								<span
+									th:each="i: ${#numbers.sequence(1, totalPages)}">
+									<span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<a 
+										th:if="${i != currentpage}"
+										th:href="@{'/user-page/' + ${i}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} ">[[${i}]]
+									</a>
+										<span th:unless="${i != currentpage}">[[${i}]]</span>
+								</span>
+								
+								</span>
+								&nbsp;
+								
+								&nbsp;
+								<a th:if="${currentpage < totalPages}" th:href="@{'/user-page/' + ${currentpage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trang sau</a>
+								<span th:unless="${currentpage < totalPages}">Trang sau</span>
+								&nbsp;
+								<a th:if="${currentpage < totalPages}" th:href="@{'/user-page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trang cuối</a>
+								<span th:unless="${currentpage < totalPages}">Trang cuối</span>
+							</div>
 						</div>
 					</div>
 				</div>

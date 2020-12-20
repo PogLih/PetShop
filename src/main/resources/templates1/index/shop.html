@@ -18,18 +18,15 @@
 						
 						<div class="card card-product card-plain">
 							<div class="card-header card-header-image">
-								<a href="#pablo"> <img th:src="@{'../assets/img/' + ${pr.images}}" style="max-height: 330px"/> 
+								<a href="#pablo"> <img th:src="@{'../assets/img/' + ${pr.images}}" style="min-height: 320px;max-height: 320px"/> 
 								</a>
 							</div>
 							<div class="card-body text-center">
 								<h4 class="card-title">
 									<a th:href="@{'/sanpham/' + ${pr.id}}" th:text="${pr.name}"></a>
-									
+									<p class="description" th:text="${#strings.abbreviate(pr.description,100)}"></p>
 								</h4>
-								<p class="card-description">The structured shoulders and
-									sleek detailing ensure a sharp silhouette. Team it with a silk
-									pocket square and leather loafers.</p>
-							</div>
+								</div>
 							<div class="card-footer">
 								<div class="price-container">
 									<span class="price price-new" th:text="${#numbers.formatDecimal(pr.price, 3, 'POINT', 0, 'POINT')}"></span><sup> &#8363;</sup>
@@ -96,70 +93,19 @@
 										<div id="collapseTwo" class="collapse" role="tabpanel"
 											aria-labelledby="headingTwo">
 											<div class="card-body">
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="" checked>
-														Blazers <span class="form-check-sign"> <span
+
+												<th:block th:each="cate : ${categories}">
+													<div class="form-check">
+														<label class="form-check-label">
+															<input class="form-check-input" type="checkbox" th:value="${cate.id}" checked>
+															<p th:text="${cate.name}"></p>
+															<span class="form-check-sign"> <span
 															class="check"></span>
 													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Casual Shirts <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Formal Shirts <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Jeans <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Polos <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Pyjamas <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Shorts <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Trousers <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
+														</label>
+													</div>
+												</th:block>
+
 											</div>
 										</div>
 									</div>
@@ -178,148 +124,25 @@
 											<div class="card-body">
 												<div class="form-check">
 													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="" checked>
+														class="form-check-input" type="checkbox" value="">
 														All <span class="form-check-sign"> <span
 															class="check"></span>
 													</span>
 													</label>
 												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Polo Ralph Lauren <span class="form-check-sign"> <span
-															class="check"></span>
+
+												<th:block th:each="branch : ${branches}">
+													<div class="form-check">
+														<label class="form-check-label">
+															<input class="form-check-input" type="checkbox" th:value="${branch}">
+															<p th:text="${branch}"></p>
+															<span class="form-check-sign">
+																<span class="check"></span>
 													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Wooyoungmi <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Alexander McQueen <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Tom Ford <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														AMI <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Berena <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Thom Sweeney <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Burberry Prorsum <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Calvin Klein <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Kingsman <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Club Monaco <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Dolce &amp; Gabbana <span class="form-check-sign">
-															<span class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Gucci <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Biglioli <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Lanvin <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Loro Piana <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Massimo Alba <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
+														</label>
+													</div>
+												</th:block>
+
 											</div>
 										</div>
 									</div>
@@ -337,18 +160,14 @@
 									data-colored-shadow="false">
 									<div class="card-header card-header-image">
 										<a href="#"> <img th:src="@{'../assets/img/' + ${pr.images}}"
-											alt="..." style="min-height: 320px">
+											alt="..." style="min-height: 320px;max-height: 320px">
 										</a>
 									</div>
 									<div class="card-body">
 										<a  th:href="@{'/sanpham/' + ${pr.id}}">
-										<h4 class="card-title" th:text="${pr.id}"></h4>
-											<h4 class="card-title" th:text="${pr.name}"></h4>
+										<h4 class="card-title" th:text="${pr.name}"></h4>
 										</a>
-										<p class="card-description" >Don't be scared of the truth
-											because we need to restart the human foundation in truth And
-											I love you like Kanye loves Kanye I love Rick Owens’ bed
-											design but the back is...</p>
+										<p class="description" th:text="${#strings.abbreviate(pr.description,100)}"></p>
 									</div>
 									<div class="card-footer justify-content-between">
 										<div class="price-container">
@@ -360,12 +179,39 @@
 								
 								<!-- end card -->
 							</div>
-							<div class="col-md-3 ml-auto mr-auto">
-								<button rel="tooltip" class="btn btn-rose btn-round"
-									data-original-title="" title="" >Load more...</button>
-							</div>
+							
 						</div>
 					</div>
+					<div style="margin-left: 200px">
+								Tổng [[${totalItemsInpage}]] trên [[${totalItems}]] sản phẩm -
+								Trang [[${currentpage}]] / [[${totalPages}]] :
+								&nbsp;
+								<a th:if="${currentpage > 1}" th:href="@{/shop-page/1}">Đầu trang</a>
+								<span th:unless="${currentpage > 1}">Đầu trang</span>
+								&nbsp;
+								<a th:if="${currentpage > 1}" th:href="@{'/shop-page/' + ${currentpage - 1}}">Trang trước</a>
+								<span th:unless="${currentpage > 1}">Trang trước</span>
+								&nbsp;
+								<span
+									th:each="i: ${#numbers.sequence(1, totalPages)}">
+									<span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<a 
+										th:if="${i != currentpage}"
+										th:href="@{'/shop-page/' + ${i}}">[[${i}]]
+									</a>
+										<span th:unless="${i != currentpage}">[[${i}]]</span>
+								</span>
+								
+								</span>
+								&nbsp;
+								
+								&nbsp;
+								<a th:if="${currentpage < totalPages}" th:href="@{'/shop-page/' + ${currentpage + 1}}">Trang sau</a>
+								<span th:unless="${currentpage < totalPages}">Trang sau</span>
+								&nbsp;
+								<a th:if="${currentpage < totalPages}" th:href="@{'/shop-page/' + ${totalPages}}">Trang cuối</a>
+								<span th:unless="${currentpage < totalPages}">Trang cuối</span>
+							</div>
 				</div>
 				<br>
 				
