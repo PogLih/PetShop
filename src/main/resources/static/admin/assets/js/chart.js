@@ -16,8 +16,8 @@ $(document).ready(function() {
 	});
 	function drawChart(result) {
 		var data = new google.visualization.DataTable();
-		data.addColumn('string', 'idproduct');
-		data.addColumn('number', 'countitem');
+		data.addColumn('string', 'Sản phẩm: ');
+		data.addColumn('number', 'Tổng sản phẩm: ');
 		var dataArray = [];
 		$.each(result, function(i, obj) {
 			dataArray.push([obj.idproduct, obj.countitem]);
