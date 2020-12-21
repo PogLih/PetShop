@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 15, 2020 at 06:25 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.9
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th12 21, 2020 lúc 09:57 AM
+-- Phiên bản máy phục vụ: 10.4.14-MariaDB
+-- Phiên bản PHP: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `petshop`
+-- Cơ sở dữ liệu: `petshop`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bill`
+-- Cấu trúc bảng cho bảng `bill`
 --
 
 CREATE TABLE `bill` (
@@ -36,7 +36,7 @@ CREATE TABLE `bill` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `bill`
+-- Đang đổ dữ liệu cho bảng `bill`
 --
 
 INSERT INTO `bill` (`id`, `date`, `userid`, `status`, `totalprice`) VALUES
@@ -52,7 +52,7 @@ INSERT INTO `bill` (`id`, `date`, `userid`, `status`, `totalprice`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `billinfo`
+-- Cấu trúc bảng cho bảng `billinfo`
 --
 
 CREATE TABLE `billinfo` (
@@ -63,7 +63,7 @@ CREATE TABLE `billinfo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `billinfo`
+-- Đang đổ dữ liệu cho bảng `billinfo`
 --
 
 INSERT INTO `billinfo` (`id`, `idBill`, `idproduct`, `countItem`) VALUES
@@ -89,7 +89,7 @@ INSERT INTO `billinfo` (`id`, `idBill`, `idproduct`, `countItem`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `blog`
+-- Cấu trúc bảng cho bảng `blog`
 --
 
 CREATE TABLE `blog` (
@@ -103,7 +103,7 @@ CREATE TABLE `blog` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `blog`
+-- Đang đổ dữ liệu cho bảng `blog`
 --
 
 INSERT INTO `blog` (`id`, `cate`, `title`, `datepost`, `userid`, `images`, `content`) VALUES
@@ -124,7 +124,7 @@ INSERT INTO `blog` (`id`, `cate`, `title`, `datepost`, `userid`, `images`, `cont
 -- --------------------------------------------------------
 
 --
--- Table structure for table `blogcategories`
+-- Cấu trúc bảng cho bảng `blogcategories`
 --
 
 CREATE TABLE `blogcategories` (
@@ -133,7 +133,7 @@ CREATE TABLE `blogcategories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `blogcategories`
+-- Đang đổ dữ liệu cho bảng `blogcategories`
 --
 
 INSERT INTO `blogcategories` (`id`, `name`) VALUES
@@ -144,7 +144,7 @@ INSERT INTO `blogcategories` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Cấu trúc bảng cho bảng `product`
 --
 
 CREATE TABLE `product` (
@@ -165,7 +165,7 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `product`
+-- Đang đổ dữ liệu cho bảng `product`
 --
 
 INSERT INTO `product` (`id`, `cate`, `name`, `brand`, `images`, `status`, `price`, `discount`, `height`, `width`, `length`, `typeofpet`, `stage`, `description`) VALUES
@@ -182,14 +182,14 @@ INSERT INTO `product` (`id`, `cate`, `name`, `brand`, `images`, `status`, `price
 (11, 1, 'Thức ăn cho chuột', 'Hagen', 'pp9.jpg', b'1', 30000, 0, 0, 0, 0, 'Mọi loại pet', 'Mọi độ tuổi', 'Tinh bột, chiết xuất thực vật, thịt cừu và thịt động vật. Glutein, Vitamin A, E. Bột, đường, sữa. Vitamin, khoáng chất… Sản phẩm với thành phần từ thiên nhiên, không chứa chất bảo quản giúp cho hương '),
 (12, 2, 'Vật dụng ăn uống', 'Hagen', 'pp10.jpg', b'1', 40000, 0, 0, 0, 0, 'Mọi loại pet', 'Mọi độ tuổi', 'Sử dụng biểu đồ làm hướng dẫn và điều chỉnh khi cần thiết để duy trì cân nặng thích hợp. Khẩu phần cho ăn có thể thay đổi tùy theo độ tuổi, giống, khí hậu và tính khí. Tham khảo ý kiến bác sĩ thú y củ'),
 (13, 3, 'Dụng cụ vệ sinh', 'Hagen', 'pp11.jpg', b'1', 35000, 0, 0, 0, 0, 'Mọi loại pet', 'Mọi độ tuổi', 'Công thức giàu chất chống oxy hóa này được bổ sung Vitamin A và Vitamin C cùng với các loại rau và trái cây giàu dinh dưỡng'),
-(14, 4, 'Chuồng Hamster', 'Hagenggg', 'pp8.jpg', b'1', 300000, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+(14, 4, 'Chuồng Hamster', 'Hagenggg', '121554434_345532546675731_1662803928902362297_n.png', b'1', 300000, 0, NULL, NULL, NULL, '', '', ''),
 (15, 5, 'Đồ chơi Hamster', 'Hagen', 'pp4.jpg', b'1', 60000, 0, 0, 0, 0, 'Mọi loại pet', 'Mọi độ tuổi', 'Địu chó mèo AUGUST PET P68033B với nhiều họa tiết nhỏ độc đáo, đa màu sắc tạo nên phong cách thời trong ấn tượng. Sản phẩm được thiết kế giống như chiếc địu của trẻ nhỏ, thú cưng có thể dễ dàng thò đầ'),
 (16, 2, 'Đồ cho chó lớn', '1', 'pp6.jpg', b'0', 87800, 1, 0, 0, 0, 'Mọi loại pet', 'Mọi độ tuổi', 'Nhà cho chó bằng nhựa dáng cao XINDING 419A được sản xuất trên dây chuyền công nghệ hiện đại, sản phẩm với màu sắc đa dạng');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `productcategories`
+-- Cấu trúc bảng cho bảng `productcategories`
 --
 
 CREATE TABLE `productcategories` (
@@ -198,7 +198,7 @@ CREATE TABLE `productcategories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `productcategories`
+-- Đang đổ dữ liệu cho bảng `productcategories`
 --
 
 INSERT INTO `productcategories` (`id`, `name`) VALUES
@@ -211,7 +211,7 @@ INSERT INTO `productcategories` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `schedule`
+-- Cấu trúc bảng cho bảng `schedule`
 --
 
 CREATE TABLE `schedule` (
@@ -224,19 +224,23 @@ CREATE TABLE `schedule` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `schedule`
+-- Đang đổ dữ liệu cho bảng `schedule`
 --
 
 INSERT INTO `schedule` (`idschedule`, `idservice`, `iduser`, `dateorder`, `datacheckin`, `note`) VALUES
 (2, 1, 1, '2020-12-10 00:00:00', '2020-12-30 00:00:00', 'dqwd'),
 (4, 2, 2, '2020-12-10 00:00:00', '2021-01-21 00:00:00', 'tesd 1'),
 (5, 3, 2, '2020-12-10 00:00:00', '2020-12-30 00:00:00', 'alo'),
-(7, 3, 4, '2020-12-11 00:00:00', '2020-12-29 00:00:00', 'ddwqdqdqdqd');
+(7, 3, 4, '2020-12-11 00:00:00', '2020-12-29 00:00:00', 'ddwqdqdqdqd'),
+(9, 5, 5, '2020-12-15 00:00:00', '2020-12-21 00:00:00', 'aaa'),
+(12, 5, 5, '2020-12-15 00:00:00', '2020-12-23 00:00:00', 'asd'),
+(14, 11, 5, '2020-12-15 00:00:00', '2020-12-29 00:00:00', 'mmmm'),
+(15, 12, 5, '2020-12-21 00:00:00', '2020-12-22 00:00:00', 'thinh ggg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `servicecategories`
+-- Cấu trúc bảng cho bảng `servicecategories`
 --
 
 CREATE TABLE `servicecategories` (
@@ -245,7 +249,7 @@ CREATE TABLE `servicecategories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `servicecategories`
+-- Đang đổ dữ liệu cho bảng `servicecategories`
 --
 
 INSERT INTO `servicecategories` (`id`, `name`) VALUES
@@ -263,7 +267,7 @@ INSERT INTO `servicecategories` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `services`
+-- Cấu trúc bảng cho bảng `services`
 --
 
 CREATE TABLE `services` (
@@ -278,7 +282,7 @@ CREATE TABLE `services` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `services`
+-- Đang đổ dữ liệu cho bảng `services`
 --
 
 INSERT INTO `services` (`id`, `name`, `cate`, `price`, `images`, `status`, `description`, `discount`) VALUES
@@ -293,49 +297,53 @@ INSERT INTO `services` (`id`, `name`, `cate`, `price`, `images`, `status`, `desc
 (9, 'Dich vu cham soc tai nha', 9, 700000, 'ser9.jpg', b'1', 'Là dịch vụ mà các Nhân viên chăm sóc thú cưng (Pet Sitter) sẽ đến chăm sóc thú cưng tại nhà của bạn.\nNếu thú cưng của bạn có nhút nhát và tập tính lãnh thổ cao thì đây là dịch vụ phù hợp nhất dành cho', 0),
 (10, 'Dich vu ghep doi', 10, 300000, 'ser10.jpg', b'1', 'Để thú cưng phát triển được khỏe mạnh thì việc tắm thường xuyên cho chúng là điều bạn không thể bỏ qua. Không chỉ để loại bỏ bụi bẩn bám trên da hoặc lông, việc tắm, chải lông đúng cách còn giúp thú c', 0),
 (11, 'thinht1', 2, 666, 'ser11.jpg', b'0', 'Bác sĩ thú y của chúng tôi sẽ muốn kiểm tra con mèo của bạn kỹ lưỡng ít nhất một lần một năm và thường xuyên hơn khi chúng già đi hoặc nếu chúng có nhu cầu y tế đặc biệt. Cuộc hẹn này sẽ có một cách t', 0),
-(12, 'tiem cho meooooooo', 2, 555555, 'ser12.jpg', b'1', 'Triệt sản cho vật nuôi, chó mèo chính xác là một cuộc phẫu thuật cần có độ chính xác cao. Bởi chỉ cần sơ xuất, rất có thế thú cưng của bạn sẽ gặp phải nguy hiểm. Trước khi làm phẫu thuật triệt sản cho', 1);
+(12, 'tiem cho thinh', 2, 555555, '121554434_345532546675731_1662803928902362297_n.png', b'1', 'Triệt sản cho vật nuôi, chó mèo chính xác là một cuộc phẫu thuật cần có độ chính xác cao. Bởi chỉ cần sơ xuất, rất có thế thú cưng của bạn sẽ gặp phải nguy hiểm. Trước khi làm phẫu thuật triệt sản cho', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Cấu trúc bảng cho bảng `user`
 --
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `role` varchar(50) DEFAULT 'ROLE_USER',
-  `name` varchar(50) NOT NULL,
-  `phone` varchar(10) NOT NULL,
-  `address` varchar(200) NOT NULL,
-  `avatar` varchar(100) DEFAULT NULL
+  `password` varchar(100) DEFAULT NULL,
+  `role` varchar(50) NOT NULL DEFAULT 'ROLE_USER',
+  `name` varchar(50) DEFAULT NULL,
+  `phone` varchar(10) DEFAULT NULL,
+  `address` varchar(200) DEFAULT NULL,
+  `avatar` varchar(100) DEFAULT NULL,
+  `auth_provider` varchar(15) DEFAULT NULL,
+  `verification_code` varchar(13) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user`
+-- Đang đổ dữ liệu cho bảng `user`
 --
 
-INSERT INTO `user` (`id`, `email`, `password`, `role`, `name`, `phone`, `address`, `avatar`) VALUES
-(1, 'phong@gmail.com', '$2a$10$SArPnBixTLjETiKuqUl8We1lhkrmx5OvmoI/GPqXllEixq13m0Pga', 'ROLE_USER', 'Nguyễn Quốc Phong', '0123456789', '68 bui thi xuan', 'phongava.jpg'),
-(2, 'chau@gmail.com', '$2a$10$eympQaJXgKsWjl6g5VcZkuLB.cxrq/MhN8iEWD./7rKYyIFLS4HbG', 'ROLE_USER', 'Hồ Trần Bảo Châu', '0123456789', '68 bui thi xuan', 'chauava.jpg'),
-(3, 'hoang@gmail.com', '$2a$10$qUmoYzq.ryjO.vj8gT5Gvu2uBLGRY97a5eMg/vp08jVfp6.THHzta', 'ROLE_USER', 'Nguyễn Huy Hoàng', '0123456789', '68 bui thi xuan', 'hoangava.jpg'),
-(4, 'minh@gmail.com', '$2a$10$btFJx8zlfGrgED0qGb.QZeDVqHSjeyo9PClrDD3ZPgQv9pEME0dWG', 'ROLE_USER', 'Nguyễn Hoàng Minh', '0123456789', '68 bui thi xuan', 'minhava.jpg'),
-(5, 'thinh@gmail.com', '$2a$10$HmqBq6tIFDd1vwT70domteH4J9TK6nBGBuk64SQGfP.GzZ8A5gUZe', 'ROLE_ADMIN', 'Tạ Huy Thịnh', '0123456789', '68 bui thi xuan', 'thinhava.jpg');
+INSERT INTO `user` (`id`, `email`, `password`, `role`, `name`, `phone`, `address`, `avatar`, `auth_provider`, `verification_code`) VALUES
+(1, 'phong@gmail.com', '$2a$10$SArPnBixTLjETiKuqUl8We1lhkrmx5OvmoI/GPqXllEixq13m0Pga', 'ROLE_USER', 'Nguyễn Quốc Phong', '0123456789', '68 bui thi xuan', 'phongava.jpg', NULL, NULL),
+(2, 'chau@gmail.com', '$2a$10$eympQaJXgKsWjl6g5VcZkuLB.cxrq/MhN8iEWD./7rKYyIFLS4HbG', 'ROLE_USER', 'Hồ Trần Bảo Châu', '0123456789', '68 bui thi xuan', 'chauava.jpg', NULL, NULL),
+(3, 'hoang@gmail.com', '$2a$10$qUmoYzq.ryjO.vj8gT5Gvu2uBLGRY97a5eMg/vp08jVfp6.THHzta', 'ROLE_USER', 'Nguyễn Huy Hoàng', '0123456789', '68 bui thi xuan', 'hoangava.jpg', NULL, NULL),
+(4, 'tahuythinh@gmail.com', '$2a$10$KNaTYRS9dGY1QU2fES0mmeg7MdjT.AV7Rqw2gZZOjMm1S.k6xuoDK', 'ROLE_USER', 'Nguyễn Hoàng Minh', '0123456789', '68 bui thi xuan', 'minhava.jpg', NULL, 'PCpbsScD213x2'),
+(5, 'thinh@gmail.com', '$2a$10$HmqBq6tIFDd1vwT70domteH4J9TK6nBGBuk64SQGfP.GzZ8A5gUZe', 'ROLE_ADMIN', 'Tạ Huy Thịnh', '0123456789', '68 bui thi xuan', 'thinhava.jpg', NULL, NULL),
+(8, 'phongnguyen9514@gmail.com', NULL, 'ROLE_USER', 'Phong Mguyễn', NULL, NULL, NULL, NULL, NULL),
+(9, 'phong9514@gmail.com', '123', 'ROLE_USER', 'Phong Nguyễn', '123456', 'asd', NULL, 'GOOGLE', NULL);
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `bill`
+-- Chỉ mục cho bảng `bill`
 --
 ALTER TABLE `bill`
   ADD PRIMARY KEY (`id`),
   ADD KEY `b_fk` (`userid`);
 
 --
--- Indexes for table `billinfo`
+-- Chỉ mục cho bảng `billinfo`
 --
 ALTER TABLE `billinfo`
   ADD PRIMARY KEY (`id`),
@@ -343,7 +351,7 @@ ALTER TABLE `billinfo`
   ADD KEY `bi_p_fk` (`idproduct`);
 
 --
--- Indexes for table `blog`
+-- Chỉ mục cho bảng `blog`
 --
 ALTER TABLE `blog`
   ADD PRIMARY KEY (`id`),
@@ -351,26 +359,26 @@ ALTER TABLE `blog`
   ADD KEY `b_ac_fk` (`userid`);
 
 --
--- Indexes for table `blogcategories`
+-- Chỉ mục cho bảng `blogcategories`
 --
 ALTER TABLE `blogcategories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `product`
+-- Chỉ mục cho bảng `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`),
   ADD KEY `p_fk` (`cate`);
 
 --
--- Indexes for table `productcategories`
+-- Chỉ mục cho bảng `productcategories`
 --
 ALTER TABLE `productcategories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `schedule`
+-- Chỉ mục cho bảng `schedule`
 --
 ALTER TABLE `schedule`
   ADD PRIMARY KEY (`idschedule`),
@@ -378,128 +386,128 @@ ALTER TABLE `schedule`
   ADD KEY `FK_userSchudle` (`iduser`);
 
 --
--- Indexes for table `servicecategories`
+-- Chỉ mục cho bảng `servicecategories`
 --
 ALTER TABLE `servicecategories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `services`
+-- Chỉ mục cho bảng `services`
 --
 ALTER TABLE `services`
   ADD PRIMARY KEY (`id`),
   ADD KEY `s_sc_fk` (`cate`);
 
 --
--- Indexes for table `user`
+-- Chỉ mục cho bảng `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `bill`
+-- AUTO_INCREMENT cho bảng `bill`
 --
 ALTER TABLE `bill`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `billinfo`
+-- AUTO_INCREMENT cho bảng `billinfo`
 --
 ALTER TABLE `billinfo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
--- AUTO_INCREMENT for table `blog`
+-- AUTO_INCREMENT cho bảng `blog`
 --
 ALTER TABLE `blog`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `blogcategories`
+-- AUTO_INCREMENT cho bảng `blogcategories`
 --
 ALTER TABLE `blogcategories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `product`
+-- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `productcategories`
+-- AUTO_INCREMENT cho bảng `productcategories`
 --
 ALTER TABLE `productcategories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `schedule`
+-- AUTO_INCREMENT cho bảng `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `idschedule` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idschedule` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `servicecategories`
+-- AUTO_INCREMENT cho bảng `servicecategories`
 --
 ALTER TABLE `servicecategories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `services`
+-- AUTO_INCREMENT cho bảng `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `bill`
+-- Các ràng buộc cho bảng `bill`
 --
 ALTER TABLE `bill`
   ADD CONSTRAINT `b_fk` FOREIGN KEY (`userid`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `billinfo`
+-- Các ràng buộc cho bảng `billinfo`
 --
 ALTER TABLE `billinfo`
   ADD CONSTRAINT `bi_b_fk` FOREIGN KEY (`idBill`) REFERENCES `bill` (`id`),
   ADD CONSTRAINT `bi_p_fk` FOREIGN KEY (`idproduct`) REFERENCES `product` (`id`);
 
 --
--- Constraints for table `blog`
+-- Các ràng buộc cho bảng `blog`
 --
 ALTER TABLE `blog`
   ADD CONSTRAINT `b_ac_fk` FOREIGN KEY (`userid`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `b_bc_fk` FOREIGN KEY (`cate`) REFERENCES `blogcategories` (`id`);
 
 --
--- Constraints for table `product`
+-- Các ràng buộc cho bảng `product`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `p_fk` FOREIGN KEY (`cate`) REFERENCES `productcategories` (`id`);
 
 --
--- Constraints for table `schedule`
+-- Các ràng buộc cho bảng `schedule`
 --
 ALTER TABLE `schedule`
   ADD CONSTRAINT `FK_serviceSchudle` FOREIGN KEY (`idservice`) REFERENCES `services` (`id`),
   ADD CONSTRAINT `FK_userSchudle` FOREIGN KEY (`iduser`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `services`
+-- Các ràng buộc cho bảng `services`
 --
 ALTER TABLE `services`
   ADD CONSTRAINT `s_sc_fk` FOREIGN KEY (`cate`) REFERENCES `servicecategories` (`id`);
