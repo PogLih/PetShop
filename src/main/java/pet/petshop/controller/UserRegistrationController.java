@@ -33,7 +33,7 @@ public class UserRegistrationController {
 	
 	@GetMapping
 	public String showRegistrationForm() {
-		return "registration";
+		return "registration2";
 	}
 	
 	@PostMapping
