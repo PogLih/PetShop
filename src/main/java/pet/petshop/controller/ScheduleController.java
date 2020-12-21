@@ -27,7 +27,7 @@ public class ScheduleController {
 	@Autowired
 	private ScheduleService scs;
 	
-	int serid=0;
+	
 	
 	@RequestMapping("/confirmservice/{id}")
 	public String confirmservice(ModelMap model,HttpSession session,@PathVariable(name = "id") Integer id) {
@@ -38,7 +38,7 @@ public class ScheduleController {
 		model.addAttribute("service",service);
 		return "service/confirm";
 	}
-	
+	int serid=0;
 	@RequestMapping("/order")
 	public String order(@ModelAttribute("schedule") Schedule sch,HttpSession session) throws ParseException {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -46,7 +46,6 @@ public class ScheduleController {
 		String now = format.format(date);
 		String datecheckin = format.format(sch.getDatacheckin());
 		User user = (User) session.getAttribute("user");
-//		System.out.println(serid);
 		Schedule schedule = new Schedule(serid, user.getId(), format.parse(now), format.parse(datecheckin), sch.getNote());
 		scs.save(schedule);
 		return "/";
