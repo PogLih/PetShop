@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -79,12 +80,14 @@ public class UserController {
 	}
 	
 	@RequestMapping("/editUser/{id}")
-	public ModelAndView showEditUserPage(@PathVariable(name = "id") int id) {
-	    ModelAndView mav = new ModelAndView("admin/user/edit_user");
+	public String showEditUserPage(@PathVariable(name = "id") int id,ModelMap model) {
 	    User user = us.get(id);
-	    mav.addObject("user", user);
-	     
-	    return mav;
+	    if(user.getRole().contains("ROLE_STAFF"))
+	    	user.setRole("ROLE_USER");
+	    else
+	    	user.setRole("ROLE_STAFF");
+	    us.save(user);
+	    return "redirect:/user";
 	}
 	
 	
