@@ -48,8 +48,76 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/"
-				,"/oauth2/"
+//		http.authorizeRequests().antMatchers("/"
+//				,"/oauth2/"
+//				,"/shop"
+//				,"/shop-page/**"
+//				, "/service"
+//				, "/dichvu-page/**"
+//				, "/blog"
+//				, "/baiviet-page/**"
+//				, "/profile"
+//				, "/editprofile"
+//				, "/billhistory"
+//				, "/cart"
+//				, "/confirm"
+//				, "/charge"
+//				, "/login"
+//				, "/chitietbill/**"
+//				, "/logout").permitAll();
+//		
+//		http.authorizeRequests().antMatchers("/admin"
+//				,"/services"
+//				, "/service-page/**"
+//				, "/newservices"
+//				, "/editservice/**"
+//				, "/servicecategories"
+//				, "/product"
+//				, "/product-page/**"
+//				, "/newproduct"
+//				, "/editproduct/**"
+//				, "/productcategories"
+//				, "/editproductcategories/**"
+//				, "/newproductcategories"
+//				, "/blogindex"
+//				, "/blog-page/**"
+//				, "/newblog"
+//				, "/editblog/**"
+//				, "/adminbill"
+//				, "/bill-page/**").access("hasAnyRole('ROLE_ADMIN','ROLE_STAFF')");
+//
+//		http.authorizeRequests().antMatchers("/user","/edituser/**").access("hasRole('ROLE_ADMIN')");
+//		http.authorizeRequests().antMatchers(
+//				 "/registration**",
+//				 "/**",
+//	                "/js/**",
+//	                "/css/**",
+//	                "/img/**",
+//	                "/plugins/**").permitAll()
+//		.anyRequest().authenticated()
+//		.and()
+//		.formLogin()
+//			.loginPage("/login")
+//			.defaultSuccessUrl("/")
+//			.permitAll()
+//		.and()
+//		.oauth2Login()
+//        .loginPage("/login")
+//        .userInfoEndpoint().userService(oauth2UserService)
+//        	.and()
+//        	.successHandler(oAuth2LoginSuccessHandler)
+//        .and()
+//		.logout()
+//		.invalidateHttpSession(true)
+//		.clearAuthentication(true)
+//		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//		.logoutSuccessUrl("/login?logout")
+//		.permitAll()
+//		.and()
+//		.rememberMe().tokenRepository(PersistentTokenRepository());
+		http.authorizeRequests()
+		.antMatchers("/"
+				,"/oauth2/**"
 				,"/shop"
 				,"/shop-page/**"
 				, "/service"
@@ -64,9 +132,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				, "/charge"
 				, "/login"
 				, "/chitietbill/**"
-				, "/logout").permitAll();
-		
-		http.authorizeRequests().antMatchers("/admin"
+				, "/logout").permitAll()
+		.antMatchers("/admin"
 				,"/services"
 				, "/service-page/**"
 				, "/newservices"
@@ -84,34 +151,32 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				, "/newblog"
 				, "/editblog/**"
 				, "/adminbill"
-				, "/bill-page/**").access("hasAnyRole('ROLE_ADMIN','ROLE_STAFF')");
-
-		http.authorizeRequests().antMatchers("/user","/edituser/**").access("hasRole('ROLE_ADMIN')");
-		http.authorizeRequests().antMatchers(
+				, "/bill-page/**").access("hasAnyRole('ROLE_ADMIN','ROLE_STAFF')")
+		.antMatchers("/user","/edituser/**").access("hasRole('ROLE_ADMIN')")
+		.antMatchers(
 				 "/registration**",
 				 "/**",
 	                "/js/**",
 	                "/css/**",
 	                "/img/**",
 	                "/plugins/**").permitAll()
-		.anyRequest().authenticated()
+		.anyRequest().permitAll()
 		.and()
 		.formLogin()
 			.loginPage("/login")
-			.defaultSuccessUrl("/")
 			.permitAll()
+			.defaultSuccessUrl("/")
 		.and()
 		.oauth2Login()
-        .loginPage("/login")
-        .userInfoEndpoint().userService(oauth2UserService)
-        	.and()
-        	.successHandler(oAuth2LoginSuccessHandler)
-        .and()
+			.loginPage("/login")
+			.userInfoEndpoint().userService(oauth2UserService)
+			.and()
+		.and()
 		.logout()
 		.invalidateHttpSession(true)
 		.clearAuthentication(true)
 		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-		.logoutSuccessUrl("/login?logout")
+		.logoutSuccessUrl("/?logout")
 		.permitAll()
 		.and()
 		.rememberMe().tokenRepository(PersistentTokenRepository());
