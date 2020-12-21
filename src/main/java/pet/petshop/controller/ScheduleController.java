@@ -2,6 +2,7 @@ package pet.petshop.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
@@ -33,8 +34,10 @@ public class ScheduleController {
 	public String confirmservice(ModelMap model,HttpSession session,@PathVariable(name = "id") Integer id) {
 		Services service= ss.get(id);
 		Schedule sch = new Schedule();
+		
 		serid = id;
 		model.addAttribute("schedule",sch);
+		
 		model.addAttribute("service",service);
 		return "service/confirm";
 	}

@@ -9,40 +9,7 @@
 </head>
 <body>
 	<div layout:fragment="content" class="main main-raised">
-		<div class="section">
-			<div class="container ">
-				<h2 class="title text-center">Latest Offers</h2>
-				<div class="row">
-					<div class="col-md-4" th:each="pr,prrStat : ${product}" 
-						th:unless="${prrStat.index > 5}">
-						
-						<div class="card card-product card-plain">
-							<div class="card-header card-header-image">
-								<a href="#pablo"> <img th:src="@{'../assets/img/' + ${pr.images}}" style="min-height: 320px;max-height: 320px"/> 
-								</a>
-							</div>
-							<div class="card-body text-center">
-								<h4 class="card-title">
-									<a th:href="@{'/sanpham/' + ${pr.id}}" th:text="${pr.name}"></a>
-									<p class="description" th:text="${#strings.abbreviate(pr.description,100)}"></p>
-								</h4>
-								</div>
-							<div class="card-footer">
-								<div class="price-container">
-									<span class="price price-new" th:text="${#numbers.formatDecimal(pr.price, 3, 'POINT', 0, 'POINT')}"></span><sup> &#8363;</sup>
-								</div>
-								<div class="stats ml-auto">
-									<a class="btn btn-danger btn-round" type="submit"  th:href="${'/cart/buy/'+pr.id}">Add to Cart<div class="ripple-container"></div></a>
-								</div>
-							</div>
-						</div>
-						
-					</div>
-
-
-				</div>
-			</div>
-		</div>
+		
 		<!-- section -->
 		<div class="section">
 			<div class="container">
