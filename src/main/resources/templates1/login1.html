@@ -55,14 +55,21 @@
                 </span>
               </div>
               <div class="card-footer justify-content-center">
-              
-                <button type="submit" class="btn btn-success btn-link btn-lg">Đăng nhập</button>
+              	<div class="row">
+              	<a class="btn btn-rose" href="/" th:href="@{/registration}">Đăng ký</a>
+              <button type="submit" class="btn btn-success">Đăng nhập</button>
+              	</div>
+                
                	
                 
               </div>
+              <a class="btn btn-link btn-google" href="/forgotpassword">
+                <i class="fa fa-google"></i> Quên password
+              <div class="ripple-container"></div></a>
               
-              <a class="btn btn-rose btn-link btn-lg" href="/" th:href="@{/registration}">Đăng ký</a>
+      
             </div>
+            
           </form>
         </div>
       </div>
