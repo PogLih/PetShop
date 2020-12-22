@@ -55,7 +55,7 @@ public class CartController {
 			int index = isExists(id, cart);
 			if (index == -1) {
 				cart.add(new Item(ps.get(id), 1));
-				
+				redirAttrs.addFlashAttribute("success", "Đã thêm sản phẩm " + ps.get(id).getName());
 				return "redirect:/shop";
 			} else {
 				int quantity = cart.get(index).getQuantity() + 1;

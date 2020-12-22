@@ -103,7 +103,10 @@ public class MainController {
 
 	@RequestMapping(value = "/confirm", method = RequestMethod.GET)
 	public String confirm(ModelMap model, HttpSession session) {
-
+		User user = (User) session.getAttribute("user");
+		if(user == null) {
+			return "redirect:/login";
+		}
 		int total = 0;
 		List<Item> cart = (List<Item>) session.getAttribute("cart");
 		if (cart == null) {
