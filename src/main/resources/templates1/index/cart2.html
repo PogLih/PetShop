@@ -64,11 +64,7 @@
 									<td class="td-number"
 										th:text="${#numbers.formatDecimal(price, 3, 'POINT', 0, 'POINT')}"></td>
 
-									<td class="td-actions"><a
-										th:href="${'/cart/delete/'+item.product.id}" rel="tooltip"
-										data-placement="left" title="Remove item" class="btn btn-link">
-											<i class="material-icons">close</i>
-									</a></td>
+									
 								</tr>
 
 
@@ -80,7 +76,8 @@
 									</td>
 									<td colspan="1"></td>
 									<td colspan="2" class="text-right"><a type="button"
-										class="btn btn-info btn-round" href="/confirm">Complete
+										class="btn btn-info btn-round" 
+										onclick="if (total == 0 )alert('bạn chưa mua gì cả')" href="/confirm">Complete
 											Purchase <i class="material-icons">keyboard_arrow_right</i>
 									</a></td>
 								</tr>
