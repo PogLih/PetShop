@@ -25,8 +25,8 @@ $(document).ready(function() {
 
 		var piechart_options = {
 			title: 'Thống kế số lượng mua',
-			width: 900,
-			height: 600
+			width: 600,
+			height: 400
 		};
 		var piechart = new google.visualization.PieChart(document.getElementById('piechart_div'));
 		piechart.draw(data, piechart_options);

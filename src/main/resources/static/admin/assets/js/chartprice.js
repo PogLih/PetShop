@@ -27,8 +27,8 @@ $(document).ready(function() {
 
 		var barchart_options = {
 			title: 'Thống kê tổng tiền từng tháng',
-			width: 1600,
-			height: 600,
+			width: 1200,
+			height: 400,
 			legend: 'none'
 			
 		};

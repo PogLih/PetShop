@@ -15,7 +15,7 @@ import pet.petshop.entity.User;
 public interface BillRepository extends JpaRepository<Bill, Integer> {
 	List<Bill> findByUser(User user);
 	
-	@Query(value = "SELECT bill.id,bill.date AS date,bill.userid,bill.status,bill.totalprice FROM bill WHERE bill.status = 2 GROUP BY date", nativeQuery = true)
+	@Query(value = "SELECT bill.id,bill.date AS date,bill.userid,bill.status,bill.totalprice FROM bill WHERE bill.status = 3 GROUP BY date", nativeQuery = true)
 	Iterable<Bill> followmoth();
 	
 	@Query(value = "SELECT COUNT(id) AS id,bill.date AS date, bill.userid as userid, bill.status as status, bill.totalprice as totalprice FROM bill GROUP BY status", nativeQuery = true)
