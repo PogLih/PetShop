@@ -2,6 +2,8 @@ package pet.petshop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -17,6 +19,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import pet.petshop.dto.CustomOAuth2User;
 import pet.petshop.entity.Blog;
 import pet.petshop.entity.Product;
 import pet.petshop.entity.Services;
@@ -48,10 +51,14 @@ public class indexController {
 	@Autowired
 	private UserServiceImpl us;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(ModelMap model,Principal principal,HttpSession session) {
+	public String index(ModelMap model,Authentication authentication,HttpSession session) {
 		model.put("product", ps.listAll());
-		if (principal != null) {
-			User user = us.loadUserByUsername2(principal.getName());
+		if (authentication != null) {
+			User user = us.loadUserByUsername2(authentication.getName());
+			if(user==null) {
+				CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
+				user = us.loadUserByUsername2(oAuth2User.getEmail());
+			}
 			session.setAttribute("user",user);
 		}
 		return "index/index";

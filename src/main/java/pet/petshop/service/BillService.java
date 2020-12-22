@@ -1,5 +1,6 @@
 package pet.petshop.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import pet.petshop.dto.BillDTO;
+import pet.petshop.dto.BillStatusDTO;
 import pet.petshop.entity.Bill;
 import pet.petshop.entity.User;
 import pet.petshop.repository.BillRepository;
@@ -51,6 +54,30 @@ public class BillService {
 	public List<Bill> BillByUser(User user){
 		return br.findByUser(user);
 	}
-	 
-	
+	public List<BillDTO> listBillDTO(){
+		List<BillDTO> list = new ArrayList<BillDTO>();
+		for(Bill bd : br.followmoth()) {
+			BillDTO billDTO = new BillDTO();
+			billDTO.setId(bd.getId());
+			billDTO.setUserid(bd.getUserid());
+			billDTO.setDate(bd.getDate());
+			billDTO.setStatus(bd.getStatus());
+			billDTO.setTotalprice(bd.getTotalprice());
+			list.add(billDTO);
+		}
+		return list;
+	}
+	public List<BillStatusDTO> countstatus(){
+		List<BillStatusDTO> list = new ArrayList<BillStatusDTO>();
+		for(Bill bd : br.countstatus()) {
+			BillStatusDTO BillStatusDTO = new BillStatusDTO();
+			BillStatusDTO.setId(bd.getId());
+			BillStatusDTO.setUserid(bd.getUserid());
+			BillStatusDTO.setDate(bd.getDate());
+			BillStatusDTO.setStatus(bd.getStatus());
+			BillStatusDTO.setTotalprice(bd.getTotalprice());
+			list.add(BillStatusDTO);
+		}
+		return list;
+	}
 }

@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
 	$.ajax({
 		type: 'GET',
@@ -26,20 +25,13 @@ $(document).ready(function() {
 
 		var piechart_options = {
 			title: 'Thống kế số lượng mua',
-			width: 700,
+			width: 900,
 			height: 600
 		};
 		var piechart = new google.visualization.PieChart(document.getElementById('piechart_div'));
 		piechart.draw(data, piechart_options);
 
-		var barchart_options = {
-			title: 'Thống kế số lượng mua',
-			width: 700,
-			height: 600,
-			legend: 'none'
-		};
-		var barchart = new google.visualization.BarChart(document.getElementById('barchart_div'));
-		barchart.draw(data, barchart_options);
+		
 	}
 });
 

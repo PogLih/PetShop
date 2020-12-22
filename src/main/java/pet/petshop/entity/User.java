@@ -96,8 +96,7 @@ public class User {
 	}
 
 	public void setPassword(String password) {
-		BCryptPasswordEncoder encode = new BCryptPasswordEncoder();
-		this.password = encode.encode(password);
+		this.password = password;
 	}
 
 	public String getRole() {

@@ -98,6 +98,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //		.and()
 //		.formLogin()
 //			.loginPage("/login")
+//			.usernameParameter("email")
+//			.passwordParameter("password")
 //			.defaultSuccessUrl("/")
 //			.permitAll()
 //		.and()
@@ -115,6 +117,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //		.permitAll()
 //		.and()
 //		.rememberMe().tokenRepository(PersistentTokenRepository());
+	
+		
 		http.authorizeRequests()
 		.antMatchers("/"
 				,"/oauth2/**"
@@ -171,6 +175,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.loginPage("/login")
 			.userInfoEndpoint().userService(oauth2UserService)
 			.and()
+			.successHandler(oAuth2LoginSuccessHandler)
 		.and()
 		.logout()
 		.invalidateHttpSession(true)

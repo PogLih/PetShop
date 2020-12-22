@@ -9,15 +9,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import pet.petshop.dto.BillinfoDTO;
-import pet.petshop.entity.BillInfo;
-import pet.petshop.repository.BillInfoRepository;
 import pet.petshop.service.BillInfoService;
 
 @RestController
 @RequestMapping("/api/billinfo")
 public class BillInfoRestcontroller {
-	@Autowired
-	private BillInfoRepository billInfoRepository;
+
 	@Autowired
 	private BillInfoService bs;
 	
