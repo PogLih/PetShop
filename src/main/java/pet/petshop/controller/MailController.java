@@ -3,6 +3,7 @@ package pet.petshop.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,8 @@ public class MailController {
     private JavaMailSender emailSender;
 	@Autowired
 	private UsersService us;
+	@Autowired
+	private BCryptPasswordEncoder encode;
  
     @RequestMapping("/sendSimpleEmail")
     public String sendSimpleEmail() {
@@ -69,7 +72,7 @@ public class MailController {
     							,@RequestParam(name = "verificationcode", required = false) String code) {
     	User user= us.get(id);
     	if(user.getVerificationcode().equals(code))
-    		user.setPassword(password);
+    		user.setPassword(encode.encode(password));
     	us.save(user);
     	
     	return "redirect:/login";
