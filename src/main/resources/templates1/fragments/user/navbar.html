@@ -17,17 +17,17 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a href="/" class=" nav-link">
-              <i class="material-icons">home</i> Home
+              <i class="material-icons">home</i> Trang Chủ
             </a>
           </li>
           <li class="nav-item">
             <a href="/shop" class=" nav-link">
-              <i class="material-icons">store</i> Shop
+              <i class="material-icons">store</i> Cửa Hàng
             </a>
           </li>
           <li class="nav-item">
             <a href="/service" class=" nav-link">
-              <i class="material-icons">spa</i> Services
+              <i class="material-icons">spa</i> Dịch Vụ
             </a>
           </li>
           <li class="nav-item">
@@ -42,21 +42,21 @@
                       <div class="ripple-container"></div>
                       </a>
                       <div class="dropdown-menu dropdown-menu-rights">
-                        <h6 class="dropdown-header" sec:authorize="isAuthenticated()">Xin chào <span style="color: red;text-transform: uppercase;" sec:authentication="name"></span></h6>
-                        <a href="/login" class="dropdown-item" sec:authorize="isAnonymous()">Login</a>
-                         <a href="/profile" class="dropdown-item" sec:authorize="isAuthenticated()">Profile</a>
-                       <!--  <a href="#" class="dropdown-item" sec:authorize="isAuthenticated()">Đổi mật khẩu</a> -->
+                        <h6 class="dropdown-header" sec:authorize="isAuthenticated()">Xin Chào <span style="color: red;text-transform: uppercase;" sec:authentication="name"></span></h6>
+                        <a href="/login" class="dropdown-item" sec:authorize="isAnonymous()">Đăng nhập</a>
+                         <a href="/profile" class="dropdown-item" sec:authorize="isAuthenticated()">Thông tin cá nhân</a>
+                       <!--  <a href="#" class="dropdown-item" sec:authorize="isAuthenticated()">Ä�á»•i máº­t kháº©u</a> -->
                         <a href="/billhistory" class="dropdown-item" sec:authorize="isAuthenticated()">Lịch sử mua hàng</a> 
                         <div class="dropdown-divider" sec:authorize="hasRole('ROLE_ADMIN')"></div>
                         <a href="/admin" class="dropdown-item" sec:authorize="hasRole('ROLE_ADMIN')">Admin</a>
                         <div class="dropdown-divider" sec:authorize="isAuthenticated()"></div>
-                        <a href="/logout" class="dropdown-item" sec:authorize="isAuthenticated()">Logout</a>
+                        <a href="/logout" class="dropdown-item" sec:authorize="isAuthenticated()">Đăng Xuất</a>
                       </div>
           </li>
          
           <li class="button-container nav-item iframe-extern">
             <a href="/cart" class="btn  btn-danger  btn-round btn-block ">
-              <i class="material-icons">shopping_cart</i> Cart
+              <i class="material-icons">shopping_cart</i> Giỏ Hàng
             </a>
           </li>
         </ul>
