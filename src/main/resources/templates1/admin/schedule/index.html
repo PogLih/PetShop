@@ -5,43 +5,36 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table id="example" class="display table"
-                               style="width: 100%; cellspacing: 0;">
-                            <thead>
-                            <tr>
-                                <th>Product id</th>
-                                <th>Categories id</th>
-                                <th>Name</th>
-                                <th>Brand</th>
-                                <th>Images</th>
-                                <th>status</th>
-<!--                                 <th>status</th> -->
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="sch : ${schedulelist}" >
-                                <td th:text="${sch.idschedule}">pr id</td>
-                                <td th:text="${sch.service.name}">pr id</td>
-                                <td th:text="${sch.user.name}">Category id</td>
-                                <td th:text="${sch.dateorder}">Date</td>
-                                <td th:text="${sch.datacheckin}">Username</td>
-                                <td th:text="${sch.note}">Images</td>
-<!--                                 <th:block th:if="${datenow > sch.datacheckin}"> -->
-<!-- 											<td th:text="${datenow}">Chưa xử lý</td> -->
-<!-- 										</th:block> -->
-<!-- 										<th:block th:if="${datenow > sch.datacheckin}" > -->
-<!-- 											<td>Đang xử lý</td> -->
-<!-- 										</th:block> -->
-<!-- 										<th:block th:if="${datenow = sch.datacheckin}" > -->
-<!-- 											<td>Đã xử lý</td> -->
-<!-- 										</th:block> -->
-<!-- 										<th:block th:if="${datenow < sch.datacheckin}" > -->
-<!-- 											<td>Đơn hàng bị huỷ</td> -->
-<!-- 										</th:block> -->
-                                
-                               
-                            </tr>
-                            </tbody>
-                        </table>
+<table class="table">
+									<thead>
+										<tr>
+											<th class="text-center">ID</th>
+											<th>tên dịch vụ</th>
+											<th>tên người đặt</th>
+											<th>số điện thoại</th>
+											<th>ngày đặt</th>
+											<th>ngày hẹn</th>
+											<th>Ghi chú</th>
+											<th>trạng thái</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="schedule : ${schedulelist}">
+											<td class="text-center" th:text="${schedule.idschedule}">1</td>
+											<td th:text="${schedule.service.name}"></td>
+											<td th:text="${schedule.user.name}"></td>
+											<td th:text="${schedule.user.phone}"></td>
+											<td th:text="${schedule.dateorder}"></td>
+											<td class="text-right" th:text="${schedule.datacheckin}"></td>
+											<td class="text-right" th:text="${schedule.note}"></td>
+											<th:block th:if="${schedule.datacheckin.before(#dates.createNow())}">
+												<td>Đã qua</td> 
+											</th:block> 
+											<th:block th:if="${schedule.datacheckin.after(#dates.createNow())}">
+												<td>sắp tới</td> 
+											</th:block> 
+										</tr>
+										</tbody>
+								</table>
 </body>
 </html>
