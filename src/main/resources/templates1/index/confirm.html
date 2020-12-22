@@ -12,8 +12,10 @@
 		<div class="contactus-1 section-image"
 			style="background-image: url('./assets/img/confirm.jpg')">
 			<div class="container">
+			
 				<div class="row">
 					<div class="col-md-5 ml-auto">
+					<div class="alert alert-success text-center" role="alert" th:text="${success}" th:if="${success}"></div>
 						<h2 class="title">Tiến hành thanh toán</h2>
 						<h5 class="description">Xác nhận thông tin của sản phẩm và thông tin của bạn tại đây.</h5>
 						<table class="table table-bordered"
@@ -110,7 +112,7 @@
 									
 								</div>
 								<div class="card-footer justify-content-between">
-									<a type="submit" class="btn btn-success"  th:href="${'/charge'}">Thanh toán</a>
+									<a type="submit" class="btn btn-success"  th:href="${'/charge'}" onclick="alert('Cảm ơn bạn đã mua hàng');">Thanh toán</a>
 								</div>
 							</form>
 						</div>

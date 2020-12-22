@@ -14,6 +14,9 @@
 			<div class="card card-plain">
 				<div class="card-body">
 					<h3 class="card-title">Giỏ Hàng</h3>
+					<div class="alert alert-danger text-center" role="alert" th:text="${delete}" th:if="${delete}"></div>
+					<div class="alert alert-warning text-center" role="alert" th:text="${des}" th:if="${des}"></div>
+					<div class="alert alert-success text-center" role="alert" th:text="${success}" th:if="${success}"></div>
 					<br />
 					<div class="table-responsive">
 						<table class="table table-shopping">
