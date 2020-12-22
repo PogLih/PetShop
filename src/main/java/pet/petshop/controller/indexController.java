@@ -22,7 +22,7 @@ import pet.petshop.entity.Product;
 import pet.petshop.entity.Services;
 import pet.petshop.entity.User;
 import pet.petshop.service.BlogService;
-
+import pet.petshop.service.ProductCategoryService;
 import pet.petshop.service.ProductService;
 import pet.petshop.service.ServiceServices;
 import pet.petshop.service.UserServiceImpl;
@@ -33,6 +33,8 @@ public class indexController {
 	@Autowired
 	private ProductService ps;
 	
+	@Autowired
+	private ProductCategoryService pcs;
 
 	@Autowired
 	private ServiceServices ss;
@@ -56,7 +58,8 @@ public class indexController {
 	}
 
 	@RequestMapping("/shop")
-	public String shop(Model model) {
+	public String shop(Model model,ModelMap modelmap) {
+		modelmap.put("productcate", pcs.listALL());
 		return listByPage(model, 1);
 	}
 	
