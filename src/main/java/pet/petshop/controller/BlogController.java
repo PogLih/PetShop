@@ -83,10 +83,13 @@ public class BlogController {
 	
 	
 	@RequestMapping(value = "/saveblog", method = RequestMethod.POST)
-	public String saveBlog(@ModelAttribute("blog") Blog blog, @RequestParam("image") MultipartFile multipartFile)
+	public String saveBlog(@ModelAttribute("blog") Blog blog,HttpSession session, @RequestParam("image") MultipartFile multipartFile)
 			throws IOException {
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 		blog.setImages(fileName);
+		User user = (User) session.getAttribute("user");
+//		String id= String.valueOf((user.getId()));
+		blog.setUserid(user.getId());
 		Blog saveBlog = bs.save(blog);
 		String uploadDir = System.getProperty("user.dir") + "/src/main/resources/static/assets/img/";
 
