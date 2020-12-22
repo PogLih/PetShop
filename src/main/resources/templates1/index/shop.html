@@ -9,20 +9,20 @@
 </head>
 <body>
 	<div layout:fragment="content" class="main main-raised">
-		
+
 		<!-- section -->
 		<div class="section">
 			<div class="container">
-				<h2 class="section-title">Find what you need</h2>
+				<h2 class="section-title">Tìm kiếm bằng bộ lọc</h2>
 				<div class="row">
 					<div class="col-md-3">
 						<div class="card card-refine card-plain card-rose">
 							<div class="card-body">
 								<h4 class="card-title">
-									Refine
+									Lọc
 									<button
 										class="btn btn-default btn-fab btn-fab-mini btn-link pull-right"
-										rel="tooltip" title="" data-original-title="Reset Filter">
+										rel="tooltip" title="" data-original-title="Reset bộ lọc">
 										<i class="material-icons">cached</i>
 									</button>
 								</h4>
@@ -31,7 +31,8 @@
 										<div class="card-header" role="tab" id="headingOne">
 											<h5 class="mb-0">
 												<a data-toggle="collapse" href="#collapseOne"
-													aria-expanded="true" aria-controls="collapseOne"> Tầm giá <i class="material-icons">keyboard_arrow_down</i>
+													aria-expanded="true" aria-controls="collapseOne"> Tầm
+													giá <i class="material-icons">keyboard_arrow_down</i>
 												</a>
 											</h5>
 										</div>
@@ -60,69 +61,11 @@
 										<div id="collapseTwo" class="collapse" role="tabpanel"
 											aria-labelledby="headingTwo">
 											<div class="card-body">
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="" checked>
-														Blazers <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Casual Shirts <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Formal Shirts <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Jeans <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Polos <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Pyjamas <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Shorts <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														Trousers <span class="form-check-sign"> <span
-															class="check"></span>
-													</span>
-													</label>
+												<div class="form-check" th:each="cate : ${productcate}">
+													 <input type="checkbox"  th:checked="${cate.id}"
+                   										th:value="${cate.id}"  th:id="${cate.id}">
+														<label class="form-check-label" for="${cate.id}" th:text="${cate.name}">
+														Default checkbox </label>
 												</div>
 											</div>
 										</div>
@@ -287,7 +230,7 @@
 											</div>
 										</div>
 									</div>
-									
+
 								</div>
 							</div>
 						</div>
@@ -296,66 +239,62 @@
 						<div class="row">
 							<div class="col-md-4" th:each="pr,pStat : ${product}"
 								th:unless="${pStat.index > 20}">
-								
+
 								<div class="card card-product card-plain no-shadow"
 									data-colored-shadow="false">
 									<div class="card-header card-header-image">
-										<a href="#"> <img th:src="@{'../assets/img/' + ${pr.images}}"
-											alt="..." style="min-height: 320px;max-height: 320px">
+										<a href="#"> <img
+											th:src="@{'../assets/img/' + ${pr.images}}" alt="..."
+											style="min-height: 320px; max-height: 320px">
 										</a>
 									</div>
 									<div class="card-body">
-										<a  th:href="@{'/sanpham/' + ${pr.id}}">
-										<h4 class="card-title" th:text="${pr.name}"></h4>
+										<a th:href="@{'/sanpham/' + ${pr.id}}">
+											<h4 class="card-title" th:text="${pr.name}"></h4>
 										</a>
-										<p class="description" th:text="${#strings.abbreviate(pr.description,100)}"></p>
+										<p class="description"
+											th:text="${#strings.abbreviate(pr.description,100)}"></p>
 									</div>
 									<div class="card-footer justify-content-between">
 										<div class="price-container">
-											<span class="price price-new" th:text="${#numbers.formatDecimal(pr.price, 3, 'POINT', 0, 'POINT')}"></span><sup> &#8363;</sup>
+											<span class="price price-new"
+												th:text="${#numbers.formatDecimal(pr.price, 3, 'POINT', 0, 'POINT')}"></span><sup>
+												&#8363;</sup>
 										</div>
-										<a class="btn btn-danger btn-round" type="submit" th:href="${'/cart/buy/'+pr.id}">Add to Cart</a>
+										<a class="btn btn-danger btn-round" type="submit"
+											th:href="${'/cart/buy/'+pr.id}">Add to Cart</a>
 									</div>
 								</div>
-								
+
 								<!-- end card -->
 							</div>
-							
+
 						</div>
 					</div>
 					<div style="margin-left: 200px">
-								Tổng [[${totalItemsInpage}]] trên [[${totalItems}]] sản phẩm -
-								Trang [[${currentpage}]] / [[${totalPages}]] :
-								&nbsp;
-								<a th:if="${currentpage > 1}" th:href="@{/shop-page/1}">Đầu trang</a>
-								<span th:unless="${currentpage > 1}">Đầu trang</span>
-								&nbsp;
-								<a th:if="${currentpage > 1}" th:href="@{'/shop-page/' + ${currentpage - 1}}">Trang trước</a>
-								<span th:unless="${currentpage > 1}">Trang trước</span>
-								&nbsp;
-								<span
-									th:each="i: ${#numbers.sequence(1, totalPages)}">
-									<span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<a 
-										th:if="${i != currentpage}"
-										th:href="@{'/shop-page/' + ${i}}">[[${i}]]
-									</a>
-										<span th:unless="${i != currentpage}">[[${i}]]</span>
-								</span>
-								
-								</span>
-								&nbsp;
-								
-								&nbsp;
-								<a th:if="${currentpage < totalPages}" th:href="@{'/shop-page/' + ${currentpage + 1}}">Trang sau</a>
-								<span th:unless="${currentpage < totalPages}">Trang sau</span>
-								&nbsp;
-								<a th:if="${currentpage < totalPages}" th:href="@{'/shop-page/' + ${totalPages}}">Trang cuối</a>
-								<span th:unless="${currentpage < totalPages}">Trang cuối</span>
-							</div>
+						Tổng [[${totalItemsInpage}]] trên [[${totalItems}]] sản phẩm -
+						Trang [[${currentpage}]] / [[${totalPages}]] : &nbsp; <a
+							th:if="${currentpage > 1}" th:href="@{/shop-page/1}">Đầu
+							trang</a> <span th:unless="${currentpage > 1}">Đầu trang</span>
+						&nbsp; <a th:if="${currentpage > 1}"
+							th:href="@{'/shop-page/' + ${currentpage - 1}}">Trang trước</a> <span
+							th:unless="${currentpage > 1}">Trang trước</span> &nbsp; <span
+							th:each="i: ${#numbers.sequence(1, totalPages)}"> <span>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a th:if="${i != currentpage}"
+								th:href="@{'/shop-page/' + ${i}}">[[${i}]] </a> <span
+								th:unless="${i != currentpage}">[[${i}]]</span>
+						</span>
+
+						</span> &nbsp; &nbsp; <a th:if="${currentpage < totalPages}"
+							th:href="@{'/shop-page/' + ${currentpage + 1}}">Trang sau</a> <span
+							th:unless="${currentpage < totalPages}">Trang sau</span> &nbsp; <a
+							th:if="${currentpage < totalPages}"
+							th:href="@{'/shop-page/' + ${totalPages}}">Trang cuối</a> <span
+							th:unless="${currentpage < totalPages}">Trang cuối</span>
+					</div>
 				</div>
 				<br>
-				
+
 			</div>
 		</div>
 		<!-- section -->

@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Đăng ký</title>
 <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
@@ -16,40 +16,24 @@
       <div class="row">
         <div class="col-md-10 ml-auto mr-auto">
           <div class="card card-signup">
-            <h2 class="card-title text-center">Register</h2>
+            <h2 class="card-title text-center">Đăng ký</h2>
             <div class="card-body">
               <div class="row">
                 <div class="col-md-5 ml-auto">
                   <div class="info info-horizontal">
                     <div class="icon icon-rose">
-                      <i class="material-icons">timeline</i>
                     </div>
                     <div class="description">
-                      <h4 class="info-title">Marketing</h4>
-                      <p class="description">
-                        We've created the marketing campaign of the website. It was a very interesting collaboration.
-                      </p>
-                    </div>
-                  </div>
-                  <div class="info info-horizontal">
-                    <div class="icon icon-primary">
-                      <i class="material-icons">code</i>
-                    </div>
-                    <div class="description">
-                      <h4 class="info-title">Fully Coded in HTML5</h4>
-                      <p class="description">
-                        We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.
-                      </p>
+                     <img alt="center" src="https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" width="380px" height="600px">
                     </div>
                   </div>
                   <div class="info info-horizontal">
                     <div class="icon icon-info">
-                      <i class="material-icons">group</i>
+                      <i class="material-icons"></i>
                     </div>
                     <div class="description">
-                      <h4 class="info-title">Built Audience</h4>
+                      <h4 class="info-title"></h4>
                       <p class="description">
-                        There is also a Fully Customizable CMS Admin Dashboard for this product.
                       </p>
                     </div>
                   </div>
@@ -61,7 +45,7 @@
                     </a>
                     
                     
-                    <h4> or be classical </h4>
+                    <h4> <b>Đăng ký với email</b> </h4>
                   </div>
                   <form class="form" th:action="@{/registration}" method="post" th:object="${user}">
                    
