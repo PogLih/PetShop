@@ -58,13 +58,6 @@ public class BillService {
         return br.findByUser(user);
     }
 
-//    public List<BillMonth> listBillDTO() {
-//        List<BillMonth> list = new ArrayList<BillMonth>();
-//        for (Bill bd : br.followmoth()) {
-//            list.add(new BillMonth(Integer.parseInt(new SimpleDateFormat("MM").format(bd.getDate())), bd.getTotalprice()));
-//        }
-//        return list;
-//    }
 
     public List<BillDTO> listBillDTO() {
         List<BillDTO> list = new ArrayList<BillDTO>();
