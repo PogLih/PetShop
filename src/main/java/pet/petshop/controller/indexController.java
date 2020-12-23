@@ -66,7 +66,7 @@ public class indexController {
 
 	@RequestMapping("/shop")
 	public String shop(Model model,ModelMap modelmap) {
-		modelmap.put("productcate", pcs.listALL());
+		
 		return listByPage(model, 1);
 	}
 	

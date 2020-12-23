@@ -26,7 +26,7 @@ public class ProductService {
     }
     public Page<Product> listAllPage(int pageNumber) {
     	Sort sort = Sort.by("id").descending();
-        Pageable pageable = PageRequest.of(pageNumber - 1, 6,sort);
+        Pageable pageable = PageRequest.of(pageNumber - 1, 12,sort);
     	return pr1.findAll(pageable);
     }
     
