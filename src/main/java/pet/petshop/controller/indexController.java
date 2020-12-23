@@ -57,7 +57,7 @@ public class indexController {
             ModelMap modelmap,
             @RequestParam(value = "price", required = false, defaultValue = "") String price,
             @RequestParam(value = "cate", required = false, defaultValue = "") String cate,
-            @RequestParam(value = "branch", required = false, defaultValue = "") String branch
+            @RequestParam(value = "brand", required = false, defaultValue = "") String branch
     ) {
         Page<Product> page = ps.listAllPage(1);
         long totalItems = page.getTotalElements();

@@ -58,6 +58,9 @@ public class ScheduleController {
 		String now = format.format(date);
 		String datecheckin = format.format(sch.getDatacheckin());
 		User user = (User) session.getAttribute("user");
+		if(user == null) {
+			return "redirect:/login";
+		}
 		Schedule schedule = new Schedule(serid, user.getId(), format.parse(now), format.parse(datecheckin), sch.getNote());
 		scs.save(schedule);
 		return "redirect:/";

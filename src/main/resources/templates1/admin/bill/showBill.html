@@ -48,6 +48,7 @@
 					<th>Phone</th>
 					<th>Status</th>
 					<th>Totalprice</th>
+					<th class="text-center" colspan="2">Action</th>
 					
 				</tr>
 								</thead>
@@ -72,9 +73,7 @@
 										<th:block th:if="${bill.status == 3}" >
 											<td>Đơn hàng bị huỷ</td>
 										</th:block>
-										<th:block th:if="${bill.status == 3}" >
-											<td>Huỷ</td>
-										</th:block>
+										
 										<td th:text="${bill.totalprice}"></td>
 										<th:block th:if="${bill.status < 3}">
 										 <td><a th:href="@{'/UpdateBillStatus/' + ${bill.id}}">Updates</a></td>

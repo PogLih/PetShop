@@ -71,6 +71,7 @@ public class BillController {
 		
 		
 		session.removeAttribute("cart");
+		redirAttrs.addFlashAttribute("success", "Mua thanh  ");
 		return "index/index";
 	}
 

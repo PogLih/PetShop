@@ -3169,30 +3169,7 @@ tr.group:hover {
 
 /* Dropdowns */
 
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    z-index: 1000;
-    display: none;
-    float: left;
-    list-style: none;
-    text-shadow: none;
-    padding: 0px;
-    margin: 10px 0px 0px 0px;
-    background-color: #fffff;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    border: 1px solid #d8dee4;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    -ms-border-radius: 0px;
-    -o-border-radius: 0px;
-    border-radius: 0px;
-    -webkit-box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.1);
-}
+
 
 .dropdown-menu li {
     font-size: 13px;
