@@ -21,7 +21,7 @@ $(document).ready(function() {
 		
 		$.each(result, function(i, obj) {
 			
-			dataArray.push([obj.month, obj.totalprice]);
+			dataArray.push([obj.date, obj.totalprice]);
 		});
 		data.addRows(dataArray);
 
