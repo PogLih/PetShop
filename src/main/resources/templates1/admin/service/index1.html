@@ -43,7 +43,7 @@
 					<th><a th:href="@{'/service-page/' + ${currentpage} + '?sortField=images&sortDir=' + ${reverseSortDir}}">Images</a></th>
 					<th><a th:href="@{'/service-page/' + ${currentpage} + '?sortField=status&sortDir=' + ${reverseSortDir}}">Status</a></th>
 					<th>Description</th>
-					<th><a th:href="@{'/service-page/' + ${currentpage} + '?sortField=discount&sortDir=' + ${reverseSortDir}}">discount</a></th>
+					
 					<th>Action</th>
 					<th></th>
 				</tr>
@@ -58,7 +58,7 @@
 										<td th:text="${services.images}">images</td>
 										<td th:text="${services.status}">Status</td>
 										<td th:text="${#strings.abbreviate(services.description,100)}">de</td>
-										<td th:text="${services.discount}">di</td>
+										
 										<td><a th:href="@{'/editservice/' + ${services.id}}">edit</a></td>
 										<td><a th:href="@{'/deleteservice/' + ${services.id}}" th:data-confirm-delete="|Bạn có muốn xoá ${services.name}?|"
   									onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false;else(alert('Đã xoá thành công'))">delete</a>

@@ -42,7 +42,9 @@
                                         <div class="form-group">
                                             <label for="input-placeholder" class="col-sm-2 control-label">Name</label>
                                             <div class="col-sm-10">
-                                                <input type="text" th:field="*{name}" class="form-control" id="input-placeholder" placeholder="Hãy nhập name">
+                                                <input type="text" th:field="*{name}" class="form-control" id="input-placeholder" placeholder="Hãy nhập name"
+                                                required oninvalid="this.setCustomValidity('Vui lòng nhập tên loại sản phẩm')"
+ 												oninput="setCustomValidity('')">
                                             </div>
                                         </div> 
                                         

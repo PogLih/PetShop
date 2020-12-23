@@ -15,12 +15,8 @@
                                 <div class="col-md-2">
                                     <a href="/services" class="btn btn-success btn-block">Trở về</a>
                                 </div>
-                                <div class="col-md-6">
-                                    <h2>Compose</h2>
-                                </div>
-                                <div class="col-md-4">
-                                    
-                                </div>
+                               
+                                
                             </div>
                         </div>
                         
@@ -35,12 +31,14 @@
                                         <div class="form-group">
                                             <label for="input-placeholder" class="col-sm-2 control-label">Tên dịch vụ</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" th:field="*{name}" id="input-placeholder" placeholder="Hãy nhập tên dịch vụ">
+                                                <input type="text" class="form-control" th:field="*{name}" id="input-placeholder" placeholder="Hãy nhập tên dịch vụ" 
+                                                required oninvalid="this.setCustomValidity('Vui lòng điền Tên dịch vụ')"
+ 												oninput="setCustomValidity('')">
                                             </div>
                                         </div> 
                                         
                                         <div class="form-group">
-                                            <label for="input-placeholder" class="col-sm-2 control-label">Tên dịch vụ</label>
+                                            <label for="input-placeholder" class="col-sm-2 control-label">Loại dịch vụ</label>
                                             <div class="col-sm-10">
                                                 <select th:field="*{cate}">
 
@@ -52,7 +50,9 @@
                                         <div class="form-group">
                                             <label for="input-placeholder" class="col-sm-2 control-label">Giá</label>
                                             <div class="col-sm-10">
-                                                <input type="text" th:field="*{price}" class="form-control" id="input-placeholder" placeholder="Giá">
+                                                <input type="text" th:field="*{price}" class="form-control" id="input-placeholder" placeholder="Giá"
+                                                required oninvalid="this.setCustomValidity('Vui lòng nhập giá')"
+ 												oninput="setCustomValidity('')">
                                             </div>
                                         </div> 
                                         <div class="form-group">
@@ -74,7 +74,7 @@
                                                 <input type="text" th:field="*{description}" class="form-control" id="input-placeholder" placeholder="Hãy nhập mô tả">
                                             </div>
                                         </div> 
-                                        <div class="form-group">
+                                        <div class="form-group hidden" >
                                             <label for="input-placeholder" class="col-sm-2 control-label">Giảm giá</label>
                                             <div class="col-sm-10">
                                                 <input type="text" th:field="*{discount}" class="form-control" id="input-placeholder" placeholder="Hãy nhập giảm giá">

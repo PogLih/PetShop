@@ -19,23 +19,18 @@
                                 <div class="col-md-2">
                                     <a href="/services" class="btn btn-success btn-block">Trở về</a>
                                 </div>
-                                <div class="col-md-6">
-                                    <h2>Compose</h2>
-                                </div>
-                                <div class="col-md-4">
-                                    
-                                </div>
+                                
                             </div>
                         </div>
                         
                         <div class="col-md-12">
                             <div class="panel panel-white">
                                 <div class="panel-heading clearfix">
-                                    <h4 class="panel-title">Thêm sản phẩm</h4>
+                                    <h4 class="panel-title">Sửa dịch vụ</h4>
                                 </div>
                                 <div class="panel-body">
                                      <form class="form-horizontal" th:action="@{/saveservice}" th:object="${services}" method="post" enctype="multipart/form-data">
-                                       <div class="form-group">
+                                       <div class="form-group hidden">
                                             <label for="input-placeholder" class="col-sm-2 control-label">Mã dịch vụ</label>
                                             <div class="col-sm-10">
                                                 <input type="text" th:field="${services.id}" readonly="readonly" class="form-control">
@@ -44,7 +39,9 @@
                                         <div class="form-group">
                                             <label for="input-placeholder" class="col-sm-2 control-label">Tên dịch vụ</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" th:field="*{name}" id="input-placeholder" placeholder="Hãy nhập tên dịch vụ">
+                                                <input type="text" class="form-control" th:field="*{name}" id="input-placeholder" placeholder="Hãy nhập tên dịch vụ"
+                                                required oninvalid="this.setCustomValidity('Vui lòng nhập tên dịch vụ')"
+ 												oninput="setCustomValidity('')">
                                             </div>
                                         </div> 
                                         <div class="form-group">
@@ -60,7 +57,8 @@
                                         <div class="form-group">
                                             <label for="input-placeholder" class="col-sm-2 control-label">Giá</label>
                                             <div class="col-sm-10">
-                                                <input type="text" th:field="*{price}" class="form-control" id="input-placeholder" placeholder="Giá">
+                                                <input type="text" th:field="*{price}" class="form-control" id="input-placeholder" placeholder="Giá" required oninvalid="this.setCustomValidity('Vui lòng nhập giá')"
+ 												oninput="setCustomValidity('')">
                                             </div>
                                         </div> 
                                         <div class="form-group">
@@ -82,7 +80,7 @@
                                                 <input type="text" th:field="*{description}" class="form-control" id="input-placeholder" placeholder="Hãy nhập mô tả">
                                             </div>
                                         </div> 
-                                        <div class="form-group">
+                                        <div class="form-group hidden">
                                             <label for="input-placeholder" class="col-sm-2 control-label">Giảm giá</label>
                                             <div class="col-sm-10">
                                                 <input type="text" th:field="*{discount}" class="form-control" id="input-placeholder" placeholder="Hãy nhập giảm giá">
@@ -90,7 +88,7 @@
                                         </div> 
                                         <div class="form-group">
                                             <div class="col-sm-offset-2 col-sm-10">
-                                                <button type="submit" class="btn btn-success">Thêm dịch vụ</button>
+                                                <button type="submit" class="btn btn-success">Sửa dịch vụ</button>
                                             </div>
                                         </div>
                                         

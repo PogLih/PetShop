@@ -93,9 +93,7 @@
 										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=price&sortDir=' + ${reverseSortDir}}">
 										
 										price</a></th>
-										<th><a th:href="@{'/product-page/' + ${currentpage} + '?sortField=discount&sortDir=' + ${reverseSortDir}}">
 										
-										discount</a></th>
 										<th>Height</th>
 								<th>Width</th>
 								<th>Length</th>
@@ -114,7 +112,7 @@
                                 <th>Brand</th>
                                 <th>Images</th>
                                 <th>status</th>
-                                <th>discount</th>
+                                
                                 <th>Height</th>
 								<th>Width</th>
 								<th>Length</th>
@@ -137,7 +135,7 @@
                                 <td th:text="${pr.images}">Username</td>
                                 <td th:text="${pr.status}">Images</td>
                                 <td th:text="${pr.price}">Images</td>
-                                <td th:text="${pr.discount}">Content</td>
+                                
                                 <td th:text="${pr.length}"></td>
                                 <td th:text="${pr.width}"></td>
                                 <td th:text="${pr.height}"></td>

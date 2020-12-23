@@ -48,6 +48,7 @@ public class ProductController {
             return listByPageAdminProduct(model, 1, "id", "desc");
         } else {
             product = ps.searchByName(search);
+            
         }
         model.addAttribute("product", product);
         return "admin/product/index_product";
