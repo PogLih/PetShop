@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import pet.petshop.dto.BillDTO;
+import pet.petshop.dto.BillMonth;
 import pet.petshop.dto.BillStatusDTO;
 import pet.petshop.service.BillService;
 
@@ -19,12 +20,13 @@ public class BillRestController {
 	private BillService billService;
 	
 	@RequestMapping(value = "/findall",method = RequestMethod.GET, produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
-	public ResponseEntity<Iterable<BillDTO>> listallm()
+	public ResponseEntity<Iterable<BillMonth>> listallm()
 	{
 		try {
-			return new ResponseEntity<Iterable<BillDTO>>(billService.listBillDTO(),HttpStatus.OK);
+			billService.listBillDTO().forEach(e -> System.out.println(e.toString()));
+			return new ResponseEntity<Iterable<BillMonth>>(billService.listBillDTO(),HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<Iterable<BillDTO>>(billService.listBillDTO(),HttpStatus.BAD_REQUEST);
+			return new ResponseEntity(null, HttpStatus.BAD_REQUEST);
 		}
 		
 	}
