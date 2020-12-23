@@ -40,8 +40,17 @@ public class ProductService {
         return pr.getProductsByNameContains(search);
     }
 
+    public List<Product> getListProductByFilter(String price, String category, String branch) {
+        return pr.filter(price, category, branch);
+    }
+
     public Product save(Product product) {
-       return pr.save(product);
+        pr.save(product);
+        return product;
+    }
+
+    public List<String> getListBranch() {
+        return pr.getListBranch();
     }
 
     public Product get(Integer id) {

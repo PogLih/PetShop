@@ -15,7 +15,7 @@ $(document).ready(function() {
 	});
 	function drawChart1(result) {
 		var data = new google.visualization.DataTable();
-		data.addColumn('string', ': ');
+		data.addColumn('number', ': ');
 		data.addColumn('number', 'Tổng tiền: ');
 		var dataArray = [];
 		

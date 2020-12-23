@@ -3,11 +3,8 @@ package pet.petshop.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import pet.petshop.entity.Bill;
 import pet.petshop.entity.BillInfo;
 import pet.petshop.entity.Blog;
-import pet.petshop.entity.User;
 import pet.petshop.service.BillInfoService;
 import pet.petshop.service.BillService;
 
@@ -31,33 +27,9 @@ public class adminBillController {
 	
 	@RequestMapping("/adminbill")
 	public String viewBill(Model model) {
-		return listByPageAdminBill(model, 1, "id", "desc");
-	}
-	
-	@GetMapping("/bill-page/{pageNumber}")
-	public String listByPageAdminBill(Model model,
-			@PathVariable("pageNumber") int currentpage,
-			@Param("sortField") String sortField,
-			@Param("sortDir") String sortDir) {
-		
-		Page<Bill> page = bill.listAllPageAdminBill(currentpage, sortField, sortDir);
-		long totalItems = page.getTotalElements();
-		int totalPages = page.getTotalPages();
-		int totalItemsInpage = page.getNumberOfElements();
-		
-		List<Bill> billadmin = page.getContent();
-		model.addAttribute("currentpage", currentpage);
+		List<Bill> billadmin =bill.listAll();
 		model.addAttribute("billadmin",billadmin);
-		model.addAttribute("sortField", sortField);
-		model.addAttribute("sortDir", sortDir);
-		model.addAttribute("totalItems",totalItems);
-		model.addAttribute("totalPages",totalPages);
-		model.addAttribute("totalItemsInpage",totalItemsInpage);
-		
-		String reverseSortDir = sortDir.equals("asc") ? "desc"  : "asc" ;
-		model.addAttribute("reverseSortDir",reverseSortDir);
 		return "admin/bill/showBill";
-		
 	}
 	
 	@RequestMapping("/billinfo")
@@ -93,6 +65,5 @@ public class adminBillController {
 		model.addAttribute("billinfo",billinfo);
 		return "admin/bill/billinfo";
 	}
-	
 
 }

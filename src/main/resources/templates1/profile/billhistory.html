@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>Bill id</th>
+				<th>Date</th>
+				<th>Email</th>
+				<th>Phone</th>
+				<th>Status</th>
+				<th>Totalprice</th>
+
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="bill : ${history}">
+				<td th:text="${bill.id}">Service id</td>
+				<td th:text="${bill.date}">name</td>
+
+				<td th:text="${bill.user.email}">cate</td>
+				<td th:text="${bill.user.phone}">cate</td>
+
+				<th:block th:if="${bill.status == 0}">
+					<td>Chưa xử lý</td>
+				</th:block>
+				<th:block th:if="${bill.status == 1}">
+					<td>Đang xử lý</td>
+				</th:block>
+				<th:block th:if="${bill.status == 2}">
+					<td>Đã hoàn thành</td>
+				</th:block>
+				<th:block th:if="${bill.status == 3}">
+					<td>Huỷ</td>
+				</th:block>
+				<td th:text="${bill.totalprice}"></td>
+
+				<td><a th:href="@{'/UpdateBillStatus/' + ${bill.id}}">Done</a></td>
+
+
+				<td><a th:href="@{'/Bill/' + ${bill.id}}">Detail Bill</a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

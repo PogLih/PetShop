@@ -9,13 +9,13 @@ public class BillDTO {
 	@JsonIgnore
 	private Integer id;
 	
-	private Date date;
+	private Integer date;
 	@JsonIgnore
 	private Integer userid;
 	@JsonIgnore
 	private Integer status;
 	private Integer totalprice;
-	public BillDTO(Integer id, Date date, Integer userid, Integer status, Integer totalprice) {
+	public BillDTO(Integer id, Integer date, Integer userid, Integer status, Integer totalprice) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -33,10 +33,11 @@ public class BillDTO {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Date getDate() {
+	
+	public Integer getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(Integer date) {
 		this.date = date;
 	}
 	public Integer getUserid() {

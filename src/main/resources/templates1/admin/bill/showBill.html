@@ -17,14 +17,7 @@
                         </div>
                         
                         <div class="col-md-10">
-                            <form action="#" method="GET">
-                                <div class="input-group">
-                                    <input type="text" name="search" class="form-control input-search" placeholder="Search...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-success" type="button"><i class="fa fa-search"></i></button>
-                                    </span>
-                                </div><!-- Input Group -->
-                            </form>
+                            
                        </div>
                     </div>
                 </div>
@@ -42,18 +35,14 @@
 								style="width: 100%; cellspacing: 0;">
 								<thead>
 									<tr>
-					<th><a th:href="@{'/bill-page/' + ${currentpage} + '?sortField=id&sortDir=' + ${reverseSortDir}}">
-					Bill id</a></th>
-					<th><a th:href="@{'/bill-page/' + ${currentpage} + '?sortField=date&sortDir=' + ${reverseSortDir}}">
-					Date</a></th>
-					<th><a th:href="@{'/bill-page/' + ${currentpage} + '?sortField=userid&sortDir=' + ${reverseSortDir}}">
-					Email</a></th>
+					<th>Bill id</th>
+					<th>Date</th>
+					<th>Email</th>
 					<th>Phone</th>
-					<th><a th:href="@{'/bill-page/' + ${currentpage} + '?sortField=status&sortDir=' + ${reverseSortDir}}">
-					Status</a></th>
-					<th><a th:href="@{'/bill-page/' + ${currentpage} + '?sortField=totalprice&sortDir=' + ${reverseSortDir}}">
-					Totalprice</a></th>
-					<th rowspan="2">Action</th>
+					<th>Status</th>
+					<th>Totalprice</th>
+					<th class="text-center" colspan="2">Action</th>
+					
 				</tr>
 								</thead>
 								
@@ -77,6 +66,7 @@
 										<th:block th:if="${bill.status == 3}" >
 											<td>Đơn hàng bị huỷ</td>
 										</th:block>
+										
 										<td th:text="${bill.totalprice}"></td>
 										<th:block th:if="${bill.status < 3}">
 										 <td><a th:href="@{'/UpdateBillStatus/' + ${bill.id}}">Updates</a></td>
@@ -88,36 +78,6 @@
 									</tr>
 								</tbody>
 							</table>
-							<div style="margin-left: 500px">
-								Hiện [[${totalItemsInpage}]] / [[${totalItems}]] tổng hoá đơn -
-								Trang [[${currentpage}]] / [[${totalPages}]] :
-								&nbsp;
-								<a th:if="${currentpage > 1}" th:href="@{'/bill-page/1' + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Đầu trang</a>
-								<span th:unless="${currentpage > 1}">Đầu trang</span>
-								&nbsp;
-								<a th:if="${currentpage > 1}" th:href="@{'/bill-page/' + ${currentpage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trang trước</a>
-								<span th:unless="${currentpage > 1}">Trang trước</span>
-								&nbsp;
-								<span
-									th:each="i: ${#numbers.sequence(1, totalPages)}">
-									<span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<a 
-										th:if="${i != currentpage}"
-										th:href="@{'/bill-page/' + ${i}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} ">[[${i}]]
-									</a>
-										<span th:unless="${i != currentpage}">[[${i}]]</span>
-								</span>
-								
-								</span>
-								&nbsp;
-								
-								&nbsp;
-								<a th:if="${currentpage < totalPages}" th:href="@{'/bill-page/' + ${currentpage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trang sau</a>
-								<span th:unless="${currentpage < totalPages}">Trang sau</span>
-								&nbsp;
-								<a th:if="${currentpage < totalPages}" th:href="@{'/bill-page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Trang cuối</a>
-								<span th:unless="${currentpage < totalPages}">Trang cuối</span>
-							</div>
 						</div>
 					</div>
 				</div>

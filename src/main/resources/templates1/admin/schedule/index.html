@@ -1,40 +1,75 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/admin/main_layout}">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<table class="table">
-									<thead>
+<div layout:fragment="content" class="page-inner">
+<div id="main-wrapper">
+                <div class="col-md-12">
+                    <div class="row m-t-md">
+                    <div class="row mailbox-header">
+                        <div class="col-md-2">
+                            
+                        </div>
+                        
+                        <div class="col-md-10">
+                            
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-white">
+					<div class="panel-heading clearfix">
+						<h4 class="panel-title">Quản lý đặt lịch</h4>
+					</div>
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table id="example" class="display table"
+								style="width: 100%; cellspacing: 0;">
+								<thead>
 										<tr>
 											<th class="text-center">ID</th>
 											<th>tên dịch vụ</th>
 											<th>tên người đặt</th>
 											<th>số điện thoại</th>
-											<th>ngày đặt</th>
-											<th>ngày hẹn</th>
-											<th>Ghi chú</th>
+											<th class="text-center">ngày đặt</th>
+											<th class="text-center">ngày hẹn</th>
+											<th class="text-center">Ghi chú</th>
 											<th>trạng thái</th>
 										</tr>
 									</thead>
-									<tbody>
+								
+								<tbody>
 										<tr th:each="schedule : ${schedulelist}">
 											<td class="text-center" th:text="${schedule.idschedule}">1</td>
 											<td th:text="${schedule.service.name}"></td>
 											<td th:text="${schedule.user.name}"></td>
 											<td th:text="${schedule.user.phone}"></td>
-											<td th:text="${schedule.dateorder}"></td>
-											<td class="text-right" th:text="${schedule.datacheckin}"></td>
-											<td class="text-right" th:text="${schedule.note}"></td>
+											<td class="text-center" th:text="${schedule.dateorder}"></td>
+											<td class="text-center" th:text="${schedule.datacheckin}"></td>
+											<td class="text-center" th:text="${schedule.note}"></td>
 											<th:block th:if="${schedule.datacheckin.before(#dates.createNow())}">
-												<td>Đã qua</td> 
+												<td style="color:salmon">Đã qua</td> 
 											</th:block> 
 											<th:block th:if="${schedule.datacheckin.after(#dates.createNow())}">
-												<td>sắp tới</td> 
+												<td style="color:green;font: bold;">Sắp tới</td> 
 											</th:block> 
 										</tr>
 										</tbody>
-								</table>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+
 </body>
 </html>
