@@ -55,4 +55,5 @@ public class ProductcategoriesController {
         pds.delete(id);
         return "redirect:/productcategories";
     }
+
 }
