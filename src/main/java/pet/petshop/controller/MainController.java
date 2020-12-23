@@ -26,7 +26,7 @@ import pet.petshop.service.UsersService;
 
 @Controller
 public class MainController {
-	
+
 	@Autowired
 	private UserServiceImpl us;
 	@Autowired
@@ -37,86 +37,88 @@ public class MainController {
 	private BillService bill;
 	@Autowired
 	private BillService bs;
+
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder() {
 
-	    return new BCryptPasswordEncoder();
+		return new BCryptPasswordEncoder();
 	}
-	
+
 	@GetMapping("/login")
 	public String login() {
 		return "login1";
 	}
 
 	@RequestMapping("/editprofile")
-	public String editprofile(ModelMap model,HttpSession session) {
+	public String editprofile(ModelMap model, HttpSession session) {
 		User us = (User) session.getAttribute("user");
-		us.setPassword("");	
-		model.addAttribute("user",session.getAttribute("user"));
+		us.setPassword("");
+		model.addAttribute("user", session.getAttribute("user"));
 		return "profile/edit_profile";
 	}
 
-	@RequestMapping("/changepassword")
-	public String changePassword(ModelMap model,HttpSession session) {
-		model.addAttribute("user",session.getAttribute("user"));
-		return "changepassword";
-	}
+//	@RequestMapping("/changepassword")
+//	public String changePassword(ModelMap model,HttpSession session) {
+//		model.addAttribute("user",session.getAttribute("user"));
+//		return "changepassword";
+//	}
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveProduct(@ModelAttribute("user") User user) {
 		String encodepass = passwordEncoder().encode(user.getPassword());
 		user.setPassword(encodepass);
-	    uss.save(user);
-	    return "redirect:/";
+		uss.save(user);
+		return "redirect:/";
 	}
-	
-	
-	
-	
+
 	@RequestMapping("/profile")
 	public String index(Model model) {
 		List<User> list = uss.listAll();
-		model.addAttribute("users",list);
+		model.addAttribute("users", list);
 		return "profile/profile";
 	}
+
 	@RequestMapping("billhistory")
-	public String billhistory(ModelMap model,HttpSession session) {
+	public String billhistory(ModelMap model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
-		model.addAttribute("history",bs.BillByUser(user));
+		model.addAttribute("history", bs.BillByUser(user));
 		return "index/lichsumuahang";
 	}
-	
+
 	@RequestMapping("/chitietbill/{id}")
-	public String Chitietbill(Model model,@PathVariable(name = "id") int id) {
+	public String Chitietbill(Model model, @PathVariable(name = "id") int id) {
 		List<BillInfo> billinfo = bis.BillinfoByBill(bill.get(id));
-		model.addAttribute("billinfo",billinfo);
+		model.addAttribute("billinfo", billinfo);
 		return "index/chitietbill";
 	}
-	
+
 	@GetMapping("/admin")
 	public String home2() {
 		return "admin/index3";
 	}
+
 	@GetMapping("/login1")
 	public String login1() {
 		return "login1";
 	}
-	
-	@RequestMapping(value="/confirm" ,method = RequestMethod.GET)
-	public String confirm(ModelMap model,HttpSession session)
-	{
+
+	@RequestMapping(value = "/confirm", method = RequestMethod.GET)
+	public String confirm(ModelMap model, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if(user == null) {
+			return "redirect:/login";
+		}
 		int total = 0;
 		List<Item> cart = (List<Item>) session.getAttribute("cart");
-		if(cart!=null) {
-		for(int i=0;i<cart.size();i++) {
-			total+= cart.get(i).getQuantity()*cart.get(i).getProduct().getPrice();
+		if (cart == null) {
+
 		}
+		if (cart != null) {
+			for (int i = 0; i < cart.size(); i++) {
+				total += cart.get(i).getQuantity() * cart.get(i).getProduct().getPrice();
+			}
 		}
-		model.addAttribute("total",total);
-		return("index/confirm");
+		model.addAttribute("total", total);
+		return ("index/confirm");
 	}
-	
-	
-	
-	
-	
+
 }

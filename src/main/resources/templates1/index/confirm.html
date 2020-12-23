@@ -5,29 +5,29 @@
 	layout:decorate="~{fragments/user/main_layout}">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Tiến hành thanh toán</title>
 </head>
 <body>
 	<div layout:fragment="content" class="main main-raised">
 		<div class="contactus-1 section-image"
 			style="background-image: url('./assets/img/confirm.jpg')">
 			<div class="container">
+			
 				<div class="row">
 					<div class="col-md-5 ml-auto">
-						<h2 class="title">Get in Touch</h2>
-						<h5 class="description">You need more information? Check what
-							other persons are saying about our product. They are very happy
-							with their purchase.</h5>
+					<div class="alert alert-success text-center" role="alert" th:text="${success}" th:if="${success}"></div>
+						<h2 class="title">Tiến hành thanh toán</h2>
+						<h5 class="description">Xác nhận thông tin của sản phẩm và thông tin của bạn tại đây.</h5>
 						<table class="table table-bordered"
 							style="table-layout: auto; color: white">
 							<thead class="thead-dark">
 								<tr>
-									<th class="text-right">Product</th>
-									<th class="text-right">Brand</th>
-									<th class="text-right">Price</th>
-									<th class="text-right">Quantity</th>
-									<th class="text-right">Discount</th>
-									<th class="text-right">Amount</th>
+									<th class="text-right">Sản phẩm</th>
+									<th class="text-right">Thương hiệu</th>
+									<th class="text-right">Giá</th>
+									<th class="text-right">Chất lượng</th>
+									<th class="text-right">Giảm giá</th>
+									<th class="text-right">Thành Tiền</th>
 
 								</tr>
 							</thead>
@@ -85,17 +85,17 @@
 								</div>
 								<div class="card-body">
 								<div class="form-group label-floating is-empty hidden">
-										<label class="bmd-label-floating">Customer Name</label> <input
+										<label class="bmd-label-floating">ID khách hàng</label> <input
 											type="text" class="form-control" th:value="${session.user.id}" readonly="readonly"> <span
 											class="material-input"></span>
 									</div>
 									<div class="form-group label-floating is-empty">
-										<label class="bmd-label-floating">Customer Name</label> <input
+										<label class="bmd-label-floating">Tên khách hàng</label> <input
 											type="text" class="form-control" th:value="${session.user.name}" readonly="readonly"> <span
 											class="material-input"></span>
 									</div>
 									<div class="form-group label-floating is-empty">
-										<label class="bmd-label-floating">Phone Number</label> <input
+										<label class="bmd-label-floating">Số điện thoại</label> <input
 											type="number" class="form-control" th:value="${session.user.phone}" readonly="readonly"> <span
 											class="material-input"></span>
 									</div>
@@ -105,14 +105,14 @@
 											class="material-input"></span>
 									</div>
 									<div class="form-group label-floating is-empty">
-										<label class="bmd-label-floating">Address</label> <input
+										<label class="bmd-label-floating">Địa chỉ</label> <input
 											type="email" name="email" class="form-control" th:value="${session.user.address}" readonly="readonly"> <span
 											class="material-input"></span>
 									</div>
 									
 								</div>
 								<div class="card-footer justify-content-between">
-									<a type="submit" class="btn btn-success" th:href="${'/charge'}">Thanh toán</a>
+									<a type="submit" class="btn btn-success"  th:href="${'/charge'}" onclick="alert('Cảm ơn bạn đã mua hàng');">Thanh toán</a>
 								</div>
 							</form>
 						</div>

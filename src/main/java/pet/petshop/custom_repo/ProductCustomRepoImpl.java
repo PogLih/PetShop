@@ -19,19 +19,31 @@ public class ProductCustomRepoImpl implements ProductCustomRepo{
     private EntityManager entityManager;
 
     @Override
-    public List<Product> filter(String name, Integer category, Boolean status) {
+    public List<Product> filter(String price, String category, String brand) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Product> query = cb.createQuery(Product.class);
         Root<Product> productRoot = query.from(Product.class);
 
-        if(!name.isEmpty()){
-            Predicate predicate = cb.like(productRoot.get("name"), "%" + name + "%");
+        if(!price.isEmpty()){
+            Predicate predicate = null;
+            if(price.startsWith("<")){
+                predicate = cb.lessThan(productRoot.get("price"), Integer.parseInt(price.substring(1)));
+            } else if(price.startsWith(">")){
+               predicate = cb.greaterThan(productRoot.get("price"), Integer.parseInt(price.substring(1)));
+            } else if(price.contains("-")){
+                String[] arrPrice = price.split("-");
+                predicate = cb.between(productRoot.get("price"), Integer.parseInt(arrPrice[0]), Integer.parseInt(arrPrice[1]));
+            }
             query.where(predicate);
-
         }
 
-        if(category != -1){
-            Predicate predicate = cb.equal(productRoot.get("cate"), category);
+        if(!category.isEmpty()){
+            Predicate predicate = cb.equal(productRoot.get("cate"), Integer.parseInt(category));
+            query.where(predicate);
+        }
+
+        if(!brand.isEmpty()){
+            Predicate predicate = cb.like(productRoot.get("brand"), brand);
             query.where(predicate);
         }
 

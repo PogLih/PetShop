@@ -3,28 +3,20 @@ package pet.petshop.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.security.Principal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 import pet.petshop.dto.CustomOAuth2User;
 import pet.petshop.entity.Blog;
 import pet.petshop.entity.Product;
 import pet.petshop.entity.Services;
 import pet.petshop.entity.User;
 import pet.petshop.service.*;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 
@@ -44,6 +36,7 @@ public class indexController {
     @Autowired
     private UserServiceImpl us;
 
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(ModelMap model, Authentication authentication, HttpSession session) {
         model.put("product", ps.listAll());
@@ -59,8 +52,37 @@ public class indexController {
     }
 
     @RequestMapping("/shop")
-    public String shop(Model model) {
-        return listByPage(model, 1);
+    public String shop(
+            Model model,
+            ModelMap modelmap,
+            @RequestParam(value = "price", required = false, defaultValue = "") String price,
+            @RequestParam(value = "cate", required = false, defaultValue = "") String cate,
+            @RequestParam(value = "branch", required = false, defaultValue = "") String branch
+    ) {
+        Page<Product> page = ps.listAllPage(1);
+        long totalItems = page.getTotalElements();
+        int totalPages = page.getTotalPages();
+        int totalItemsInpage = page.getNumberOfElements();
+        List<Product> product;
+        if ((price + cate + branch).isEmpty())
+            product = page.getContent();
+        else
+            product = ps.getListProductByFilter(price, cate, branch);
+
+        model.addAttribute("currentpage", 1);
+
+        model.addAttribute("productcate", pcs.listALL());
+
+        model.addAttribute("product", product);
+
+        model.addAttribute("totalItems", totalItems);
+
+        model.addAttribute("totalPages", totalPages);
+
+        model.addAttribute("totalItemsInpage", totalItemsInpage);
+
+        model.addAttribute("branches", ps.getListBranch());
+        return "index/shop";
     }
 
     @GetMapping("/shop-page/{pageNumber}")
@@ -74,13 +96,18 @@ public class indexController {
 
         List<Product> product = page.getContent();
         model.addAttribute("currentpage", currentpage);
+
         model.addAttribute("product", product);
+
         model.addAttribute("totalItems", totalItems);
+
         model.addAttribute("totalPages", totalPages);
+
         model.addAttribute("totalItemsInpage", totalItemsInpage);
 
         model.addAttribute("branches", ps.getListBranch());
-        model.addAttribute("categories", pcs.listALL());
+
+        model.addAttribute("productcate", pcs.listALL());
 
         return "index/shop";
 
@@ -107,6 +134,7 @@ public class indexController {
         model.addAttribute("totalItems", totalItems);
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("totalItemsInpage", totalItemsInpage);
+        model.addAttribute("branches", ps.getListBranch());
         return "index/service";
 
     }

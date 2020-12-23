@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,9 +23,14 @@ public class User {
 	private int id;
 	
 	@Column(name = "email")
+	@Email(message = "Địa chỉ không hợp lệ")
+	@Pattern(regexp = "^\\s*\\S+\\s*$", message = "Không được để khoảng trắng")
+	@NotBlank(message = "Vui lòng nhập Email")
 	private String email;
 	
 	@Column(name = "password")
+	@NotBlank(message = "Vui lòng nhập password")
+	@Pattern(regexp = "^\\s*\\S+\\s*$", message = "Không được để khoảng trắng")
 	private String password;
 	@Column(name = "role")
 	private String role;

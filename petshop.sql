@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `bill` (
   `id` int(11) NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp(),
+  `date` date NOT NULL,
   `userid` int(11) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 0,
   `totalprice` int(11) DEFAULT 0

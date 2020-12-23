@@ -21,7 +21,7 @@ public class Blog {
 	private Integer cate;
 	private String title;
 	private Date datepost;
-	private String userid;
+	private int userid;
 	private String images;
 	private String content;
 	
@@ -79,12 +79,15 @@ public class Blog {
 		this.blogcategories = blogcategories;
 	}
 
-	public String getUserid() {
+	
+	public int getUserid() {
 		return userid;
 	}
-	public void setUserid(String userid) {
+
+	public void setUserid(int userid) {
 		this.userid = userid;
 	}
+
 	public String getImages() {
 		return images;
 	}

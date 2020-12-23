@@ -1,245 +1,236 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-	xmlns:layout="http://www.w3.org/1999/xhtml"
-	layout:decorate="~{fragments/user/main_layout}">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/user/main_layout}">
 <head>
-<meta charset="UTF-8">
-<title>Shop</title>
-
-	<style>
-		body {
-			font-family: Arial;
-		}
-
-		* {
-			box-sizing: border-box;
-		}
-
-		form.example input[type=text] {
-			padding: 10px;
-			font-size: 17px;
-			border: 1px solid grey;
-			float: left;
-			width: 80%;
-			background: #f1f1f1;
-		}
-
-		form.example button {
-			float: left;
-			width: 20%;
-			padding: 10px;
-			background: #2196F3;
-			color: white;
-			font-size: 17px;
-			border: 1px solid grey;
-			border-left: none;
-			cursor: pointer;
-		}
-
-		form.example button:hover {
-			background: #0b7dda;
-		}
-
-		form.example::after {
-			content: "";
-			clear: both;
-			display: table;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <title>Shop</title>
 </head>
 <body>
-	<div layout:fragment="content" class="main main-raised">
+<div layout:fragment="content" class="main main-raised">
 
-		<!-- section -->
-		<div class="section">
+    <!-- section -->
+    <div class="section">
 
-			<div class="container">
-				<h2 class="section-title">Find what you need</h2>
-
-				<div class="row">
-					<div class="col-md-3">
-						<div class="card card-refine card-plain card-rose">
-							<div class="card-body">
-								<div>
-									<input type="text" placeholder="Search.." id="searchBox">
-									<button type="submit" onclick="onSearchClicked()"><i class="fa fa-search"></i></button>
-								</div>
-								<h4 class="card-title">
-									Refine
-									<button
-										class="btn btn-default btn-fab btn-fab-mini btn-link pull-right"
-										rel="tooltip" title="" data-original-title="Reset Filter">
-										<i class="material-icons">cached</i>
-									</button>
-								</h4>
-								<div id="accordion" role="tablist">
+        <div class="alert alert-success text-center" role="alert" th:text="${success}" th:if="${success}"></div>
 
 
-									<div class="card card-collapse">
-										<div class="card-header" role="tab" id="headingOne">
-											<h5 class="mb-0">
-												<a data-toggle="collapse" href="#collapseOne"
-													aria-expanded="true" aria-controls="collapseOne"> Tầm giá <i class="material-icons">keyboard_arrow_down</i>
-												</a>
-											</h5>
-										</div>
-										<div id="collapseOne" class="collapse show" role="tabpanel"
-											aria-labelledby="headingOne">
-											<div class="card-body card-refine">
-												<span id="price-left" class="price-left pull-left"
-													data-currency="€">0</span> <span id="price-right"
-													class="price-right pull-right" data-currency="€">300000</span>
-												<div class="clearfix"></div>
-												<div id="sliderRefine"
-													class="slider slider-rose noUi-target noUi-ltr noUi-horizontal"></div>
-											</div>
-										</div>
-									</div>
-									<div class="card card-collapse">
-										<div class="card-header" role="tab" id="headingTwo">
-											<h5 class="mb-0">
-												<a class="collapsed" data-toggle="collapse"
-													href="#collapseTwo" aria-expanded="false"
-													aria-controls="collapseTwo"> Loại <i
-													class="material-icons">keyboard_arrow_down</i>
-												</a>
-											</h5>
-										</div>
-										<div id="collapseTwo" class="collapse" role="tabpanel"
-											aria-labelledby="headingTwo">
-											<div class="card-body" th:each="cate : ${categories}">
+        <div class="container">
+            <h2 class="section-title">Tìm kiếm bằng bộ lọc</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card card-refine card-plain card-rose">
+                        <div class="card-body">
+                            <form action="/shop" method="get">
+                                <h4 class="card-title">
+                                    Lọc
+                                    <button
+                                            type="submit"
+                                            class="btn btn-default btn-fab btn-fab-mini btn-link pull-right"
+                                            rel="tooltip" title="" data-original-title="Submit">
+                                        <i class="material-icons">cached</i>
+                                    </button>
+                                </h4>
+                                <div id="accordion" role="tablist">
+                                    <div class="card card-collapse">
+                                        <div class="card-header" role="tab" id="headingOne">
+                                            <h5 class="mb-0">
+                                                <a data-toggle="collapse" href="#collapseOne"
+                                                   aria-expanded="true" aria-controls="collapseOne">
+                                                    Tầm giá
+                                                    <i class="material-icons">keyboard_arrow_down</i>
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseOne" class="collapse show" role="tabpanel"
+                                             aria-labelledby="headingOne">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input
+                                                            class="form-check-input"
+                                                            th:name="price"
+                                                            type="radio"
+                                                            th:value="'<100000'"
+                                                            th:text="'<100.000 đ'"
+                                                    >
 
-
-												<div class="form-check">
-													<label class="form-check-label"> <input
-															class="form-check-input" type="checkbox" value="">
-														[[${cate.name}]] <span class="form-check-sign"> <span
-																class="check"></span>
+                                                    <span class="form-check-sign">
+                                                        <span class="check"></span>
 													</span>
-													</label>
-												</div>
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input
+                                                            class="form-check-input"
+                                                            th:name="price"
+                                                            type="radio"
+                                                            th:value="'100000-200000'"
+                                                            th:text="'100.000 đ - 200.000 đ'"
+                                                    >
 
-											</div>
-										</div>
-									</div>
-									<div class="card card-collapse">
-										<div class="card-header" role="tab" id="headingThree">
-											<h5 class="mb-0">
-												<a class="collapsed" data-toggle="collapse"
-													href="#collapseThree" aria-expanded="false"
-													aria-controls="collapseThree"> Nhà sản xuất <i
-													class="material-icons">keyboard_arrow_down</i>
-												</a>
-											</h5>
-										</div>
-										<div id="collapseThree" class="collapse show" role="tabpanel"
-											aria-labelledby="headingThree">
-											<div class="card-body" th:each="branch : ${branches}">
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														[[${branch}]] <span class="form-check-sign"> <span
-															class="check"></span>
+                                                    <span class="form-check-sign">
+                                                        <span class="check"></span>
 													</span>
-													</label>
-												</div>
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input
+                                                            class="form-check-input"
+                                                            th:name="price"
+                                                            type="radio"
+                                                            th:value="'>200000'"
+                                                            th:text="'> 200.000 đ'"
+                                                    >
 
-										<!--		<div class="card-body" th:block th:each="branch : ${branches}">
-													<div class="form-check">
-														<label class="form-check-label"> <input
-																class="form-check-input" type="checkbox" value="">
-															All <span class="form-check-sign"> <span
-																	class="check"></span>
+                                                    <span class="form-check-sign">
+                                                        <span class="check"></span>
 													</span>
-														</label>
-													</div>
-												</div>-->
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card card-collapse">
+                                        <div class="card-header" role="tab" id="headingTwo">
+                                            <h5 class="mb-0">
+                                                <a class="collapsed" data-toggle="collapse"
+                                                   href="#collapseTwo" aria-expanded="false"
+                                                   aria-controls="collapseTwo"> Loại <i
+                                                        class="material-icons">keyboard_arrow_down</i>
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseTwo" class="collapse" role="tabpanel"
+                                             aria-labelledby="headingTwo">
+                                            <div class="card-body">
+                                                <th:block th:each="cate : ${productcate}">
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                            <input
+                                                                    class="form-check-input"
+                                                                    th:name="cate"
+                                                                    type="radio"
+                                                                    th:value="${cate.id}"
+                                                                    th:text="${cate.name}"
+                                                            >
 
-											</div>
-										</div>
-									</div>
+                                                            <span class="form-check-sign">
+                                                        <span class="check"></span>
+													</span>
+                                                        </label>
+                                                    </div>
+                                                </th:block>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card card-collapse">
+                                        <div class="card-header" role="tab" id="headingThree">
+                                            <h5 class="mb-0">
+                                                <a class="collapsed" data-toggle="collapse"
+                                                   href="#collapseThree" aria-expanded="false"
+                                                   aria-controls="collapseThree"> Nhà sản xuất <i
+                                                        class="material-icons">keyboard_arrow_down</i>
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <div
+                                                id="collapseThree"
+                                                class="collapse show"
+                                                role="tabpanel"
+                                                aria-labelledby="headingThree"
+                                        >
+                                            <div class="card-body">
+                                                <th:block th:each="branch: ${branches}">
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                            <input
+                                                                    class="form-check-input"
+                                                                    th:name="brand"
+                                                                    type="radio"
+                                                                    th:value="${branch}"
+                                                                    th:text="${branch}"
+                                                            >
 
-								</div>
-							</div>
-						</div>
-					</div>
+                                                            <span class="form-check-sign">
+                                                        <span class="check"></span>
+													</span>
+                                                        </label>
+                                                    </div>
+                                                </th:block>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-4" th:each="pr,pStat : ${product}"
+                             th:unless="${pStat.index > 20}">
 
+                            <div class="card card-product card-plain no-shadow"
+                                 data-colored-shadow="false">
+                                <div class="card-header card-header-image">
+                                    <a href="#"> <img
+                                            th:src="@{'../assets/img/' + ${pr.images}}" alt="..."
+                                            style="min-height: 320px; max-height: 320px">
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <a th:href="@{'/sanpham/' + ${pr.id}}">
+                                        <h4 class="card-title" th:text="${pr.name}"></h4>
+                                    </a>
+                                    <p class="description"
+                                       th:text="${#strings.abbreviate(pr.description,100)}"></p>
+                                </div>
+                                <div class="card-footer justify-content-between">
+                                    <div class="price-container">
+											<span class="price price-new"
+                                                  th:text="${#numbers.formatDecimal(pr.price, 3, 'POINT', 0, 'POINT')}"></span><sup>
+                                        &#8363;</sup>
+                                    </div>
+                                    <a class="btn btn-danger btn-round" type="submit"
+                                       th:href="${'/cart/buy/'+pr.id}">Add to Cart</a>
+                                </div>
+                            </div>
 
-					<div class="col-md-9">
-						<div class="row">
-							<div class="col-md-4" th:each="pr,pStat : ${product}"
-								th:unless="${pStat.index > 20}">
-								
-								<div class="card card-product card-plain no-shadow"
-									data-colored-shadow="false">
-									<div class="card-header card-header-image">
-										<a href="#"> <img th:src="@{'../assets/img/' + ${pr.images}}"
-											alt="..." style="min-height: 320px;max-height: 320px">
-										</a>
-									</div>
-									<div class="card-body">
-										<a  th:href="@{'/sanpham/' + ${pr.id}}">
-										<h4 class="card-title" th:text="${pr.name}"></h4>
-										</a>
-										<p class="description" th:text="${#strings.abbreviate(pr.description,100)}"></p>
-									</div>
-									<div class="card-footer justify-content-between">
-										<div class="price-container">
-											<span class="price price-new" th:text="${#numbers.formatDecimal(pr.price, 3, 'POINT', 0, 'POINT')}"></span><sup> &#8363;</sup>
-										</div>
-										<a class="btn btn-danger btn-round" type="submit" th:href="${'/cart/buy/'+pr.id}">Add to Cart</a>
-									</div>
-								</div>
-								
-								<!-- end card -->
-							</div>
-							
-						</div>
-					</div>
-					<div style="margin-left: 200px">
-								Tổng [[${totalItemsInpage}]] trên [[${totalItems}]] sản phẩm -
-								Trang [[${currentpage}]] / [[${totalPages}]] :
-								&nbsp;
-								<a th:if="${currentpage > 1}" th:href="@{/shop-page/1}">Đầu trang</a>
-								<span th:unless="${currentpage > 1}">Đầu trang</span>
-								&nbsp;
-								<a th:if="${currentpage > 1}" th:href="@{'/shop-page/' + ${currentpage - 1}}">Trang trước</a>
-								<span th:unless="${currentpage > 1}">Trang trước</span>
-								&nbsp;
-								<span
-									th:each="i: ${#numbers.sequence(1, totalPages)}">
-									<span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<a 
-										th:if="${i != currentpage}"
-										th:href="@{'/shop-page/' + ${i}}">[[${i}]]
-									</a>
-										<span th:unless="${i != currentpage}">[[${i}]]</span>
-								</span>
-								
-								</span>
-								&nbsp;
-								
-								&nbsp;
-								<a th:if="${currentpage < totalPages}" th:href="@{'/shop-page/' + ${currentpage + 1}}">Trang sau</a>
-								<span th:unless="${currentpage < totalPages}">Trang sau</span>
-								&nbsp;
-								<a th:if="${currentpage < totalPages}" th:href="@{'/shop-page/' + ${totalPages}}">Trang cuối</a>
-								<span th:unless="${currentpage < totalPages}">Trang cuối</span>
-							</div>
-				</div>
-				<br>
-				
-			</div>
-		</div>
-		<!-- section -->
-	</div>
+                            <!-- end card -->
+                        </div>
 
-<script>
-	function onSearchClicked() {
-		href="@{/shop-page/1/" + document.getElementById("searchBox").value + "}";
-	}
-</script>
+                    </div>
+                </div>
+                <div style="margin-left: 200px">
+                    Tổng [[${totalItemsInpage}]] trên [[${totalItems}]] sản phẩm -
+                    Trang [[${currentpage}]] / [[${totalPages}]] : &nbsp; <a
+                        th:if="${currentpage > 1}" th:href="@{/shop-page/1}">Đầu
+                    trang</a> <span th:unless="${currentpage > 1}">Đầu trang</span>
+                    &nbsp; <a th:if="${currentpage > 1}"
+                              th:href="@{'/shop-page/' + ${currentpage - 1}}">Trang trước</a> <span
+                        th:unless="${currentpage > 1}">Trang trước</span> &nbsp; <span
+                        th:each="i: ${#numbers.sequence(1, totalPages)}"> <span>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a th:if="${i != currentpage}"
+                                                                  th:href="@{'/shop-page/' + ${i}}">[[${i}]] </a> <span
+                        th:unless="${i != currentpage}">[[${i}]]</span>
+						</span>
+
+						</span> &nbsp; &nbsp; <a th:if="${currentpage < totalPages}"
+                                                 th:href="@{'/shop-page/' + ${currentpage + 1}}">Trang sau</a> <span
+                        th:unless="${currentpage < totalPages}">Trang sau</span> &nbsp; <a
+                        th:if="${currentpage < totalPages}"
+                        th:href="@{'/shop-page/' + ${totalPages}}">Trang cuối</a> <span
+                        th:unless="${currentpage < totalPages}">Trang cuối</span>
+                </div>
+            </div>
+            <br>
+
+        </div>
+    </div>
+    <!-- section -->
+</div>
 
 </body>
 </html>

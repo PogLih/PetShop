@@ -24,21 +24,19 @@ public class MailController {
 	@Autowired
 	private BCryptPasswordEncoder encode;
  
-    @RequestMapping("/sendSimpleEmail")
-    public String sendSimpleEmail() {
- 
-        // Create a Simple MailMessage.
-        SimpleMailMessage message = new SimpleMailMessage();
-         
-        message.setTo("tahuythinh@gmail.com");
-        message.setSubject("Reset Password");
-        message.setText("random code,link-> trang reset");
- 
-        // Send Message!
-        this.emailSender.send(message);
- 
-        return "redirect:/user";
-    }
+	/*
+	 * @RequestMapping("/sendSimpleEmail") public String sendSimpleEmail() {
+	 * 
+	 * // Create a Simple MailMessage. SimpleMailMessage message = new
+	 * SimpleMailMessage();
+	 * 
+	 * message.setTo("tahuythinh@gmail.com"); message.setSubject("Reset Password");
+	 * message.setText("random code,link-> trang reset");
+	 * 
+	 * // Send Message! this.emailSender.send(message);
+	 * 
+	 * return "redirect:/user"; }
+	 */
     @RequestMapping("/forgotpassword")
     public String forgotpassword(@RequestParam(value = "email",defaultValue = "", required = false) String email) {
     	try {
@@ -64,7 +62,7 @@ public class MailController {
     public String resetpassword(@PathVariable(name = "id") int id,ModelMap model) {
     	User user = us.get(id);
     		model.addAttribute("forgotuser",user);
-    	return "resetpassword";
+    	return "resetpassword1";
     }
     @RequestMapping(value="/resetpassword/{id}",method = RequestMethod.POST)
     public String resetpassword(@PathVariable(name = "id") int id

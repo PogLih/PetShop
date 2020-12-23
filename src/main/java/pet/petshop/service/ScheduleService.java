@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import pet.petshop.entity.Bill;
 import pet.petshop.entity.Schedule;
+import pet.petshop.entity.User;
 import pet.petshop.repository.ScheduleRepository;
 
 @Service
@@ -28,4 +30,7 @@ public class ScheduleService {
     public void delete(Integer id) {
         sr.deleteById(id);
     }
+    public List<Schedule> ScheduleByUser(User user){
+		return sr.findByUser(user);
+	}
 }

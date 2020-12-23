@@ -35,13 +35,6 @@ public class ScheduleController {
 	public String index(ModelMap model) {
 		List<Schedule> list = scs.listAll();
 		model.addAttribute("schedulelist",list);
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date date = new Date();
-		String now = format.format(date);
-		model.addAttribute("datenow",now);
-		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		int month = localDate.getMonthValue();
-		System.out.println(month);
 		return "admin/schedule/index";
 	}
 	
@@ -68,5 +61,12 @@ public class ScheduleController {
 		Schedule schedule = new Schedule(serid, user.getId(), format.parse(now), format.parse(datecheckin), sch.getNote());
 		scs.save(schedule);
 		return "redirect:/";
+	}
+	
+	@RequestMapping("/schedulehistory")
+	public String billhistory(ModelMap model, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		model.addAttribute("history", scs.ScheduleByUser(user));
+		return "index/lichsudichvu";
 	}
 }

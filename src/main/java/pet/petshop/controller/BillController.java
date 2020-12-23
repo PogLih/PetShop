@@ -10,12 +10,15 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pet.petshop.entity.Bill;
 import pet.petshop.entity.BillInfo;
@@ -34,7 +37,7 @@ public class BillController {
 	
 
 	@RequestMapping("/charge")
-	public String Charge(HttpSession session) throws ParseException {
+	public String Charge(HttpSession session,RedirectAttributes redirAttrs) throws ParseException {
 		String pattern = "yyyy-MM-dd";
 		SimpleDateFormat format = new SimpleDateFormat(pattern);
 		Date date = new Date();
@@ -55,14 +58,18 @@ public class BillController {
 			bi.setProduct(item.getProduct());
 			bi.setCountItem(item.getQuantity());
 			bi.setBill(bill);
+			
 			bifs.add(bi);
 		}
 		bill.setTotalprice(total);
 		bs.save(bill);
-		System.out.print(bill);
+		
 		for (int i = 0; i < bifs.size(); i++) {
 			bis.save(bifs.get(i));
+			
 		}
+		
+		
 		session.removeAttribute("cart");
 		return "index/index";
 	}

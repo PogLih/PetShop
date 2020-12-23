@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface ProductCustomRepo {
 
-    List<Product> filter(String name, Integer category, Boolean status);
+    List<Product> filter(String price, String category, String brand);
 
 }

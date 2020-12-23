@@ -40,8 +40,8 @@ public class ProductService {
         return pr.getProductsByNameContains(search);
     }
 
-    public List<Product> getListProductByFilter(String search, Integer category, Boolean status) {
-        return pr.filter(search, category, status);
+    public List<Product> getListProductByFilter(String price, String category, String branch) {
+        return pr.filter(price, category, branch);
     }
 
     public Product save(Product product) {
