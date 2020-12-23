@@ -11,12 +11,10 @@ public class BillMonth implements Serializable {
 
     private int month;
     private int totalprice;
+	@Override
+	public String toString() {
+		return "BillMonth [month=" + month + ", totalprice=" + totalprice + "]";
+	}
 
-    @Override
-    public String toString() {
-        return "BillMonth{" +
-                "monnth=" + month +
-                ", totalprice=" + totalprice +
-                '}';
-    }
+    
 }
