@@ -58,14 +58,28 @@ public class BillService {
         return br.findByUser(user);
     }
 
-    public List<BillMonth> listBillDTO() {
-        List<BillMonth> list = new ArrayList<BillMonth>();
+//    public List<BillMonth> listBillDTO() {
+//        List<BillMonth> list = new ArrayList<BillMonth>();
+//        for (Bill bd : br.followmoth()) {
+//            list.add(new BillMonth(Integer.parseInt(new SimpleDateFormat("MM").format(bd.getDate())), bd.getTotalprice()));
+//        }
+//        return list;
+//    }
+
+    public List<BillDTO> listBillDTO() {
+        List<BillDTO> list = new ArrayList<BillDTO>();
         for (Bill bd : br.followmoth()) {
-            list.add(new BillMonth(Integer.parseInt(new SimpleDateFormat("MM").format(bd.getDate())), bd.getTotalprice()));
+            BillDTO BillDTO = new BillDTO();
+            BillDTO.setId(bd.getId());
+            BillDTO.setUserid(bd.getUserid());
+            BillDTO.setDate(Integer.parseInt(new SimpleDateFormat("MM").format(bd.getDate())));
+            BillDTO.setStatus(bd.getStatus());
+            BillDTO.setTotalprice(bd.getTotalprice());
+            list.add(BillDTO);
         }
         return list;
     }
-
+    
     public List<BillStatusDTO> countstatus() {
         List<BillStatusDTO> list = new ArrayList<BillStatusDTO>();
         for (Bill bd : br.countstatus()) {

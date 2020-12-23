@@ -8,14 +8,14 @@ public class BillMonth implements Serializable {
         this.month = month;
         this.totalprice = totalprice;
     }
-
+    
     private int month;
     private int totalprice;
 
     @Override
     public String toString() {
         return "BillMonth{" +
-                "monnth=" + month +
+                "month=" + month +
                 ", totalprice=" + totalprice +
                 '}';
     }
