@@ -17,14 +17,7 @@
                         </div>
                         
                         <div class="col-md-10">
-                            <form action="#" method="GET">
-                                <div class="input-group">
-                                    <input type="text" name="search" class="form-control input-search" placeholder="Search...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-success" type="button"><i class="fa fa-search"></i></button>
-                                    </span>
-                                </div><!-- Input Group -->
-                            </form>
+                            
                        </div>
                     </div>
                 </div>
@@ -48,6 +41,7 @@
 					<th>Phone</th>
 					<th>Status</th>
 					<th>Totalprice</th>
+					<th class="text-center" colspan="2">Action</th>
 					
 				</tr>
 								</thead>
@@ -72,9 +66,7 @@
 										<th:block th:if="${bill.status == 3}" >
 											<td>Đơn hàng bị huỷ</td>
 										</th:block>
-										<th:block th:if="${bill.status == 3}" >
-											<td>Huỷ</td>
-										</th:block>
+										
 										<td th:text="${bill.totalprice}"></td>
 										<th:block th:if="${bill.status < 3}">
 										 <td><a th:href="@{'/UpdateBillStatus/' + ${bill.id}}">Updates</a></td>
