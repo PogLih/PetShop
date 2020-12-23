@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Entity
 @Table(name = "user")
 public class User {
@@ -35,6 +38,8 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	@Column(name= "auth_provider")
 	private AuthenticationProvider authProvider;
+	@Column(name = "verification_code")
+	private String verificationcode;
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
@@ -51,6 +56,20 @@ public class User {
 
 	public void setAuthProvider(AuthenticationProvider authProvider) {
 		this.authProvider = authProvider;
+	}
+
+
+
+
+	public String getVerificationcode() {
+		return verificationcode;
+	}
+
+
+
+
+	public void setVerificationcode(String verificationcode) {
+		this.verificationcode = verificationcode;
 	}
 
 

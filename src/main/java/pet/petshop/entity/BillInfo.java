@@ -1,5 +1,7 @@
 package pet.petshop.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,16 +11,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javassist.SerialVersionUID;
+
 @Entity
 @Table(name = "billinfo")
-public class BillInfo {
-	
+public class BillInfo implements Serializable{
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonIgnore
 	private int id;
 	
 	@ManyToOne
 	@JoinColumn(name = "idbill" )
+	@JsonIgnore
 	private Bill bill;
 	
 	@ManyToOne

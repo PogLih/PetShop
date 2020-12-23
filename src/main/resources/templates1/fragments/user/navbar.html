@@ -4,8 +4,8 @@
 <nav th:fragment="navbar" class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit-pro/index.html">
-          Pet<span style="color: salmon">LOVE</span> </a>
+        <a class="navbar-brand" href="/">
+          Pet<span style="color: salmon">CARE</span> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>
@@ -35,12 +35,13 @@
               <i class="material-icons">pets</i> Blog
             </a>
           </li>
-          <li class="dropdown nav-item show">
+          <li class="dropdown nav-item">
                       <a href="#pablo" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
                         <i class="material-icons">account_circle</i>
                         <b class="caret"></b>
-                      <div class="ripple-container"></div></a>
-                      <div class="dropdown-menu dropdown-menu-right show">
+                      <div class="ripple-container"></div>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-rights">
                         <h6 class="dropdown-header" sec:authorize="isAuthenticated()">Xin chào <span style="color: red;text-transform: uppercase;" sec:authentication="name"></span></h6>
                         <a href="/login" class="dropdown-item" sec:authorize="isAnonymous()">Login</a>
                          <a href="/profile" class="dropdown-item" sec:authorize="isAuthenticated()">Profile</a>

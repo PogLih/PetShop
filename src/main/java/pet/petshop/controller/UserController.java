@@ -85,6 +85,7 @@ public class UserController {
 	    if(user.getRole().contains("ROLE_STAFF"))
 	    	user.setRole("ROLE_USER");
 	    else
+	    if(user.getRole().contains("ROLE_USER"))
 	    	user.setRole("ROLE_STAFF");
 	    us.save(user);
 	    return "redirect:/user";

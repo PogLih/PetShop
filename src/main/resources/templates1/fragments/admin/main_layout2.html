@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+       <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+        <link href="../admin/assets/plugins/pace-master/themes/blue/pace-theme-flash.css" rel="stylesheet"/>
+        <link href="../admin/assets/plugins/uniform/css/uniform.default.min.css" rel="stylesheet"/>
+        <link href="../admin/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../admin/assets/plugins/fontawesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <link href="../admin/assets/plugins/line-icons/simple-line-icons.css" rel="stylesheet" type="text/css"/>	
+        <link href="../admin/assets/plugins/offcanvasmenueffects/css/menu_cornerbox.css" rel="stylesheet" type="text/css"/>	
+        <link href="../admin/assets/plugins/waves/waves.min.css" rel="stylesheet" type="text/css"/>	
+        <link href="../admin/assets/plugins/switchery/switchery.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../admin/assets/plugins/3d-bold-navigation/css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="../admin/assets/plugins/slidepushmenus/css/component.css" rel="stylesheet" type="text/css"/>	
+        <link href="../admin/assets/plugins/weather-icons-master/css/weather-icons.min.css" rel="stylesheet" type="text/css"/>	
+        <link href="../admin/assets/plugins/metrojs/MetroJs.min.css" rel="stylesheet" type="text/css"/>	
+        <link href="../admin/assets/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css"/>	
+        <link href="../admin/assets/plugins/datatables/css/jquery.datatables.min.css" rel="stylesheet" type="text/css"/>	
+        <link href="../admin/assets/plugins/datatables/css/jquery.datatables_themeroller.css" rel="stylesheet" type="text/css"/>	
+        <link href="../admin/assets/plugins/x-editable/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" type="text/css">
+        <link href="../admin/assets/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+	
+        
+        <!-- Theme Styles -->
+        <link href="../admin/assets/css/modern.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../admin/assets/css/themes/green.css" class="theme-color" rel="stylesheet" type="text/css"/>
+        <link href="../admin/assets/css/custom.css" rel="stylesheet" type="text/css"/>
+        <script src="https://kit.fontawesome.com/80b2eac557.js" crossorigin="anonymous"></script>
+        
+        <script src="../admin/assets/plugins/3d-bold-navigation/js/modernizr.js"></script>
+        <script src="../admin/assets/plugins/offcanvasmenueffects/js/snap.svg-min.js"></script>
+       
+    </head>
+<body class="page-header-fixed">
+<!--header.html  that's here  -->
+		
+        <div th:replace="fragments/admin/header :: header"></div>
+        <main class="page-content content-wrap">
+        
+        <div th:replace="fragments/admin/navbar :: navbar"></div>
+        <div layout:fragment="content"></div>
+        </main>
+    	
+        
+    <!--footer.html  that's here  -->
+        
+      
+      
+   <script src="../admin/assets/js/jquery.min.js"></script>
+        <script src="../admin/assets/plugins/pace-master/pace.min.js"></script>
+        <script src="../admin/assets/plugins/jquery-blockui/jquery.blockui.js"></script>
+        <script src="../admin/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../admin/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="../admin/assets/plugins/switchery/switchery.min.js"></script>
+        <script src="../admin/assets/plugins/uniform/jquery.uniform.min.js"></script>
+        <script src="../admin/assets/plugins/offcanvasmenueffects/js/classie.js"></script>
+        <script src="../admin/assets/plugins/offcanvasmenueffects/js/main.js"></script>
+        <script src="../admin/assets/plugins/waves/waves.min.js"></script>
+        <script src="../admin/assets/plugins/3d-bold-navigation/js/main.js"></script>
+        <script src="../admin/assets/plugins/waypoints/jquery.waypoints.min.js"></script>
+        <script src="../admin/assets/plugins/jquery-counterup/jquery.counterup.min.js"></script>
+        <script src="../admin/assets/plugins/toastr/toastr.min.js"></script>
+        <script src="../admin/assets/plugins/flot/jquery.flot.min.js"></script>
+        <script src="../admin/assets/plugins/flot/jquery.flot.time.min.js"></script>
+        <script src="../admin/assets/plugins/flot/jquery.flot.symbol.min.js"></script>
+        <script src="../admin/assets/plugins/flot/jquery.flot.resize.min.js"></script>
+        <script src="../admin/assets/plugins/flot/jquery.flot.tooltip.min.js"></script>
+        <script src="../admin/assets/plugins/curvedlines/curvedLines.js"></script>
+        <script src="../admin/assets/plugins/metrojs/MetroJs.min.js"></script>
+        <script src="../admin/assets/js/modern.js"></script>
+        <script src="../admin/assets/js/pages/dashboard.js"></script>
+        <script src="../admin/assets/plugins/jquery-mockjax-master/jquery.mockjax.js"></script>
+        <script src="../admin/assets/plugins/moment/moment.js"></script>
+        <script src="../admin/assets/plugins/datatables/js/jquery.datatables.min.js"></script>
+        <script src="../admin/assets/plugins/x-editable/bootstrap3-editable/js/bootstrap-editable.js"></script>
+        <script src="../admin/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+        <script src="../admin/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+        <script src="../admin/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+        <script src="../admin/assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+        <script src="../admin/assets/js/modern.min.js"></script>
+        <script src="../admin/assets/js/pages/table-data.js"></script>
+        <script src="../admin/assets/js/pages/form-elements.js"></script>
+        
+        <script src="../admin/assets/js/loader.js"></script>
+  
+        <script src="../admin/assets/js/chart.js"></script>
+</body>
+</html>

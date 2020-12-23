@@ -43,7 +43,7 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
 			us.updateOauth2(user,name,AuthenticationProvider.GOOGLE);
 			System.out.println("not Ok");
 		}
-		
+		super.onAuthenticationSuccess(request, response, authentication);
 	}
 
 }

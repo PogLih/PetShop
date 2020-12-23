@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<table id="example" class="display table"
+                               style="width: 100%; cellspacing: 0;">
+                            <thead>
+                            <tr>
+                                <th>Product id</th>
+                                <th>Categories id</th>
+                                <th>Name</th>
+                                <th>Brand</th>
+                                <th>Images</th>
+                                <th>status</th>
+<!--                                 <th>status</th> -->
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="sch : ${schedulelist}" >
+                                <td th:text="${sch.idschedule}">pr id</td>
+                                <td th:text="${sch.service.name}">pr id</td>
+                                <td th:text="${sch.user.name}">Category id</td>
+                                <td th:text="${sch.dateorder}">Date</td>
+                                <td th:text="${sch.datacheckin}">Username</td>
+                                <td th:text="${sch.note}">Images</td>
+<!--                                 <th:block th:if="${datenow > sch.datacheckin}"> -->
+<!-- 											<td th:text="${datenow}">Chưa xử lý</td> -->
+<!-- 										</th:block> -->
+<!-- 										<th:block th:if="${datenow > sch.datacheckin}" > -->
+<!-- 											<td>Đang xử lý</td> -->
+<!-- 										</th:block> -->
+<!-- 										<th:block th:if="${datenow = sch.datacheckin}" > -->
+<!-- 											<td>Đã xử lý</td> -->
+<!-- 										</th:block> -->
+<!-- 										<th:block th:if="${datenow < sch.datacheckin}" > -->
+<!-- 											<td>Đơn hàng bị huỷ</td> -->
+<!-- 										</th:block> -->
+                                
+                               
+                            </tr>
+                            </tbody>
+                        </table>
+</body>
+</html>

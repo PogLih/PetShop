@@ -6,51 +6,65 @@
 <head>
 <meta charset="UTF-8">
 <title>Shop</title>
+
+	<style>
+		body {
+			font-family: Arial;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		form.example input[type=text] {
+			padding: 10px;
+			font-size: 17px;
+			border: 1px solid grey;
+			float: left;
+			width: 80%;
+			background: #f1f1f1;
+		}
+
+		form.example button {
+			float: left;
+			width: 20%;
+			padding: 10px;
+			background: #2196F3;
+			color: white;
+			font-size: 17px;
+			border: 1px solid grey;
+			border-left: none;
+			cursor: pointer;
+		}
+
+		form.example button:hover {
+			background: #0b7dda;
+		}
+
+		form.example::after {
+			content: "";
+			clear: both;
+			display: table;
+		}
+	</style>
 </head>
 <body>
 	<div layout:fragment="content" class="main main-raised">
-		<div class="section">
-			<div class="container ">
-				<h2 class="title text-center">Latest Offers</h2>
-				<div class="row">
-					<div class="col-md-4" th:each="pr,prrStat : ${product}" 
-						th:unless="${prrStat.index > 5}">
-						
-						<div class="card card-product card-plain">
-							<div class="card-header card-header-image">
-								<a href="#pablo"> <img th:src="@{'../assets/img/' + ${pr.images}}" style="min-height: 320px;max-height: 320px"/> 
-								</a>
-							</div>
-							<div class="card-body text-center">
-								<h4 class="card-title">
-									<a th:href="@{'/sanpham/' + ${pr.id}}" th:text="${pr.name}"></a>
-									<p class="description" th:text="${#strings.abbreviate(pr.description,100)}"></p>
-								</h4>
-								</div>
-							<div class="card-footer">
-								<div class="price-container">
-									<span class="price price-new" th:text="${#numbers.formatDecimal(pr.price, 3, 'POINT', 0, 'POINT')}"></span><sup> &#8363;</sup>
-								</div>
-								<div class="stats ml-auto">
-									<a class="btn btn-danger btn-round" type="submit"  th:href="${'/cart/buy/'+pr.id}">Add to Cart<div class="ripple-container"></div></a>
-								</div>
-							</div>
-						</div>
-						
-					</div>
 
-
-				</div>
-			</div>
-		</div>
 		<!-- section -->
 		<div class="section">
+
 			<div class="container">
 				<h2 class="section-title">Find what you need</h2>
+
 				<div class="row">
 					<div class="col-md-3">
 						<div class="card card-refine card-plain card-rose">
 							<div class="card-body">
+								<div>
+									<input type="text" placeholder="Search.." id="searchBox">
+									<button type="submit" onclick="onSearchClicked()"><i class="fa fa-search"></i></button>
+								</div>
 								<h4 class="card-title">
 									Refine
 									<button
@@ -60,6 +74,8 @@
 									</button>
 								</h4>
 								<div id="accordion" role="tablist">
+
+
 									<div class="card card-collapse">
 										<div class="card-header" role="tab" id="headingOne">
 											<h5 class="mb-0">
@@ -92,19 +108,17 @@
 										</div>
 										<div id="collapseTwo" class="collapse" role="tabpanel"
 											aria-labelledby="headingTwo">
-											<div class="card-body">
+											<div class="card-body" th:each="cate : ${categories}">
 
-												<th:block th:each="cate : ${categories}">
-													<div class="form-check">
-														<label class="form-check-label">
-															<input class="form-check-input" type="checkbox" th:value="${cate.id}" checked>
-															<p th:text="${cate.name}"></p>
-															<span class="form-check-sign"> <span
-															class="check"></span>
+
+												<div class="form-check">
+													<label class="form-check-label"> <input
+															class="form-check-input" type="checkbox" value="">
+														[[${cate.name}]] <span class="form-check-sign"> <span
+																class="check"></span>
 													</span>
-														</label>
-													</div>
-												</th:block>
+													</label>
+												</div>
 
 											</div>
 										</div>
@@ -121,36 +135,37 @@
 										</div>
 										<div id="collapseThree" class="collapse show" role="tabpanel"
 											aria-labelledby="headingThree">
-											<div class="card-body">
+											<div class="card-body" th:each="branch : ${branches}">
 												<div class="form-check">
 													<label class="form-check-label"> <input
 														class="form-check-input" type="checkbox" value="">
-														All <span class="form-check-sign"> <span
+														[[${branch}]] <span class="form-check-sign"> <span
 															class="check"></span>
 													</span>
 													</label>
 												</div>
 
-												<th:block th:each="branch : ${branches}">
+										<!--		<div class="card-body" th:block th:each="branch : ${branches}">
 													<div class="form-check">
-														<label class="form-check-label">
-															<input class="form-check-input" type="checkbox" th:value="${branch}">
-															<p th:text="${branch}"></p>
-															<span class="form-check-sign">
-																<span class="check"></span>
+														<label class="form-check-label"> <input
+																class="form-check-input" type="checkbox" value="">
+															All <span class="form-check-sign"> <span
+																	class="check"></span>
 													</span>
 														</label>
 													</div>
-												</th:block>
+												</div>-->
 
 											</div>
 										</div>
 									</div>
-									
+
 								</div>
 							</div>
 						</div>
 					</div>
+
+
 					<div class="col-md-9">
 						<div class="row">
 							<div class="col-md-4" th:each="pr,pStat : ${product}"
@@ -219,6 +234,12 @@
 		</div>
 		<!-- section -->
 	</div>
+
+<script>
+	function onSearchClicked() {
+		href="@{/shop-page/1/" + document.getElementById("searchBox").value + "}";
+	}
+</script>
 
 </body>
 </html>
