@@ -10,12 +10,17 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import pet.petshop.entity.Bill;
 import pet.petshop.entity.Blog;
 import pet.petshop.entity.Schedule;
 import pet.petshop.entity.Services;
@@ -33,11 +38,34 @@ public class ScheduleController {
 	
 	@RequestMapping("/schedule")
 	public String index(ModelMap model) {
-		List<Schedule> list = scs.listAll();
-		model.addAttribute("schedulelist",list);
-		return "admin/schedule/index";
+		return listByPageAdminSchedule(model, 1, "idschedule", "desc");
 	}
 	
+	 @GetMapping("/schedule-page/{pageNumber}")
+		public String listByPageAdminSchedule(ModelMap model,
+				@PathVariable("pageNumber") int currentpage,
+				@Param("sortField") String sortField,
+				@Param("sortDir") String sortDir) {
+			
+			Page<Schedule> page = scs.listAllPageAdminSchedule(currentpage, sortField, sortDir);
+			long totalItems = page.getTotalElements();
+			int totalPages = page.getTotalPages();
+			int totalItemsInpage = page.getNumberOfElements();
+			
+			List<Schedule> list = page.getContent();
+			model.addAttribute("currentpage", currentpage);
+			model.addAttribute("schedulelist", list);
+			model.addAttribute("sortField", sortField);
+			model.addAttribute("sortDir", sortDir);
+			model.addAttribute("totalItems",totalItems);
+			model.addAttribute("totalPages",totalPages);
+			model.addAttribute("totalItemsInpage",totalItemsInpage);
+			
+			String reverseSortDir = sortDir.equals("asc") ? "desc"  : "asc" ;
+			model.addAttribute("reverseSortDir",reverseSortDir);
+			return "admin/schedule/index";
+			
+		}
 	
 	@RequestMapping("/confirmservice/{id}")
 	public String confirmservice(ModelMap model,HttpSession session,@PathVariable(name = "id") Integer id) {
