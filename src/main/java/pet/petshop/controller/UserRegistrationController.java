@@ -51,7 +51,7 @@ public class UserRegistrationController {
 		}
 		else {
 				userService.Regis(user);
-					return "redirect:/registration2?success";
+					return "redirect:/login?success";
 		}
 	}
 }

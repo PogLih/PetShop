@@ -15,7 +15,14 @@
           <div class="col-md-6 ml-auto mr-auto">
             <div class="profile">
               <div class="avatar">
-                <img th:src="@{'../assets/img/' + ${user.avatar}}" alt="Circle Image"  class="img-raised rounded-circle img-fluid">
+                <div th:if="${user.avatar}">
+									<img th:src="@{'../assets/img/' + ${user.avatar}}" alt="Avatar" class="img-raised rounded-circle img-fluid">
+								</div>
+
+								
+								<div th:unless="${user.avatar}">
+									<img th:src="@{'../assets/img/default.png'}" style="width: 300px;height: 100px" alt="Default Avatar" class="img-raised rounded-circle img-fluid">
+								</div>
               </div>
               <div class="name">
                 <h3 class="title" th:text="${user.name}">Christian Louboutin</h3>

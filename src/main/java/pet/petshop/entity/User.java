@@ -24,13 +24,13 @@ public class User {
 	
 	@Column(name = "email")
 	@Email(message = "Địa chỉ không hợp lệ")
-	@Pattern(regexp = "^\\s*\\S+\\s*$", message = "Không được để khoảng trắng")
+//	@Pattern(regexp = "^\\s*\\S+\\s*$", message = "Không được để khoảng trắng")
 	@NotBlank(message = "Vui lòng nhập Email")
 	private String email;
 	
 	@Column(name = "password")
-	@NotBlank(message = "Vui lòng nhập password")
-	@Pattern(regexp = "^\\s*\\S+\\s*$", message = "Không được để khoảng trắng")
+//	@NotBlank(message = "Vui lòng nhập password")
+//	@Pattern(regexp = "^\\s*\\S+\\s*$", message = "Không được để khoảng trắng")
 	private String password;
 	@Column(name = "role")
 	private String role;

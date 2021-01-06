@@ -47,8 +47,11 @@
                          <a href="/profile" class="dropdown-item" sec:authorize="isAuthenticated()">Thông tin cá nhân</a>
                        <!--  <a href="#" class="dropdown-item" sec:authorize="isAuthenticated()">Ä�á»•i máº­t kháº©u</a> -->
                         <a href="/billhistory" class="dropdown-item" sec:authorize="isAuthenticated()">Lịch sử mua hàng</a> 
+                        <a href="/schedulehistory" class="dropdown-item" sec:authorize="isAuthenticated()">Lịch sử đặt lịch</a> 
                         <div class="dropdown-divider" sec:authorize="hasRole('ROLE_ADMIN')"></div>
                         <a href="/admin" class="dropdown-item" sec:authorize="hasRole('ROLE_ADMIN')">Admin</a>
+                        <div class="dropdown-divider" sec:authorize="hasRole('ROLE_STAFF')"></div>
+                        <a href="/admin" class="dropdown-item" sec:authorize="hasRole('ROLE_STAFF')">Admin</a>
                         <div class="dropdown-divider" sec:authorize="isAuthenticated()"></div>
                         <a href="/logout" class="dropdown-item" sec:authorize="isAuthenticated()">Đăng Xuất</a>
                       </div>

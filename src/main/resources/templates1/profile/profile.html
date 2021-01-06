@@ -25,7 +25,7 @@
 									<img th:src="@{'../assets/img/' + ${user.avatar}}" alt="Avatar" class="img-raised rounded-circle img-fluid">
 								</div>
 
-								<!--/* If the product has no image, display default Image. */-->
+								
 								<div th:unless="${user.avatar}">
 									<img th:src="@{'../assets/img/default.png'}" style="width: 300px;height: 100px" alt="Default Avatar" class="img-raised rounded-circle img-fluid">
 								</div>
